@@ -14,6 +14,7 @@ const userRoute = require("./routes/userRoutes")
 //models
 const Image = require("./models/image");
 const User = require("./models/user.js");
+
 const e = require("express");
 
 // create servers
@@ -24,7 +25,7 @@ app.use(cors());
 app.use(express.json());
 
 // routes will be issues here
-app.use('/listings', listingRoute)
+// app.use('/listings', listingRoute)
 app.use('/users', userRoute)
 
 const storage = multer.diskStorage({
@@ -82,6 +83,18 @@ app.post("/images", upload.single("image-attachment"), async (req, res) => {
 
 
 // USERS //
+
+// get users 
+
+app.get("/users/signup", async (req, res) => {
+
+  const allUsers = await User.find()
+
+  console.log(allUsers)
+
+  res.json(allUsers)
+
+});
 
 // // POST request - create a new user
 
