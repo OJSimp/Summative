@@ -9,7 +9,22 @@ const userToken = (_id) => {
 // login user
 
 const loginUser = async (req, res) => {
- res.json({message: "log in"})
+ 
+const { email, password } = req.body 
+
+ try {
+
+  const user = await User.login( email, password)
+  const token = userToken(user._id)
+
+  res.status(200).json({ user, token })
+ 
+  // cannot signup user 
+ } catch(error){
+ 
+  res.status(400).json({ error: error.message })
+
+ }
 }
 
 // signup a new user 
@@ -18,7 +33,6 @@ const signupUser = async (req, res) => {
 
  const { firstName, lastName, email, password } = req.body
 
- // signup user
  try {
 
   const user = await User.signup( firstName, lastName, email, password)
