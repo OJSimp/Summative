@@ -1,0 +1,40 @@
+.access__header{
+ display: flex;
+ justify-content: flex-end;
+
+ .btn--icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+ }
+
+}
+
+
+.access__nav{
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+
+ .access--button{
+  padding: 16px 20px;
+ }
+}
+
+.active {
+ font-weight: 400;
+ background-color: white;
+}
+
+.other-access-options {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding: 0px 10%;
+
+ button {
+  width: 100%;
+  padding: 16px 20px;
+  margin: 10px 0;
+ }
+}

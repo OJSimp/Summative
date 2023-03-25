@@ -1,0 +1,22 @@
+.nav-profile{
+
+ @media (min-width: 600px) {
+   max-width: 400px;
+  }
+
+ .profile__details {
+  padding: 30px;
+ }
+
+ .nav-btn__profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+ }
+
+ .nav-btn__profile--active{
+ background-color: aliceblue;
+ }
+
+}

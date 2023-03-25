@@ -1,0 +1,23 @@
+.nav__footer{
+ position: absolute;
+ display: grid;
+ grid-template-columns: 1fr 1fr 1fr 1fr;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+ bottom: 0px;
+ width: 100vw;
+background: rgba(255, 255, 255, 0.9);
+
+
+ .btn-nav{
+ padding: 10px 16px;
+ 
+ }
+
+ .btn-nav--active{
+ background-color: azure;
+ 
+ }
+
+}
