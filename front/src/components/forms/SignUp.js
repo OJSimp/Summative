@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import { useSignUp } from "../../hooks/useSignUp"
+
 import "./SignUp.scss"
 
 
@@ -10,49 +12,47 @@ const SignUp = () => {
  const [email, setEmail] = useState("")
  const [password, setPassword] = useState("")
 
- const handleCreateUser = (e) => {
+ const {signup, error, loading} = useSignUp()
+
+
+ const handleSignUp = async (e) => {
  e.preventDefault()
 
- const postRequest = {firstName, lastName, email, password}
+  // POST request being sent to useSignUp.js Hook 
+  await signup( firstName, lastName, email, password )
 
- const PostUser = async() => {
-
-  await fetch("http://localhost:8001/users/", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(postRequest)
-  }).then((data) => console.log("User Created", data.statusText))}
-
-  PostUser()
- 
  }
 
 
  return(
   <div>
-   <form className="form__sign-up" onSubmit={handleCreateUser}>
+   <form className="form__sign-up" onSubmit={handleSignUp}>
 
-    <input type="text" placeholder="First name" className="text-input--icon" id="log-in--first-name" onChange={(e) => {setFristName(e.target.value)}}/>
+    <input type="text" placeholder="" className="text-input--icon" id="log-in--first-name" onChange={(e) => {setFristName(e.target.value)}} value={firstName}/>
     <label htmlFor="log-in--first-name" className="input-label--icon" id="log-in__first-name">
      <span>First name</span>
     </label>
 
-    <input type="text" placeholder="Last name" className="text-input--icon" id="log-in__last-name" onChange={(e) => {setLastName(e.target.value)}}/>
+    <input type="text" placeholder="" className="text-input--icon" id="log-in__last-name" onChange={(e) => {setLastName(e.target.value)}} value={lastName}/>
     <label htmlFor="log-last-name" className="input-label--icon" id="log-in__last-name">
      <span>Last name</span>
     </label>
 
-    <input type="text" placeholder="Email" className="text-input--icon" id="log-in__email" onChange={(e) => {setEmail(e.target.value)}}/>
+    <input type="text" placeholder="" className="text-input--icon" id="log-in__email" onChange={(e) => {setEmail(e.target.value)}} value={email}/>
     <label htmlFor="log-in__email" className="input-label--icon" id="log-in__email">
      <span>Email address</span>
     </label>
 
-    <input type="text" placeholder="Password" className="text-input--icon" id="log-in__passowrd" onChange={(e) => {setPassword(e.target.value)}}/>
+    <input type="password" placeholder="" className="text-input--icon" id="log-in__passowrd" onChange={(e) => {setPassword(e.target.value)}} value={password}/>
     <label htmlFor="log-in--passowrd" className="input-label--icon" id="log-in__passowrd">
      <span>Password</span>
     </label>
 
+    {/* error received from backend (userModel & userController) and displayed here using the hook useSignUp */}
+    {error && <div className="form-error">{error}</div>}
+   
    <button className="primary-button">Sign Up</button>
+   
    </form>
 
   </div>
