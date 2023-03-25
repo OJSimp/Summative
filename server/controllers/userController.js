@@ -9,7 +9,7 @@ const userToken = (_id) => {
 // login user
 
 const loginUser = async (req, res) => {
- 
+
 const { email, password } = req.body 
 
  try {
@@ -17,7 +17,7 @@ const { email, password } = req.body
   const user = await User.login( email, password)
   const token = userToken(user._id)
 
-  res.status(200).json({ user, token })
+  res.status(200).json({ email, token })
  
   // cannot signup user 
  } catch(error){
@@ -40,7 +40,7 @@ const signupUser = async (req, res) => {
   // after user is signed up take the id and create the token
   const token = userToken(user._id)
 
-  res.status(200).json({ user, token })
+  res.status(200).json({ email, token })
  
   // cannot signup user 
  } catch(error){
