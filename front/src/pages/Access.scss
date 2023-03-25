@@ -16,15 +16,19 @@
  display: grid;
  grid-template-columns: 1fr 1fr;
 
- .access--button{
+ .btn-access{
   padding: 16px 20px;
  }
 }
 
-.active {
- font-weight: 400;
+.btn-access--active{
+
  background-color: white;
+ border: 1px solid black;
+
+
 }
+
 
 .other-access-options {
  display: flex;
