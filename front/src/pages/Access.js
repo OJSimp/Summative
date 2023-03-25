@@ -5,13 +5,14 @@ import SignUp from "../components/forms/SignUp"
 
 import { useState } from "react"
 
-import { useNavigate } from "react-router-dom"
+import { NavLink ,useNavigate, Outlet } from "react-router-dom"
 
 const Access = () => {
 
  const [showSignUp, setShowSignUp] = useState(true)
 
  const navigate = useNavigate()
+
 
  const navigateToProfile = () => {
 
@@ -25,21 +26,17 @@ const Access = () => {
   <div className="home-page">
 
   <div className="access-container">
-  <div className="access__header">
-    <button className="btn--icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="#2A2E45"/>
-      </svg>
-    </button>
-  </div>
    
    <div className="access__nav">
-    <button className={`access--button` + (showSignUp ? ` active` : ``)} onClick={() => {setShowSignUp(true)}}>Sign Up</button>
-    <button className={`access--button` + (showSignUp ? ` ` : ` active`)} onClick={() => {setShowSignUp(false)}}>Log In</button>
+    <NavLink to="sign-up" className={({ isActive }) =>(isActive ? 'btn-access btn-access--active' : 'btn-access btn-access--inactive')}>Sign Up</NavLink>
+    <NavLink to="log-in" className={({ isActive }) =>(isActive ? 'btn-access btn-access--active' : 'btn-access btn-access--inactive')}>Log In</NavLink>
    </div>
 
-   {/* Show sign up and log in is dependant on ternary operator */}
+   {/* Nested routes to show sigup form underneeth */}
 
-   {showSignUp ? <div className="sign-up-container"> <SignUp/> </div> : <div className="log-in-container"> <LogIn/> </div>}
+   < Outlet /> 
+
+
 
     <div className="other-access-options">
   

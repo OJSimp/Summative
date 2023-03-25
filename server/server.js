@@ -8,6 +8,9 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 
+const listingRoute = require("./routes/listingRoutes")
+const userRoute = require("./routes/userRoutes")
+
 //models
 const Image = require("./models/image");
 const User = require("./models/user.js");
@@ -19,6 +22,10 @@ const app = express();
 //middlewares
 app.use(cors());
 app.use(express.json());
+
+// routes will be issues here
+app.use('/listings', listingRoute)
+app.use('/users', userRoute)
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -33,6 +40,9 @@ const upload = multer({
   storage: storage,
   limits: { fileSize: 5242880 },
 });
+
+
+
 
 //-----------Routes START-----------//
 
@@ -73,37 +83,37 @@ app.post("/images", upload.single("image-attachment"), async (req, res) => {
 
 // USERS //
 
-// POST request - create a new user
+// // POST request - create a new user
 
-  app.post("/users/", async(req, res) => {
+//   app.post("/users/", async(req, res) => {
     
-  const newUser = await User.create(req.body)
-  res.json(newUser)
-  console.log("USER CREATED", newUser)
+//   const newUser = await User.create(req.body)
+//   res.json(newUser)
+//   console.log("USER CREATED", newUser)
 
-    // try {
-    //   const existingUser = await User.findOne({email})
+//     // try {
+//     //   const existingUser = await User.findOne({email})
 
-    //   if ( existingUser ){
+//     //   if ( existingUser ){
       
-    //   res.send(error, "Existing user")
-    //   } else{
-    //   const newUser = await User.create(req.body)
-    //   res.json(newUser)
-    //   console.log("USER CREATED", newUser)
+//     //   res.send(error, "Existing user")
+//     //   } else{
+//     //   const newUser = await User.create(req.body)
+//     //   res.json(newUser)
+//     //   console.log("USER CREATED", newUser)
       
-    //   }
+//     //   }
 
       
 
-    // } catch (error) {
-    //   res.send("User Existing")
+//     // } catch (error) {
+//     //   res.send("User Existing")
 
-    // }
+//     // }
 
     
 
- })
+//  })
 
 
 
