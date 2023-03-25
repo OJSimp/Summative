@@ -96,37 +96,6 @@ app.get("/users/signup", async (req, res) => {
 
 });
 
-// // POST request - create a new user
-
-//   app.post("/users/", async(req, res) => {
-    
-//   const newUser = await User.create(req.body)
-//   res.json(newUser)
-//   console.log("USER CREATED", newUser)
-
-//     // try {
-//     //   const existingUser = await User.findOne({email})
-
-//     //   if ( existingUser ){
-      
-//     //   res.send(error, "Existing user")
-//     //   } else{
-//     //   const newUser = await User.create(req.body)
-//     //   res.json(newUser)
-//     //   console.log("USER CREATED", newUser)
-      
-//     //   }
-
-      
-
-//     // } catch (error) {
-//     //   res.send("User Existing")
-
-//     // }
-
-    
-
-//  })
 
 
 
