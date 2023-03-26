@@ -1,5 +1,7 @@
 import "./ProfileNav.scss"
 
+import { useEffect, useState } from "react"
+
 import { useLogout } from "../../hooks/useLogOut"
 import { useAuthContext } from "../../hooks/useAuthContext"
 
@@ -7,16 +9,20 @@ import { NavLink } from "react-router-dom"
 
 const ProfileNav = () => {
 
+ // if user is logged in reload the page 
+ const [activeuser, setActiveUser] = useState(null)
+
  // check if user is logged in from token 
  const { user } = useAuthContext()
 
  // call log out function from userLogOut - hook
  const { logout } = useLogout()
 
-  // const handleLogout = () => {
-  //   console.log("logout")
-    
-  // }
+ useEffect(() => {
+  // window.location.reload();
+}, [])
+
+
  
  return(
 

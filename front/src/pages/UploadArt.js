@@ -1,5 +1,7 @@
 import "./UploadArt.scss"
 
+import CreateListing from "../components/forms/CreateListing"
+
 import { useState } from "react"
 
 const UplaodArt = () =>  {
@@ -38,6 +40,9 @@ const UplaodArt = () =>  {
 
  return(
   <div className="upload-art">
+
+    < CreateListing /> 
+
     <h3>Upload Image</h3>
       <input onChange={handleFileChange} type="file" name="image" id="image"/>
       <button onClick={handleUploadFile}>Upload</button>
