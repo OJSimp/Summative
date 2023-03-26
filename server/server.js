@@ -72,7 +72,7 @@ app.get("/listings/", async (req, res) => {
 
  app.delete("/listings/:listingsId", async(req, res) => {
 
-  const deleteListing = await Listing.findByIdAndDelete(req.params.postId)
+  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId)
   res.json(deleteListing)
 
   console.log("POST DELETED", deleteListing)
@@ -81,6 +81,40 @@ app.get("/listings/", async (req, res) => {
 
 
 
+
+// USERS //
+
+// get users 
+
+app.get("/users/signup", async (req, res) => {
+
+  const allUsers = await User.find()
+
+  console.log(allUsers)
+
+  res.json(allUsers)
+
+});
+
+// AMIEE THIS IS FOR YOU 
+// Find one user based on email - email 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SPENCER IS PUTTIN SOME INTENSE STUFF PAST THIS POINT //
 
 // POST request - uplaoding image with Multer
 // name = image-attachment
@@ -116,23 +150,6 @@ app.get("/listings/", async (req, res) => {
 // });
 
 
-
-
-
-
-// USERS //
-
-// get users 
-
-app.get("/users/signup", async (req, res) => {
-
-  const allUsers = await User.find()
-
-  console.log(allUsers)
-
-  res.json(allUsers)
-
-});
 
 
 
