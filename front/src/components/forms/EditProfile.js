@@ -12,8 +12,6 @@ const EditProfile = () => {
 
  // storage of user information 
 
-
-
  const { user } = useAuthContext()
 
 // there is a delay between when the page laods and the local storage email
