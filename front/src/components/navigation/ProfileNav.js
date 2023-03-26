@@ -29,7 +29,7 @@ const ProfileNav = () => {
   <div className="nav-profile">
    <div className="profile__details">
     <h2>My Profile - {/* Zee Insert your Get Request here for name*/}</h2>
-    {user && <p>  ({user.email})</p>}
+    {user && <p>{user.email}</p>}
    </div>
 
   <NavLink to="edit-profile" className={({ isActive }) =>(isActive ? 'nav-btn__profile nav-btn__profile--active' : 'nav-btn__profile nav-btn__profile--inactive')}>

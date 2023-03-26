@@ -45,6 +45,8 @@ const handleLogIn = async (e) => {
      <span>Password</span>
     </label>
 
+    <input type="text" />
+
     {/* error received from backend (userModel & userController) and displayed here using the hook useLogIn */}
     {error && <div className="form-error">{error}</div>}
 
