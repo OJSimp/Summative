@@ -96,19 +96,22 @@ app.get("/users/signup", async (req, res) => {
 
 });
 
+// AMIEE THIS IS FOR YOU 
 // Find one user based on email - email 
 
-app.get("/users/:userId", async (req, res) => {
 
-  const userEmail = req.params.userId
 
-  const viewUser = await User.find({email: userEmail})
 
-  console.log(viewUser)
 
-  res.json(viewUser)
 
-});
+
+
+
+
+
+
+
+
 
 
 // SPENCER IS PUTTIN SOME INTENSE STUFF PAST THIS POINT //
