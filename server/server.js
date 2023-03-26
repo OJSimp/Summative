@@ -13,6 +13,7 @@ const userRoute = require("./routes/userRoutes")
 
 //models
 const Image = require("./models/image");
+const Listing = require("./models/listing")
 const User = require("./models/user.js");
 
 const e = require("express");
@@ -47,38 +48,75 @@ const upload = multer({
 
 //-----------Routes START-----------//
 
+// LISTINGS //
+
+app.post("/listings", async(req, res) => {
+
+   const newListing = await Listing.create(req.body)
+   res.json(newListing)
+
+   console.log("POST CREATED", newListing)
+
+ })
+
+app.get("/listings/", async (req, res) => {
+
+  const viewAllListing = await Post.find({})
+
+  console.log(viewAllListing)
+
+  res.json(viewAllListing)
+
+});
+
+
+ app.delete("/listings/:listingsId", async(req, res) => {
+
+  const deleteListing = await Listing.findByIdAndDelete(req.params.postId)
+  res.json(deleteListing)
+
+  console.log("POST DELETED", deleteListing)
+
+ })
+
+
+
+
 // POST request - uplaoding image with Multer
 // name = image-attachment
 
-app.post("/images", upload.single("image-attachment"), async (req, res) => {
-  if (!req.file) {
-    res.json({ message: "no image received" });
-  } else {
-    const image = new Image({
-      data: fs.readFileSync(
-        path.join(__dirname + "/uploads/" + req.file.filename)
-      ),
-      contentType: "image/png",
-    });
+// app.post("/images", upload.single("image-attachment"), async (req, res) => {
+//   if (!req.file) {
+//     res.json({ message: "no image received" });
+//   } else {
+//     const image = new Image({
+//       data: fs.readFileSync(
+//         path.join(__dirname + "/uploads/" + req.file.filename)
+//       ),
+//       contentType: "image/png",
+//     });
 
-    await image.save();
+//     await image.save();
 
-    fs.unlinkSync(path.join(__dirname + "/uploads/" + req.file.filename));
-    res.json({ message: "hello" });
-  }
-});
+//     fs.unlinkSync(path.join(__dirname + "/uploads/" + req.file.filename));
+//     res.json({ message: "hello" });
+//   }
+// });
 
 // GET request - receiveing an image using Multer
 
- app.get("/images", async (req, res) => {
+//  app.get("/images", async (req, res) => {
 
-  const requestedimage = await Image.find().lean()
+//   const requestedimage = await Image.find().lean()
 
-  console.log(requestedimage)
+//   console.log(requestedimage)
 
-  res.json(requestedimage)
+//   res.json(requestedimage)
 
-});
+// });
+
+
+
 
 
 

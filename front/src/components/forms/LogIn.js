@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useLogIn } from "../../hooks/useLogin"
 import { useAuthContext } from "../../hooks/useAuthContext"
 
+import { useNavigate } from "react-router-dom"
+
 import "./LogIn.scss"
 
  
@@ -17,12 +19,17 @@ const LogIn = () => {
  // check if user is logged in from token 
  const { user } = useAuthContext()
 
+// navigate to profile page
+
+const navigate = useNavigate()
+
 
 const handleLogIn = async (e) => {
   e.preventDefault()
 
   await login(email, password )
 
+  navigate("/profile")
 }
 
  return(
@@ -33,7 +40,7 @@ const handleLogIn = async (e) => {
      <span>Email address</span>
     </label>
 
-    <input type="text" placeholder="" className="text-input--icon" id="log-in__passowrd" onChange={(e) => {setPassword(e.target.value)}}/>
+    <input type="password" placeholder="" className="text-input--icon" id="log-in__passowrd" onChange={(e) => {setPassword(e.target.value)}}/>
     <label htmlFor="log-in--passowrd" className="input-label--icon" id="log-in__passowrd">
      <span>Password</span>
     </label>
