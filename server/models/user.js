@@ -27,7 +27,7 @@ userSchema.statics.signup = async function(firstName, lastName, email, password)
  const existingEmail = await this.findOne( {email} )
  // if the email exists throw error 
  if (existingEmail){
-  throw Error( "Existing email in databse ")
+  throw Error( "This is an existing email")
  }
 
  // password encryption // salt is an special encryption key on the end of the password encryption
