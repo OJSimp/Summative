@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { useAuthContext } from "./useAuthContext"
 
-export const useSignUp = () => {
+export const useLogIn = () => {
  //if there is an error  // is loading 
  const [error, setError] = useState(null)
  const [loading, setLoading] = useState(null)
@@ -11,15 +11,15 @@ export const useSignUp = () => {
  const {dispatch} = useAuthContext()
 
  //sending data to databse using a post request 
- const signup = async (firstName, lastName, email, password) => {
+ const login = async (email, password) => {
   // starting request - so is loading & reset errors to null 
   setLoading(true)
   setError(null)
 
-  const response = await fetch("http://localhost:8001/users/signup/", {
+  const response = await fetch("http://localhost:8001/users/login/", {
   method: 'POST',
   headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify({ firstName, lastName, email, password })
+  body: JSON.stringify({ email, password })
  })
 
  // send back webtoken if sucessful 
@@ -39,7 +39,7 @@ export const useSignUp = () => {
  // update authContext using authContext hook 
   // AuthContext.js run case LogIn - send response as json - Log in user
   // can see this payload in devtools -> Application (not in console)
-  console.log("sent as payload", json)
+  console.log(json)
   dispatch({type: "LOGIN", paylaod: json } )
 
  // finsihed loading now false
@@ -49,5 +49,5 @@ export const useSignUp = () => {
 
 
  // we need to return the "signup function", the "loading state" and the "error state"
- return { signup, loading, error }
+ return { login, loading, error }
 }
