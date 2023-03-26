@@ -81,8 +81,8 @@ const { user } = useAuthContext()
     )}
     
     <Route path="/profile" element= {< Profile/>}>
-    <Route path="edit-listings" element={< Editlistings/>}></Route>
-    <Route path="edit-profile" element={< EditProfile/>}></Route>
+      <Route path="edit-listings" element={< Editlistings/>}></Route>
+      <Route path="edit-profile" element={< EditProfile/>}></Route>
    </Route>
     
    <Route path='/upload-art' element={< UplaodArt/>}></Route>
