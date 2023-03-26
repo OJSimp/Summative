@@ -67,8 +67,6 @@ const { user } = useAuthContext()
 
     {/* DESKTOP Routes */}
 
-    <Route path='/' element={< Access/>}></Route>
-
     {/* user is not logged in */}
     {!user && (
     <Route path='/' element={< Access/>}>
