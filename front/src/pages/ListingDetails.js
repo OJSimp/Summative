@@ -3,6 +3,8 @@ import { useState, useEffect } from "react"
 
 import { useParams, useNavigate} from "react-router-dom"
 
+import Accordion from "../components/accordion/accordion"
+
 const ListingDetials = () => {
 
  const [artDetails, setArtDetails] = useState("")
@@ -47,6 +49,9 @@ const ListingDetials = () => {
  }, [])
 
 
+
+
+
 return (
  <div>
   <p>Listing Details</p>
@@ -54,20 +59,17 @@ return (
 
    <img className="listing-details__img" src="" alt="" />
 
-   <div className="listing-details__header">
-    <h3>{artDetails}</h3>
+   <div className="listing-details__header" >
+    <h3>{artTitle}</h3>
     <p>{artistName}</p>
     <p>{price}</p>
    </div>
 
-   <div className="listing-details__accordion">
-    <div className="accordion__header">
+   < Accordion details={artDetails} heading="Artwork Details" index="0"/>
 
-    </div>
-    <div className="accordion__body">
-     
-    </div>
-   </div>
+   < Accordion details={artistBio} heading="Artist Details" index="1"/>
+
+   
 
   </div>
  </div>
