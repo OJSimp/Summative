@@ -110,6 +110,20 @@ app.get("/users/signup", async (req, res) => {
 
 });
 
+// get user name based on email
+
+app.get("/users/:userEmail", async (req, res) => {
+
+  const userEmail = req.params.userEmail
+
+  const viewUser = await User.find({email: userEmail})
+
+  console.log(viewUser)
+
+  res.json(viewUser)
+
+});
+
 // AMIEE THIS IS FOR YOU 
 // Find one user based on email - email 
 

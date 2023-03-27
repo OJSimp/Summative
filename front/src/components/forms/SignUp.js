@@ -26,32 +26,32 @@ const SignUp = () => {
 
  return(
   <div>
-   <form className="form__sign-up" onSubmit={handleSignUp}>
+   <form className="form--sign-up" onSubmit={handleSignUp}>
 
     <input type="text" placeholder="" className="text-input--icon" id="log-in--first-name" onChange={(e) => {setFristName(e.target.value)}} value={firstName}/>
-    <label htmlFor="log-in--first-name" className="input-label--icon" id="log-in__first-name">
+    <label htmlFor="log-in--first-name" className="text-input__label" id="log-in--first-name">
      <span>First name</span>
     </label>
 
-    <input type="text" placeholder="" className="text-input--icon" id="log-in__last-name" onChange={(e) => {setLastName(e.target.value)}} value={lastName}/>
-    <label htmlFor="log-last-name" className="input-label--icon" id="log-in__last-name">
+    <input type="text" placeholder="" className="text-input--icon" id="log-in--last-name" onChange={(e) => {setLastName(e.target.value)}} value={lastName}/>
+    <label htmlFor="log-last-name" className="text-input__label" id="log-in--last-name">
      <span>Last name</span>
     </label>
 
     <input type="text" placeholder="" className="text-input--icon" id="log-in__email" onChange={(e) => {setEmail(e.target.value)}} value={email}/>
-    <label htmlFor="log-in__email" className="input-label--icon" id="log-in__email">
+    <label htmlFor="log-in__email" className="text-input__label" id="log-in__email">
      <span>Email address</span>
     </label>
 
-    <input type="password" placeholder="" className="text-input--icon" id="log-in__passowrd" onChange={(e) => {setPassword(e.target.value)}} value={password}/>
-    <label htmlFor="log-in--passowrd" className="input-label--icon" id="log-in__passowrd">
+    <input type="password" placeholder="" className="text-input--icon" id="log-in--password" onChange={(e) => {setPassword(e.target.value)}} value={password}/>
+    <label htmlFor="log-in--password" className="text-input__label" id="log-in--password">
      <span>Password</span>
     </label>
 
     {/* error received from backend (userModel & userController) and displayed here using the hook useSignUp */}
-    {error && <div className="form-error">{error}</div>}
+    {error && <div className="form-mesage--error">{error}</div>}
    
-   <button className="primary-button">Sign Up</button>
+   <button className="btn-primary">Sign Up</button>
    
    </form>
 

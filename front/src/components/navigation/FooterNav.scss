@@ -11,8 +11,14 @@ background: rgba(255, 255, 255, 0.9);
 
 
  .btn-nav{
+ display: flex;
+ flex-direction: column-reverse;
  padding: 10px 16px;
  
+ .btn-nav__icon{
+ padding-bottom: 10px;
+
+ }
  }
 
  .btn-nav--active{
