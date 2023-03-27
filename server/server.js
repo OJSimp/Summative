@@ -61,11 +61,25 @@ app.post("/listings", async(req, res) => {
 
 app.get("/listings/", async (req, res) => {
 
-  const viewAllListing = await Post.find({})
+  const viewAllListing = await Listing.find({})
 
   console.log(viewAllListing)
 
   res.json(viewAllListing)
+
+});
+
+// get listing by Id
+
+app.get("/listings/:listingsId", async (req, res) => {
+
+  // const listingID = req.params.listingId
+
+  const viewAListing = await Listing.findById(req.params.listingsId)
+
+  console.log(viewAListing)
+
+  res.json(viewAListing)
 
 });
 
