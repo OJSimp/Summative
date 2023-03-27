@@ -1,0 +1,1 @@
+.accordion{display:flex;flex-direction:column;padding:0px 20px;background-color:#fff;margin-bottom:5px}.accordion .accordion__header{display:flex;align-items:center;justify-content:space-between;padding:20px 0px}.accordion .accordion__content--closed{display:none}/*# sourceMappingURL=Accordion.css.map */

@@ -1,3 +1,4 @@
+import "./Accordion.scss"
 
 import { useState, useEffect } from "react"
 
@@ -22,14 +23,14 @@ const Accordion = (props) => {
   <div>
    
    
-   <div className="listing-details__accordion" onClick={() => {handleToggle(props.index)}}>
+   <div className="accordion" onClick={() => {handleToggle(props.index)}}>
 
     <div className="accordion__header">
      <h4>{props.heading}</h4>
      <span>+</span>
     </div>
-    
-    <div className={open == props.index ? "accordion__content--open" : "accordion__content--closed" }>
+
+    <div className={open == props.index ? "accordion__content accordion__content--open" : "accordion__content accordion__content--closed" }>
      <p>{props.details}</p>
     </div>
    </div>

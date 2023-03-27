@@ -1,0 +1,42 @@
+.listing-details{
+ background-color: #f4f4f4;;
+
+.listing-details__container{
+ display: flex;
+ flex-direction: column;
+ background-color: white;
+ padding: 20px;
+ margin-bottom: 5px;
+
+ gap: 10px;
+
+ button{
+  padding: 10px;
+ }
+
+}
+
+.listing-details__comments{
+ .comments-header {
+   display: flex;
+   padding: 0px 0px 0px 20px;
+   background-color: white;
+   width: 50%;
+  }
+ 
+  .comments-button {
+   display: flex;
+   background-color: white;
+   padding: 20px;
+
+   button{
+   display: flex;
+   
+   padding: 10px;
+   }
+  }
+}
+
+
+}
+

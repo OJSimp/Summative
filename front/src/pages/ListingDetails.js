@@ -1,9 +1,12 @@
+import "./ListingDetails.scss"
 
 import { useState, useEffect } from "react"
 
 import { useParams, useNavigate} from "react-router-dom"
 
-import Accordion from "../components/accordion/accordion"
+import Accordion from "../components/accordion/Accordion"
+
+import AddComment from "../components/modals/AddComment"
 
 const ListingDetials = () => {
 
@@ -49,7 +52,11 @@ const ListingDetials = () => {
  }, [])
 
 
+const handleOpenModal = () => {
 
+ console.log("open")
+
+}
 
 
 return (
@@ -57,9 +64,9 @@ return (
   <p>Listing Details</p>
   <div className="listing-details">
 
-   <img className="listing-details__img" src="" alt="" />
+   <img className=" listing-details__img" src="" alt="" />
 
-   <div className="listing-details__header" >
+   <div className="listing-details__container listing-details__header" >
     <h3>{artTitle}</h3>
     <p>{artistName}</p>
     <p>{price}</p>
@@ -69,8 +76,25 @@ return (
 
    < Accordion details={artistBio} heading="Artist Details" index="1"/>
 
-   
+   <div className="listing-details__container listing-details__buttons" >
+    <button className="btn-primary">Purcahse Artwork</button>
+    <button className="btn-outlie">Add To Cart</button>
+   </div>
 
+    <div className="listing-details__comments">
+     <div className="comments-header">
+      <h4>Comments</h4>
+     </div>
+     <div className="comments-display">
+
+     </div>
+
+     <div className="comments-button">
+      <button onClick={handleOpenModal}>Add Comment</button> 
+     </div>
+    </div>
+   
+   < AddComment /> 
   </div>
  </div>
  
