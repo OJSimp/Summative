@@ -22,6 +22,8 @@ const ListingDetials = () => {
  const [creatorId, setCreatorId] = useState("")
 
 
+
+
  // pull the ide from the URL 
  const listingId = useParams().listingsId
 
@@ -52,11 +54,7 @@ const ListingDetials = () => {
  }, [])
 
 
-const handleOpenModal = () => {
 
- console.log("open")
-
-}
 
 
 return (
@@ -90,11 +88,11 @@ return (
      </div>
 
      <div className="comments-button">
-      <button onClick={handleOpenModal}>Add Comment</button> 
+      < AddComment />  
      </div>
     </div>
    
-   < AddComment /> 
+  
   </div>
  </div>
  
