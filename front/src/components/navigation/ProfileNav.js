@@ -4,10 +4,13 @@ import { useEffect, useState } from "react"
 
 import { useLogout } from "../../hooks/useLogOut"
 import { useAuthContext } from "../../hooks/useAuthContext"
+import { useGetUser } from "../../hooks/useGetUser"
 
 import { NavLink } from "react-router-dom"
 
 const ProfileNav = () => {
+
+ const [userEmail, setUserEmail] = useState("")
 
  // if user is logged in reload the page 
  const [activeuser, setActiveUser] = useState(null)
@@ -18,9 +21,24 @@ const ProfileNav = () => {
  // call log out function from userLogOut - hook
  const { logout } = useLogout()
 
+ // call get user details 
+ const { userDetails, firstName } = useGetUser()
+
  useEffect(() => {
-  // window.location.reload();
-}, [])
+
+  if (user){
+  
+  setUserEmail(user.email)
+  // once there is a user get their information from server
+  userDetails( userEmail )
+
+  } else {
+  console.log("no user yet")
+  }
+
+})
+
+
 
 
  
@@ -28,7 +46,7 @@ const ProfileNav = () => {
 
   <div className="nav-profile">
    <div className="profile__details">
-    <h2>My Profile - {/* Zee Insert your Get Request here for name*/}</h2>
+    <h2>My Profile - {firstName} {/* Zee Insert your Get Request here for name*/}</h2>
     {user && <p>{user.email}</p>}
    </div>
 
@@ -58,8 +76,6 @@ const ProfileNav = () => {
     </span>
    </div>
    )}
-  
-
    
  </div>
 

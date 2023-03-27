@@ -30,7 +30,7 @@ const Accordion = (props) => {
      <span>+</span>
     </div>
 
-    <div className={open == props.index ? "accordion__content accordion__content--open" : "accordion__content accordion__content--closed" }>
+    <div className={open == props.index ? "accordion__content accordion__content--active" : "accordion__content accordion__content--inactive" }>
      <p>{props.details}</p>
     </div>
    </div>
