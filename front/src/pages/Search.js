@@ -1,17 +1,34 @@
+import "./Search.scss"
 
 import { useState, useEffect } from "react"
 
-import { Link, Outlet } from "react-router-dom"
-
 import { useAuthContext } from "../hooks/useAuthContext"
+
+import ListingCard from "../components/cards/ListingCard"
 
 const Search = () => {
 
- 
+ const [listingArray, setListingArray] = useState(null)
+
+ useEffect( () => {
+
+  const returnListignData = async () => {
+  
+   const resposne = await fetch(`http://localhost:8001/listings/`, {method: "GET"})
+   const data = await resposne.json()
+   const dataArray = data
+   setListingArray(dataArray)
+
+  }
+
+  returnListignData()
+
+ }, [])
 
  return(
-  <div className="search">
+  <div className="search__page">
    <p>search</p>
+   {listingArray ? < ListingCard listings={listingArray} /> : null}
   </div>
   )
 
