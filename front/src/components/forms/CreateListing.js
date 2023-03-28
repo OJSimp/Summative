@@ -7,9 +7,9 @@ const CreateListing = () => {
   const [artTitle, setArtTitle] = useState("");
   const [artSpecs, setArtSpecs] = useState("");
   const [artType, setArttype] = useState("");
-  const [artdetails, setArtDetails] = useState("");
-  const [label, setLabel] = useState("");
-  const [artistbio, setArtistbio] = useState("");
+  const [artDetails, setArtDetails] = useState("");
+  const [artistName, setArtistName] = useState("");
+  const [artistBio, setArtistbio] = useState("");
 
   const handlePrice = (e) => {
     setPrice(e.target.value);
@@ -30,8 +30,8 @@ const CreateListing = () => {
     setArtDetails(e.target.value);
   };
 
-  const handleLabel = (e) => {
-    setLabel(e.target.value);
+  const handleArtistName = (e) => {
+    setArtistName(e.target.value);
   };
 
   const handleArtworkbio = (e) => {
@@ -46,9 +46,9 @@ const CreateListing = () => {
       artTitle,
       artSpecs,
       artType,
-      artdetails,
-      label,
-      artistbio,
+      artDetails,
+      artistName,
+      artistBio,
     };
     console.log(Artpost);
 
@@ -118,9 +118,9 @@ const CreateListing = () => {
         ></textarea>
         <input
           className="Inputs"
-          placeholder="Label"
+          placeholder="ArtistName"
           type="text"
-          onChange={handleLabel}
+          onChange={handleArtistName}
         />
         <textarea
           name="Artist bio"
