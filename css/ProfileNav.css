@@ -1,1 +1,3 @@
-@media(min-width: 600px){.nav-profile{max-width:400px}}.nav-profile .profile__details{padding:30px}.nav-profile .nav-btn__profile{display:flex;align-items:center;justify-content:space-between;padding:30px}.nav-profile .nav-btn__profile--active{background-color:#f4f4f4}/*# sourceMappingURL=ProfileNav.css.map */
+
+@media(min-width: 600px){.nav-profile{width:360px}}.nav-profile .profile__details{padding:30px}.nav-profile .nav-btn__profile{display:flex;align-items:center;justify-content:space-between;padding:30px}.nav-profile .nav-btn__profile--active{background-color:#f4f4f4}/*# sourceMappingURL=ProfileNav.css.map */
+

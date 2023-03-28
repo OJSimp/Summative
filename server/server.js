@@ -61,18 +61,38 @@ app.post("/listings", async(req, res) => {
 
 app.get("/listings/", async (req, res) => {
 
-  const viewAllListing = await Post.find({})
+
+  const viewAllListing = await Listing.find({})
+
 
   console.log(viewAllListing)
 
   res.json(viewAllListing)
 
+
 });
+
+
+
+// get listing by Id
+
+app.get("/listings/:listingsId", async (req, res) => {
+
+
+  // const listingID = req.params.listingId
+
+  const viewAListing = await Listing.findById(req.params.listingsId)
+
+  console.log(viewAListing)
+
+  res.json(viewAListing)
+
+// });
 
 
  app.delete("/listings/:listingsId", async(req, res) => {
 
-  const deleteListing = await Listing.findByIdAndDelete(req.params.postId)
+  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId)
   res.json(deleteListing)
 
   console.log("POST DELETED", deleteListing)
@@ -81,6 +101,59 @@ app.get("/listings/", async (req, res) => {
 
 
 
+
+
+
+
+
+// USERS //
+
+
+// get users 
+
+app.get("/users/signup", async (req, res) => {
+
+  const allUsers = await User.find()
+
+  console.log(allUsers)
+
+  res.json(allUsers)
+
+});
+
+// get user name based on email
+
+app.get("/users/:userEmail", async (req, res) => {
+
+  const userEmail = req.params.userEmail
+
+  const viewUser = await User.find({email: userEmail})
+
+  console.log(viewUser)
+
+  res.json(viewUser)
+
+});
+
+// AMIEE THIS IS FOR YOU 
+// Find one user based on email - email 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SPENCER IS PUTTIN SOME INTENSE STUFF PAST THIS POINT //
 
 // POST request - uplaoding image with Multer
 // name = image-attachment
@@ -115,24 +188,6 @@ app.get("/listings/", async (req, res) => {
 
 // });
 
-
-
-
-
-
-// USERS //
-
-// get users 
-
-app.get("/users/signup", async (req, res) => {
-
-  const allUsers = await User.find()
-
-  console.log(allUsers)
-
-  res.json(allUsers)
-
-});
 
 
 

@@ -1,4 +1,4 @@
-.form__sign-up {
+.form--sign-up {
  display: flex;
  flex-direction: column;
  padding: 10px 10%;
@@ -9,8 +9,7 @@
   margin: 10px 0px;
  }
 
- .input-label--icon {
-
+ .text-input__label {
   position: relative;
 
   span {
