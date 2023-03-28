@@ -13,6 +13,7 @@ import LogIn from './components/forms/LogIn'
 import EditProfile from "./components/forms/EditProfile"
 import Editlistings from "./components/forms/EditListings"
 import Search from "./pages/Search";
+import ListingDetails from "./pages/ListingDetails"
 
 import NoMatch from "./components/error/NoMatch";
 
@@ -60,6 +61,8 @@ const { user } = useAuthContext()
    <Route path='/upload-art' element={< UplaodArt/>}></Route>
 
    <Route path='/search' element={< Search/>}></Route>
+
+   <Route path="/listing-details/:listingsId" element={< ListingDetails/>}></Route>
     
   </Routes> 
   : 
@@ -88,6 +91,8 @@ const { user } = useAuthContext()
    <Route path='/upload-art' element={< UplaodArt/>}></Route>
 
    <Route path='/search' element={< Search/>}></Route>
+
+   <Route path="/listing-details/:listingsId" element={< ListingDetails/>}></Route>
 
   </Routes>}
 
