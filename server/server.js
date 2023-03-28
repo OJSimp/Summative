@@ -126,12 +126,35 @@ app.get("/users/:userEmail", async (req, res) => {
 
 });
 
-// AMIEE THIS IS FOR YOU 
-// Find one user based on email - email 
+// EDIT AND DELETE
+
+// EDIT
+app.get("/:userId", (req, res) => {
+  const rawData = fs.readFileSync("./data.json");
+  const array = JSON.parse(rawData);
+  const requestedUser = array.find((user) => user.id == req.params.userId);
+  res.json(requestedUser);
+});
+
+
+app.get('/users/:userId/email/:userEmail', (req, res) => {
+  const userId = req.params.userId;
+  const userEmail = req.params.userEmail;
+  // Retrieve user name and email data
+});
 
 
 
 
+// Delete Profile
+ app.delete("/users/:userId", async(req, res) => {
+
+  const deleteUserId = await userId.findByIdAndDelete(req.params.userId)
+  res.json(deleteUserId)
+
+  console.log("PROFILE DELETED", deleteUserId)
+
+ })
 
 
 
