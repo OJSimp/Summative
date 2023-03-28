@@ -41,6 +41,15 @@ const ListingDetials = () => {
  const listingId = useParams().listingsId
 
  useEffect( () => {
+  
+  if(user){
+  setUserEmail(user.email)
+  userDetails(userEmail)
+  }
+
+}, [user])
+
+ useEffect( () => {
 
   const listingDetails =  async() => {
   
@@ -63,37 +72,40 @@ const ListingDetials = () => {
   setCreatorId(details.creatorId)
 
   }
-
-  if(user){
-  setUserEmail(user.email)
-  userDetails(userEmail)
-  }
    
   listingDetails()
   
- }, [user])
+ }, [])
 
 
- const handleAddComment = () => {
+ const handleAddComment = (e) => {
+  e.preventDefault()
 
-  if(!commentDetails){
+  if(commentDetails){
 
-    const postComment = {
+    const postArray = {
     creatorId: ID, 
-    firstName: firstName,
-    lastName: lastName,
+    name: firstName, lastName,
     details: commentDetails
     }
 
-  console.log(postComment)
+    const postComment = async () => {
 
-  } else{
+      await fetch("http://localhost:8001/listings/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(postArray),
+        
+      })
+    } 
+    postComment(postArray)
+  }
+
+  else{
   console.log("postComment")
   }
 
 }
-
-
 
 
 return (
@@ -117,23 +129,19 @@ return (
    </div>
 
     <div className="listing-details__comments">
-     <div className="comments-header">
+     <div className="header header--form">
       <h4>Comments</h4>
      </div>
-     <div className="comments-display">
-
-     </div>
       
-     <div className="comments-button">
-      <div className="add-comments">
-      <textarea className="text-input" name="" id="" cols="30" rows="10" onChange={(e) => setCommentDetails(e.target.value)}/>
-      <button onClick={handleAddComment}>+</button>
-     </div>
-      {commentsArray ? <ListingComments comments={commentsArray} id={ID}/> : null }
+      <form className="form--add-comments" onSubmit={handleAddComment}>
+      <textarea className="text-input" name="" id="comment-input" cols="30" rows="3" onChange={(e) => setCommentDetails(e.target.value)}/>
+      <label className="text-input__label" htmlFor="comment-input">Add Comment</label>
+      <button >+</button>
+     </form>
 
-      <p>{ID}</p>
-      < AddComment /> 
-     </div>
+     {commentsArray ? <ListingComments comments={commentsArray} id={ID}/> : null}
+
+      {/* {commentsArray ? <ListingComments comments={commentsArray} id={ID} /> : null } */}
     </div>
    
   

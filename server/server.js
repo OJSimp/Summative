@@ -61,6 +61,8 @@ app.post("/listings", async(req, res) => {
 
  })
 
+// view all listings
+
 app.get("/listings/", async (req, res) => {
 
   const viewAllListing = await Listing.find({})
@@ -84,6 +86,21 @@ app.get("/listings/:listingsId", async (req, res) => {
   res.json(viewAListing)
 
 });
+
+
+// add listing comments 
+
+app.post("/listings/comments", async(req, res) => {
+  // const listingComment = Listing.comments
+
+   const newListingComment = await Listing.create(req.body)
+   res.json(newListingComment)
+
+   console.log("Comment CREATED", newListingComment)
+
+ })
+
+ // delete listing comments
 
 
  app.delete("/listings/:listingsId", async(req, res) => {

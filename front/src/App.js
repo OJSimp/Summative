@@ -1,5 +1,5 @@
 
-import './App.css';
+import './App.scss';
 
 import FooterNav from "./components/navigation/FooterNav"
 
