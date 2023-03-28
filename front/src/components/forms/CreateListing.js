@@ -1,4 +1,3 @@
-
 import "./CreateListing.scss";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -144,4 +143,3 @@ const CreateListing = () => {
 };
 
 export default CreateListing;
-
