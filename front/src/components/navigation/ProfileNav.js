@@ -4,13 +4,15 @@ import { useEffect, useState } from "react"
 
 import { useLogout } from "../../hooks/useLogOut"
 import { useAuthContext } from "../../hooks/useAuthContext"
+
 import { useGetUser } from "../../hooks/useGetUser"
+
 
 import { NavLink } from "react-router-dom"
 
 const ProfileNav = () => {
 
- const [userEmail, setUserEmail] = useState("")
+const [userEmail, setUserEmail] = useState("")
 
  // if user is logged in reload the page 
  const [activeuser, setActiveUser] = useState(null)
@@ -20,6 +22,7 @@ const ProfileNav = () => {
 
  // call log out function from userLogOut - hook
  const { logout } = useLogout()
+
 
  // call get user details 
  const { userDetails, firstName } = useGetUser()
@@ -40,14 +43,15 @@ const ProfileNav = () => {
 
 
 
-
  
  return(
 
   <div className="nav-profile">
    <div className="profile__details">
+
     <h2>My Profile - {firstName} {/* Zee Insert your Get Request here for name*/}</h2>
     {user && <p>{user.email}</p>}
+
    </div>
 
   <NavLink to="edit-profile" className={({ isActive }) =>(isActive ? 'nav-btn__profile nav-btn__profile--active' : 'nav-btn__profile nav-btn__profile--inactive')}>

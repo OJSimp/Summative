@@ -1,1 +1,3 @@
+
 .nav__footer{position:absolute;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;justify-content:center;align-items:center;text-align:center;bottom:0px;width:100vw;background:rgba(255,255,255,.9)}.nav__footer .btn-nav{display:flex;flex-direction:column-reverse;padding:10px 16px}.nav__footer .btn-nav .btn-nav__icon{padding-bottom:10px}.nav__footer .btn-nav--active{background-color:#f4f4f4}/*# sourceMappingURL=FooterNav.css.map */
+

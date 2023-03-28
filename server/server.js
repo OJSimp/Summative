@@ -61,17 +61,23 @@ app.post("/listings", async(req, res) => {
 
 app.get("/listings/", async (req, res) => {
 
+
   const viewAllListing = await Listing.find({})
+
 
   console.log(viewAllListing)
 
   res.json(viewAllListing)
 
+
 });
+
+
 
 // get listing by Id
 
 app.get("/listings/:listingsId", async (req, res) => {
+
 
   // const listingID = req.params.listingId
 
@@ -81,7 +87,7 @@ app.get("/listings/:listingsId", async (req, res) => {
 
   res.json(viewAListing)
 
-});
+// });
 
 
  app.delete("/listings/:listingsId", async(req, res) => {
@@ -96,7 +102,12 @@ app.get("/listings/:listingsId", async (req, res) => {
 
 
 
+
+
+
+
 // USERS //
+
 
 // get users 
 
@@ -176,7 +187,6 @@ app.get("/users/:userEmail", async (req, res) => {
 //   res.json(requestedimage)
 
 // });
-
 
 
 
