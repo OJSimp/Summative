@@ -4,11 +4,18 @@ import { useState, useEffect } from "react"
 
 import { useParams, useNavigate} from "react-router-dom"
 
-import Accordion from "../components/accordion/Accordion"
+import { useGetUser } from "../hooks/useGetUser"
+import { useAuthContext } from "../hooks/useAuthContext"
 
+import Accordion from "../components/accordion/Accordion"
+import ListingComments from "../components/cards/ListingComment"
 import AddComment from "../components/modals/AddComment"
 
 const ListingDetials = () => {
+
+ const [userEmail, setUserEmail] = useState("")
+
+ const [commentDetails, setCommentDetails] = useState("")
 
  const [artDetails, setArtDetails] = useState("")
  const [artSpecs, setArtSpecs] = useState("")
@@ -19,10 +26,16 @@ const ListingDetials = () => {
  const [price, setPrice] = useState("")
  const [status, setStatus] = useState("")
 
+ const [commentsArray, setCommentsArray] = useState(null)
+
  const [creatorId, setCreatorId] = useState("")
 
 
+ // check if user is logged in from token 
+ const { user } = useAuthContext()
 
+ // call get user details 
+ const { userDetails, ID, firstName, lastName } = useGetUser()
 
  // pull the ide from the URL 
  const listingId = useParams().listingsId
@@ -45,25 +58,49 @@ const ListingDetials = () => {
   setPrice(details.price)
   setStatus(details.status)
 
+  setCommentsArray(details.comments)
+
   setCreatorId(details.creatorId)
 
   }
 
+  if(user){
+  setUserEmail(user.email)
+  userDetails(userEmail)
+  }
+   
   listingDetails()
- 
- }, [])
+  
+ }, [user])
 
+
+ const handleAddComment = () => {
+
+  if(!commentDetails){
+
+    const postComment = {
+    creatorId: ID, 
+    firstName: firstName,
+    lastName: lastName,
+    details: commentDetails
+    }
+
+  console.log(postComment)
+
+  } else{
+  console.log("postComment")
+  }
+
+}
 
 
 
 
 return (
- <div>
-  <p>Listing Details</p>
-  <div className="listing-details">
-
-   <img className=" listing-details__img" src="" alt="" />
-
+ <div className="listing-details">
+  <img className=" listing-details__img" src="" alt="" />
+ 
+  <div className="listing-details__info">
    <div className="listing-details__container listing-details__header" >
     <h3>{artTitle}</h3>
     <p>{artistName}</p>
@@ -86,9 +123,16 @@ return (
      <div className="comments-display">
 
      </div>
-
+      
      <div className="comments-button">
-      < AddComment />  
+      <div className="add-comments">
+      <textarea className="text-input" name="" id="" cols="30" rows="10" onChange={(e) => setCommentDetails(e.target.value)}/>
+      <button onClick={handleAddComment}>+</button>
+     </div>
+      {commentsArray ? <ListingComments comments={commentsArray} id={ID}/> : null }
+
+      <p>{ID}</p>
+      < AddComment /> 
      </div>
     </div>
    

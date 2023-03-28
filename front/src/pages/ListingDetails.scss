@@ -1,4 +1,16 @@
 .listing-details{
+  display: grid;
+  grid-template-columns: auto;
+
+  margin-bottom: 80px;
+
+.listing-details__img{
+ display: flex;
+ height: 500px;
+ background-color: #f4f4f4;
+}
+
+.listing-details__info{
  background-color: #f4f4f4;;
 
 .listing-details__container{
@@ -26,6 +38,7 @@
  
   .comments-button {
    display: flex;
+   flex-direction: column;
    background-color: white;
    padding: 20px;
 
@@ -34,3 +47,4 @@
 
 }
 
+}

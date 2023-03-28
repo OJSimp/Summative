@@ -15,7 +15,7 @@ const listingSchema = new mongoose.Schema({
  dateModified: {type: Date},
  status: {type: String},
  // image: {type: mongoose.Schema},
- // comments: {type: mongoose.Schema}
+ comments: {type: Array}
 
 })
 
