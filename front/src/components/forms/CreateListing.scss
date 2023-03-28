@@ -7,7 +7,7 @@ background-color: gray;
 background-color: white;  
 }
 
-.Artfeedinputscontainer{
+.Art-feed-inputs-container{
 display: flex;
 justify-content: center;
 align-items: center;
@@ -20,7 +20,7 @@ height: 30px;
 width: 361px;  
 }
 
-.textareas{
+.text-areas{
   height: 66px;
 width: 360px; 
 }
@@ -30,7 +30,7 @@ height: 56px;
 width: 373px;  
 }
 
-.whitebutton{
+.preview-button{
 background-color: white;
 height: 41px;
 width: 288px;
@@ -38,11 +38,11 @@ width: 288px;
 
 }
 
-.whitebutton:active{
+.preview-button:active{
 background-color: gray;  
 }
 
-.naveybutton{
+.publish-button{
   background-color: #023047;
   color: white;
   height: 41px;
@@ -50,7 +50,7 @@ background-color: gray;
   
   }
 
-  .naveybutton:active{
+  .publish-button:active{
     background-color: #bde0fe;
   }
 
