@@ -91,7 +91,12 @@ const CreateListing = () => {
           onChange={handleArtworkSpecs}
         />
         <form action="">
-          <select className="Select" name="" id="">
+          <select
+            className="Select"
+            name=""
+            id=""
+            onChange={handleArtworkSpecs}
+          >
             <option value="">Artwork type</option>
           </select>
         </form>
@@ -120,7 +125,9 @@ const CreateListing = () => {
           onChange={handleArtworkbio}
         ></textarea>
         <div className="image"></div>
-        <button className="whitebutton">Upload Image</button>
+        <button onClick={handlePostSubmit} className="whitebutton">
+          Upload Image
+        </button>
         <button className="naveybutton">Publish</button>
         <button className="whitebutton">Preview</button>
       </div>
