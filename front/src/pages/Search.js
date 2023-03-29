@@ -10,6 +10,8 @@ const Search = () => {
 
  const [listingArray, setListingArray] = useState(null)
 
+ const editListingsPage = "listing-details"
+
  useEffect( () => {
 
   const returnListingData = async () => {
@@ -28,7 +30,7 @@ const Search = () => {
  return(
   <div className="search__page">
    <p>search</p>
-   {listingArray ? < ListingCard listings={listingArray} /> : null}
+   {listingArray ? < ListingCard listings={listingArray} link={editListingsPage}/> : null}
   </div>
   )
 
