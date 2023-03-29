@@ -16,9 +16,17 @@ const ListingComments = (props) => {
  // get the signed-in users id
  userDetails(userEmail)
 
- const commentsArray = props.comments
+ const handleEdit = () => {
 
- console.log(commentsArray)
+  console.log("Edit Comment")
+}
+
+const handleDelete = () => {
+
+console.log("Delete Comment")
+}
+
+ const commentsArray = props.comments
 
  const commentCards = commentsArray.map((comment, index) => {
  // if commentCreator = userID then option to edit 
@@ -31,8 +39,8 @@ return (
 
    {/* if the signed in user created the comment show the edit and delete button */}
    {commentCreator == ID ? <div className="card-comment__utility">
-    <button>Edit</button>
-    <button>Delete</button>
+    <button onClick={handleEdit}>Edit</button>
+    <button onClick={handleDelete}>Delete</button>
    </div>
    : null}
   </div> 
