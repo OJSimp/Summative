@@ -1,14 +1,11 @@
-
-
 import { Link, Outlet } from "react-router-dom"
 
 import ListingCard from "../components/cards/ListingCard"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useGetUser } from "../hooks/useGetUser"
-import { useEffect } from "react"
 
 
 const YourListings = () => {
@@ -19,7 +16,7 @@ const YourListings = () => {
 
   const { userDetails, ID, firstName, lastName } = useGetUser()
 
-  const editListingsPage = "your-listings"
+  const editListingsPage = "edit-listings"
 
   useEffect(() => {
 
@@ -31,11 +28,12 @@ const YourListings = () => {
   }, [user])
 
   useEffect(() => {
-  console.log("next")
 
   if(ID){
+
     const returnListingData = async () => {
-    const resposne = await fetch(`http://localhost:8001/edit-listings/${ID}`, {method: "GET"})
+     
+    const resposne = await fetch(`http://localhost:8001/your-listings/${ID}`, {method: "GET"})
     const data = await resposne.json()
     const dataArray = data
     console.log(dataArray)
