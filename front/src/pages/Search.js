@@ -12,7 +12,7 @@ const Search = () => {
 
  useEffect( () => {
 
-  const returnListignData = async () => {
+  const returnListingData = async () => {
   
    const resposne = await fetch(`http://localhost:8001/listings/`, {method: "GET"})
    const data = await resposne.json()
@@ -21,7 +21,7 @@ const Search = () => {
 
   }
 
-  returnListignData()
+  returnListingData()
 
  }, [])
 

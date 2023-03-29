@@ -1,5 +1,4 @@
 
-
 const express = require("express");
 
 const mongoose = require("mongoose");
@@ -79,7 +78,22 @@ app.get("/listings/:listingsId", async (req, res) => {
 
   // const listingID = req.params.listingId
 
-  const viewAListing = await Listing.findById(req.params.listingsId)
+  const usersListing = await Listing.findById(req.params.listingsId)
+
+  console.log(usersListing)
+
+  res.json(usersListing)
+
+});
+
+
+// get listings by creator 
+
+app.get("/edit-listings/:creatorId", async (req, res) => {
+
+  // const listingID = req.params.listingId
+
+  const viewAListing = await Listing.find({creatorId: req.params.creatorId})
 
   console.log(viewAListing)
 
