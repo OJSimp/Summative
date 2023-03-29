@@ -1,38 +1,37 @@
-
 import "./CreateListing.scss";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const CreateListing = () => {
-  const [price, setPriceNumber] = useState("");
-  const [artwork, setArtworkTitle] = useState("");
-  const [ArtworkSpecs, setArtworkSpecs] = useState("");
-  const [ArtworkType, setArtworktype] = useState("");
-  const [ArtworkDetails, setArtworkDetails] = useState("");
-  const [label, setLabel] = useState("");
-  const [Artistbio, setArtistbio] = useState("");
+  const [price, setPrice] = useState("");
+  const [artTitle, setArtTitle] = useState("");
+  const [artSpecs, setArtSpecs] = useState("");
+  const [artType, setArttype] = useState("");
+  const [artDetails, setArtDetails] = useState("");
+  const [artistName, setArtistName] = useState("");
+  const [artistBio, setArtistbio] = useState("");
 
   const handlePrice = (e) => {
-    setPriceNumber(e.target.value);
+    setPrice(e.target.value);
   };
   const handleArtworkTitle = (e) => {
-    setArtworkTitle(e.target.value);
+    setArtTitle(e.target.value);
   };
 
   const handleArtworkSpecs = (e) => {
-    setArtworkSpecs(e.target.value);
+    setArtSpecs(e.target.value);
   };
 
   const handleArtworkType = (e) => {
-    setArtworktype(e.target.value);
+    setArttype(e.target.value);
   };
 
   const handleArtworkDetails = (e) => {
-    setArtworkDetails(e.target.value);
+    setArtDetails(e.target.value);
   };
 
-  const handleLabel = (e) => {
-    setLabel(e.target.value);
+  const handleArtistName = (e) => {
+    setArtistName(e.target.value);
   };
 
   const handleArtworkbio = (e) => {
@@ -44,17 +43,17 @@ const CreateListing = () => {
 
     const Artpost = {
       price,
-      artwork,
-      ArtworkSpecs,
-      ArtworkType,
-      ArtworkDetails,
-      label,
-      Artistbio,
+      artTitle,
+      artSpecs,
+      artType,
+      artDetails,
+      artistName,
+      artistBio,
     };
     console.log(Artpost);
 
     const ThePost = () => {
-      fetch("http://localhost:8001/", {
+      fetch("http://localhost:8001/listings/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(Artpost),
@@ -72,7 +71,7 @@ const CreateListing = () => {
       <header className="TheHeader">
         <p>Add Art</p>
       </header>
-      <div className="Artfeedinputscontainer">
+      <div className="Art-feed-inputs-container">
         <input
           className="Inputs"
           placeholder="Price"
@@ -91,18 +90,25 @@ const CreateListing = () => {
           type="text"
           onChange={handleArtworkSpecs}
         />
-        <form action="">
-          <select
-            className="Select"
-            name=""
-            id=""
-            onChange={handleArtworkSpecs}
-          >
-            <option value="">Artwork type</option>
-          </select>
-        </form>
+
+        <select
+          className="Select"
+          name=""
+          id=""
+          placeholder="Art Type"
+          onChange={handleArtworkType}
+        >
+          <option value="">Art type</option>
+          <option value="">Paintings</option>
+          <option value="">Sculpture</option>
+          <option value="">Literature</option>
+          <option value="">Architecture</option>
+          <option value="">Cinema</option>
+          <option value="">Music</option>
+          <option value="">Theater</option>
+        </select>
         <textarea
-          className="textareas"
+          className="text-areas"
           name="ArtworkDetails"
           placeholder="Artwork Details"
           id=""
@@ -112,13 +118,13 @@ const CreateListing = () => {
         ></textarea>
         <input
           className="Inputs"
-          placeholder="Label"
+          placeholder="ArtistName"
           type="text"
-          onChange={handleLabel}
+          onChange={handleArtistName}
         />
         <textarea
           name="Artist bio"
-          className="textareas"
+          className="text-areas"
           placeholder="Artist Bio"
           id=""
           cols="30"
@@ -129,12 +135,11 @@ const CreateListing = () => {
         <button onClick={handlePostSubmit} className="whitebutton">
           Upload Image
         </button>
-        <button className="naveybutton">Publish</button>
-        <button className="whitebutton">Preview</button>
+        <button className="publish-button">Publish</button>
+        <button className="preview-button">Preview</button>
       </div>
     </div>
   );
 };
 
 export default CreateListing;
-

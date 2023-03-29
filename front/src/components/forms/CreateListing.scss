@@ -1,62 +1,62 @@
 
 .TheHeader{
-background-color: gray;
+  background-color: gray;
+    }
+  
+  .tabColour{
+  background-color: white;  
   }
-
-.tabColour{
-background-color: white;  
-}
-
-.Artfeedinputscontainer{
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-gap: 12px;
-}
-
-.Inputs{
-height: 30px;
-width: 361px;  
-}
-
-.textareas{
-  height: 66px;
-width: 360px; 
-}
-
-.Select{
-height: 56px;
-width: 373px;  
-}
-
-.whitebutton{
-background-color: white;
-height: 41px;
-width: 288px;
-
-
-}
-
-.whitebutton:active{
-background-color: gray;  
-}
-
-.naveybutton{
-  background-color: #023047;
-  color: white;
+  
+  .Art-feed-inputs-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  }
+  
+  .Inputs{
+  height: 30px;
+  width: 361px;  
+  }
+  
+  .text-areas{
+    height: 66px;
+  width: 360px; 
+  }
+  
+  .Select{
+  height: 56px;
+  width: 373px;  
+  }
+  
+  .preview-button{
+  background-color: white;
   height: 41px;
   width: 288px;
   
+  
   }
-
-  .naveybutton:active{
-    background-color: #bde0fe;
+  
+  .preview-button:active{
+  background-color: gray;  
   }
-
-
-.image{
-  border: 1px solid black;
-  height: 191px;
-  width: 361px;
-}
+  
+  .publish-button{
+    background-color: #023047;
+    color: white;
+    height: 41px;
+    width: 288px;
+    
+    }
+  
+    .publish-button:active{
+      background-color: #bde0fe;
+    }
+  
+  
+  .image{
+    border: 1px solid black;
+    height: 191px;
+    width: 361px;
+  }
