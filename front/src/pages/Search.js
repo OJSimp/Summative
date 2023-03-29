@@ -2,8 +2,6 @@ import "./Search.scss"
 
 import { useState, useEffect } from "react"
 
-import { useAuthContext } from "../hooks/useAuthContext"
-
 import ListingCard from "../components/cards/ListingCard"
 
 const Search = () => {

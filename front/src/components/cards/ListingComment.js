@@ -3,8 +3,6 @@ import "./ListingComment.scss"
 import { useAuthContext } from "../../hooks/useAuthContext"
 import { useGetUser } from "../../hooks/useGetUser"
 
-import { useState } from "react"
-
 const ListingComments = (props) => {
 
   const { user } = useAuthContext()

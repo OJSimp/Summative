@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import ListingCard from "../components/cards/ListingCard"
 
@@ -14,7 +14,7 @@ const YourListings = () => {
 
   const { user } = useAuthContext()
 
-  const { userDetails, ID, firstName, lastName } = useGetUser()
+  const { userDetails, ID } = useGetUser()
 
   const editListingsPage = "edit-listings"
 
