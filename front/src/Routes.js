@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom"
-import { useState, useEffect } from "react"
 import Media from 'react-media'; // add Media
 
 import Access from "./pages/Access"

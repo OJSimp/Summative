@@ -28,9 +28,8 @@ const listingSchema = new mongoose.Schema({
  dateCreated: {type: Date},
  dateModified: {type: Date},
  status: {type: String},
- // image: {type: imageSchema},
+ image: {type: [imageSchema]},
  comments: {type: [commentsSchema]}
- // comments: {type: Array}
 
 })
 

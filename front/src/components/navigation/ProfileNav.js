@@ -1,6 +1,6 @@
 import "./ProfileNav.scss"
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 import { useLogout } from "../../hooks/useLogOut"
 import { useAuthContext } from "../../hooks/useAuthContext"
@@ -10,11 +10,6 @@ import { useGetUser } from "../../hooks/useGetUser"
 import { NavLink } from "react-router-dom"
 
 const ProfileNav = () => {
-
-const [userEmail, setUserEmail] = useState("")
-
- // if user is logged in reload the page 
- const [activeuser, setActiveUser] = useState(null)
 
  // check if user is logged in from token 
  const { user } = useAuthContext()
@@ -30,14 +25,12 @@ const [userEmail, setUserEmail] = useState("")
 
   if (user){
   
-  setUserEmail(user.email)
+  const userEmail = user.email
   // once there is a user get their information from server
   userDetails( userEmail )
-  } else {
-  console.log("no user yet")
   }
 
-})
+}, [user])
 
 
 

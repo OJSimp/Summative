@@ -2,14 +2,13 @@ import "./ListingDetails.scss"
 
 import { useState, useEffect } from "react"
 
-import { useParams, useNavigate} from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 import { useGetUser } from "../hooks/useGetUser"
 import { useAuthContext } from "../hooks/useAuthContext"
 
 import Accordion from "../components/accordion/Accordion"
 import ListingComments from "../components/cards/ListingComment"
-import AddComment from "../components/modals/AddComment"
 
 const ListingDetials = () => {
 
