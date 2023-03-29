@@ -38,6 +38,13 @@ const CreateListing = () => {
     setArtistbio(e.target.value);
   };
 
+  const handleUploadImage = (e) => {
+  e.preventDefault();
+
+  
+  
+  }
+
   const handlePostSubmit = (e) => {
     e.preventDefault();
 
@@ -62,82 +69,129 @@ const CreateListing = () => {
     ThePost(Artpost);
   };
 
+
   // Add the stuff
   return (
-    <div className="artfeedcontainer">
-      <header>
-        <h3>Art Feed</h3>
-      </header>
-      <header className="TheHeader">
+    <div className="wrapper-upload__art">
+
+      <header className="form-header">
         <p>Add Art</p>
       </header>
-      <div className="Art-feed-inputs-container">
+      <form className="form__upload-art">
+
         <input
-          className="Inputs"
+          className="text-input"
           placeholder="Price"
           type="text"
+          id="upload-art--price"
           onChange={handlePrice}
         />
+        <label htmlFor="upload-art--price" className="text-input__label" id="log-in--password">
+          <span>Price</span>
+        </label>
+
+
         <input
           placeholder="Artwork Title"
-          className="Inputs"
+          className="text-input"
           type="text"
+          id="upload-art--art-title"
           onChange={handleArtworkTitle}
         />
+        <label htmlFor="upload-art--art-title" className="text-input__label" id="log-in--password">
+          <span>Artwork Title</span>
+        </label>
+
+
         <input
-          className="Inputs"
+          className="text-input"
           placeholder="Artwork Specs"
           type="text"
+          id="upload-art--art-specs"
           onChange={handleArtworkSpecs}
         />
+         <label htmlFor="upload-art--art-specs" className="text-input__label" id="log-in--password">
+          <span>Artwork Specs</span>
+        </label>
 
-        <select
-          className="Select"
+        {/* custoom selector */}
+        <div className="select-input">
+          <div className="select-input__button">
+            <label htmlFor=""><span></span></label>
+          </div>
+
+        </div>
+
+
+        {/* <select
+          className="select-input"
           name=""
-          id=""
+          id="upload-art--art-type"
           placeholder="Art Type"
           onChange={handleArtworkType}
         >
-          <option value="">Art type</option>
           <option value="">Paintings</option>
           <option value="">Sculpture</option>
+          <option value="">Prints</option>
+          <option value="">Photography</option>
+          <option value="">NFT</option>
           <option value="">Literature</option>
-          <option value="">Architecture</option>
-          <option value="">Cinema</option>
-          <option value="">Music</option>
-          <option value="">Theater</option>
         </select>
+        <label htmlFor="upload-art--art-type" className="text-input__label" id="log-in--password">
+          <span>Artwork Type</span>
+        </label> */}
+
+
         <textarea
           className="text-areas"
           name="ArtworkDetails"
           placeholder="Artwork Details"
-          id=""
+          id="upload-art--art-details"
           cols="30"
           rows="10"
           onChange={handleArtworkDetails}
         ></textarea>
+        <label htmlFor="upload-art--art-details" className="text-input__label" id="log-in--password">
+          <span>Artwork Details</span>
+        </label>
+
+
         <input
           className="Inputs"
           placeholder="ArtistName"
           type="text"
+          id="upload-art--artist-name"
           onChange={handleArtistName}
         />
+        <label htmlFor="upload-art--art-name" className="text-input__label" id="log-in--password">
+          <span>Artist Name</span>
+        </label>
+
+        
         <textarea
           name="Artist bio"
           className="text-areas"
           placeholder="Artist Bio"
-          id=""
+          id="upload-art--artist-details"
           cols="30"
           rows="10"
           onChange={handleArtworkbio}
         ></textarea>
-        <div className="image"></div>
-        <button onClick={handlePostSubmit} className="whitebutton">
-          Upload Image
-        </button>
-        <button className="publish-button">Publish</button>
-        <button className="preview-button">Preview</button>
-      </div>
+        <label htmlFor="upload-art--artist-details" className="text-input__label" id="log-in--password">
+          <span>Artist Bio</span>
+        </label>
+
+        <br />
+
+        <button className="btn btn-outline" onClick={handleUploadImage}>Upload Image</button>
+        <div className="image-placeholder"></div>
+
+         <br />
+         <br />
+
+        <button onClick={handlePostSubmit} className="btn btn-primary">Publish</button>
+        <button className="btn btn-outline">Preview</button>
+      </form>
     </div>
   );
 };

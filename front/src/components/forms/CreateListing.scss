@@ -1,62 +1,69 @@
 
-.TheHeader{
-  background-color: gray;
-    }
-  
-  .tabColour{
-  background-color: white;  
-  }
-  
-  .Art-feed-inputs-container{
+
+.form__upload-art{
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  gap: 12px;
-  }
+  padding: 20px;
   
-  .Inputs{
-  height: 30px;
-  width: 361px;  
-  }
+}
+// .TheHeader{
+//   background-color: gray;
+//     }
   
-  .text-areas{
-    height: 66px;
-  width: 360px; 
-  }
+//   .tabColour{
+//   background-color: white;  
+//   }
   
-  .Select{
-  height: 56px;
-  width: 373px;  
-  }
+//   .Art-feed-inputs-container{
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   gap: 12px;
+//   }
   
-  .preview-button{
-  background-color: white;
-  height: 41px;
-  width: 288px;
+//   .Inputs{
+//   height: 30px;
+//   width: 361px;  
+//   }
+  
+//   .text-areas{
+//     height: 66px;
+//   width: 360px; 
+//   }
+  
+//   .Select{
+//   height: 56px;
+//   width: 373px;  
+//   }
+  
+//   .preview-button{
+//   background-color: white;
+//   height: 41px;
+//   width: 288px;
   
   
-  }
+//   }
   
-  .preview-button:active{
-  background-color: gray;  
-  }
+//   .preview-button:active{
+//   background-color: gray;  
+//   }
   
-  .publish-button{
-    background-color: #023047;
-    color: white;
-    height: 41px;
-    width: 288px;
+//   .publish-button{
+//     background-color: #023047;
+//     color: white;
+//     height: 41px;
+//     width: 288px;
     
-    }
+//     }
   
-    .publish-button:active{
-      background-color: #bde0fe;
-    }
+//     .publish-button:active{
+//       background-color: #bde0fe;
+//     }
   
   
-  .image{
-    border: 1px solid black;
-    height: 191px;
-    width: 361px;
-  }
+//   .image{
+//     border: 1px solid black;
+//     height: 191px;
+//     width: 361px;
+//   }
