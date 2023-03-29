@@ -9,13 +9,14 @@ const ListingCard = (props) => {
  const navigate = useNavigate()
 
  const listingArray = props.listings
+ const cardNavigation = props.link
  
 
  const listingCards = listingArray.map((listing, index) => {
 
   const navigateListingDetails = () => {
   
-   navigate(`/listing-details/${listing._id}`)
+   navigate(`/${cardNavigation}/${listing._id}`)
   
   }
 
