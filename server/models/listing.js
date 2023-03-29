@@ -6,7 +6,8 @@ const mongoose = require('mongoose')
 
 const commentsSchema = new mongoose.Schema({
  creatorId: {type: String,},
- name: {type: String},
+ firstName: {type: String},
+ lastName: {type: String},
  details: {type: String}
 })
 
@@ -28,7 +29,8 @@ const listingSchema = new mongoose.Schema({
  dateModified: {type: Date},
  status: {type: String},
  // image: {type: imageSchema},
- comments: {type: commentsSchema}
+ comments: {type: [commentsSchema]}
+ // comments: {type: Array}
 
 })
 

@@ -90,14 +90,22 @@ app.get("/listings/:listingsId", async (req, res) => {
 
 // add listing comments 
 
-app.post("/listings/comments", async(req, res) => {
-  // const listingComment = Listing.comments
+app.put("/listings/:id/comments", async(req, res) => {
 
-   const newListingComment = await Listing.create(req.body)
-   res.json(newListingComment)
+  const postId = req.params.id
+  const comment = req.body 
 
-   console.log("Comment CREATED", newListingComment)
+  console.log(comment)
 
+  // find the post to add comment by ID
+
+  const post = await Listing.findById(postId)
+
+  post.comments.push(comment)
+
+  const updatedPost = await Listing.findByIdAndUpdate(postId, post)
+
+  console.log("COMMENT ADDED", updatedPost)
  })
 
  // delete listing comments

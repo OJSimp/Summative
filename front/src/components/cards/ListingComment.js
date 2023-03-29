@@ -18,7 +18,6 @@ const ListingComments = (props) => {
  // get the signed-in users id
  userDetails(userEmail)
 
- console.log(commentsArray)
 
  
 

@@ -37,17 +37,20 @@ const ListingDetials = () => {
  // call get user details 
  const { userDetails, ID, firstName, lastName } = useGetUser()
 
- // pull the ide from the URL 
+ // pull the id from the URL 
  const listingId = useParams().listingsId
 
- useEffect( () => {
-  
+ // check if there is a user logged in that their data is stored
+
+ useEffect(() => {
+
   if(user){
   setUserEmail(user.email)
   userDetails(userEmail)
   }
 
-}, [user])
+})
+
 
  useEffect( () => {
 
@@ -78,6 +81,8 @@ const ListingDetials = () => {
  }, [])
 
 
+
+
  const handleAddComment = (e) => {
   e.preventDefault()
 
@@ -85,24 +90,25 @@ const ListingDetials = () => {
 
     const postArray = {
     creatorId: ID, 
-    name: firstName, lastName,
+    firstName: firstName,
+    lastName: lastName,
     details: commentDetails
     }
 
-    const postComment = async () => {
+    const putComment = async () => {
 
-      await fetch("http://localhost:8001/listings/comments", {
-        method: "POST",
+      await fetch(`http://localhost:8001/listings/${listingId}/comments`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postArray),
-        
+  
       })
     } 
-    postComment(postArray)
+    putComment(postArray)
   }
 
   else{
-  console.log("postComment")
+  console.log("Cannot postComment")
   }
 
 }
