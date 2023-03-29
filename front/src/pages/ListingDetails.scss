@@ -1,4 +1,16 @@
 .listing-details{
+  display: grid;
+  grid-template-columns: auto;
+
+  margin-bottom: 80px;
+
+.listing-details__img{
+ display: flex;
+ height: 500px;
+ background-color: #f4f4f4;
+}
+
+.listing-details__info{
  background-color: #f4f4f4;;
 
 .listing-details__container{
@@ -17,20 +29,32 @@
 }
 
 .listing-details__comments{
- .comments-header {
+
+ .header--form {
    display: flex;
    padding: 0px 0px 0px 20px;
    background-color: white;
    width: 50%;
   }
  
-  .comments-button {
+  .form--add-comments {
    display: flex;
+   justify-content: space-between;
    background-color: white;
    padding: 20px;
 
+   .text-input{
+    position: relative;
+    width: fill;
+    padding: 30px 10px 10px 10px;
+    font-family: sans-serif;
+   }
+
+   .text-input__label{
+    position: absolute;
+    transform: translate(10px, 10px);
   }
+ }
 }
-
 }
-
+}

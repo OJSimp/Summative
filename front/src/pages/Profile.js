@@ -1,17 +1,10 @@
 import "./Profile.scss"
 
-
 import NavProfile from "../components/navigation/ProfileNav"
 
-import EditProfile from "../components/forms/EditProfile"
-
-import { useState } from "react"
-
-import { Link, Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 
 import Media from 'react-media'; // add Media
-
-
 
 
 const Profile = () => {

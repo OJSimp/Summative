@@ -2,13 +2,17 @@ import "./ListingDetails.scss"
 
 import { useState, useEffect } from "react"
 
-import { useParams, useNavigate} from "react-router-dom"
+import { useParams } from "react-router-dom"
+
+import { useGetUser } from "../hooks/useGetUser"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 import Accordion from "../components/accordion/Accordion"
-
-import AddComment from "../components/modals/AddComment"
+import ListingComments from "../components/cards/ListingComment"
 
 const ListingDetials = () => {
+
+ const [commentDetails, setCommentDetails] = useState("")
 
  const [artDetails, setArtDetails] = useState("")
  const [artSpecs, setArtSpecs] = useState("")
@@ -19,13 +23,31 @@ const ListingDetials = () => {
  const [price, setPrice] = useState("")
  const [status, setStatus] = useState("")
 
+ const [commentsArray, setCommentsArray] = useState(null)
+
  const [creatorId, setCreatorId] = useState("")
 
 
+ // check if user is logged in from token 
+ const { user } = useAuthContext()
 
+ // call get user details 
+ const { userDetails, ID, firstName, lastName } = useGetUser()
 
- // pull the ide from the URL 
+ // pull the id from the URL 
  const listingId = useParams().listingsId
+
+ // check if there is a user logged in that their data is stored
+
+ useEffect(() => {
+
+  if(user){
+  const userEmail = user.email
+  userDetails(userEmail)
+  }
+
+}, [user])
+
 
  useEffect( () => {
 
@@ -34,7 +56,9 @@ const ListingDetials = () => {
   const resposne = await fetch(`http://localhost:8001/listings/${listingId}`, {method: "GET"})
   const details = await resposne.json()
 
-  console.log(details)
+  // console.log(details.comments)
+
+  setCommentsArray(details.comments)
 
   setArtDetails(details.artDetails)
   setArtSpecs(details.artSpecs)
@@ -48,22 +72,49 @@ const ListingDetials = () => {
   setCreatorId(details.creatorId)
 
   }
-
+   
   listingDetails()
- 
+
+  
  }, [])
 
 
+ const handleAddComment = (e) => {
+  e.preventDefault()
 
+  if(commentDetails){
+
+    const postArray = {
+    creatorId: ID, 
+    firstName: firstName,
+    lastName: lastName,
+    details: commentDetails
+    }
+
+    const putComment = async () => {
+
+      await fetch(`http://localhost:8001/listings/${listingId}/comments`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(postArray),
+  
+      })
+    } 
+    putComment(postArray)
+  }
+
+  else{
+  console.log("Cannot postComment")
+  }
+
+}
 
 
 return (
- <div>
-  <p>Listing Details</p>
-  <div className="listing-details">
-
-   <img className=" listing-details__img" src="" alt="" />
-
+ <div className="listing-details">
+  <img className=" listing-details__img" src="" alt="" />
+ 
+  <div className="listing-details__info">
    <div className="listing-details__container listing-details__header" >
     <h3>{artTitle}</h3>
     <p>{artistName}</p>
@@ -80,16 +131,19 @@ return (
    </div>
 
     <div className="listing-details__comments">
-     <div className="comments-header">
+     <div className="header header--form">
       <h4>Comments</h4>
      </div>
-     <div className="comments-display">
 
-     </div>
+     {commentsArray ? <ListingComments comments={commentsArray} id={ID}/> : null}
+      
+      <form className="form--add-comments" onSubmit={handleAddComment}>
+      <textarea className="text-input" name="" id="comment-input" cols="30" rows="3" onChange={(e) => setCommentDetails(e.target.value)}/>
+      <label className="text-input__label" htmlFor="comment-input">Add Comment</label>
+      <button >+</button>
+     </form>
 
-     <div className="comments-button">
-      < AddComment />  
-     </div>
+     
     </div>
    
   
