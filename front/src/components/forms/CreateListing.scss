@@ -6,6 +6,21 @@
   padding: 20px;
   
 }
+
+.select-input{
+display: flex;
+flex-direction: column;
+
+  .select-input__button{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0px;
+  border: 1px solid gray;
+  }
+
+}
+
 // .TheHeader{
 //   background-color: gray;
 //     }

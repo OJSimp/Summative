@@ -115,9 +115,25 @@ const CreateListing = () => {
         </label>
 
         {/* custoom selector */}
-        <div className="select-input">
+        <div className="select-input" id="upload-art--artwork-type">
           <div className="select-input__button">
-            <label htmlFor=""><span></span></label>
+            <label htmlFor="upload-art--artwork-type"><span>Artwork Type</span></label>
+            <span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.59 8.59009L12 13.1701L7.41 8.59009L6 10.0001L12 16.0001L18 10.0001L16.59 8.59009Z" fill="#2A2E45"/>
+              </svg>
+            </span>
+          </div>
+
+
+          <div className="select-input__options">
+            <ul>
+              <li className="select-input__option">Paintings</li>
+              <li className="select-input__option">Sculpture</li>
+              <li className="select-input__option">Prints</li>
+              <li className="select-input__option">Photography</li>
+              <li className="select-input__option">Literature</li>
+            </ul>
           </div>
 
         </div>

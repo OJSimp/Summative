@@ -124,8 +124,7 @@ app.put("/listings/:id/comments", async(req, res) => {
 
  // delete listing comments
 
-
- app.delete("/listings/:listingsId", async(req, res) => {
+ app.delete("/listings/:listingId", async(req, res) => {
 
   const deleteListing = await Listing.findByIdAndDelete(req.params.listingId)
   res.json(deleteListing)
