@@ -1,17 +1,17 @@
 import { Route, Routes } from "react-router-dom"
-import { useState, useEffect } from "react"
 import Media from 'react-media'; // add Media
 
 import Access from "./pages/Access"
 import UplaodArt from './pages/UploadArt'
 
 import Home from "./pages/Home";
-import Profile from './pages/Profile'
-import SignUp from './components/forms/SignUp'
-import LogIn from './components/forms/LogIn'
+import Profile from './pages/Profile';
+import SignUp from './components/forms/SignUp';
+import LogIn from './components/forms/LogIn';
 
 import EditProfile from "./components/forms/EditProfile"
-import Editlistings from "./components/forms/EditListings"
+import YourListings from "./pages/YourListings"
+import EditListingPage from "./pages/EditListingPage";
 import Search from "./pages/Search";
 import ListingDetails from "./pages/ListingDetails"
 
@@ -55,8 +55,9 @@ const { user } = useAuthContext()
     )}
 
    <Route path="profile" element={< Profile/>}></Route>
-   <Route path="profile/edit-listings" element={< Editlistings/>}></Route>
    <Route path="profile/edit-profile" element={< EditProfile/>}></Route>
+   <Route path="profile/edit-listings" element={< YourListings/>}></Route>
+   <Route path="/edit-listings/:listingsId" element={< EditListingPage/>}></Route>
 
    <Route path='/upload-art' element={< UplaodArt/>}></Route>
 
@@ -84,9 +85,13 @@ const { user } = useAuthContext()
     )}
     
     <Route path="/profile" element= {< Profile/>}>
-      <Route path="edit-listings" element={< Editlistings/>}></Route>
+      <Route path="edit-listings" element={< YourListings/>}>
+        
+      </Route>
       <Route path="edit-profile" element={< EditProfile/>}></Route>
    </Route>
+
+   <Route path="/edit-listings/:listingsId" element={< EditListingPage/>}></Route>
     
    <Route path='/upload-art' element={< UplaodArt/>}></Route>
 
