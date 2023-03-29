@@ -9,8 +9,7 @@ const ListingCard = (props) => {
  const navigate = useNavigate()
 
  const listingArray = props.listings
-
- console.log(listingArray)
+ 
 
  const listingCards = listingArray.map((listing, index) => {
 

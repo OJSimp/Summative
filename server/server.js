@@ -61,6 +61,8 @@ app.post("/listings", async(req, res) => {
 
  })
 
+// view all listings
+
 app.get("/listings/", async (req, res) => {
 
   const viewAllListing = await Listing.find({})
@@ -84,6 +86,29 @@ app.get("/listings/:listingsId", async (req, res) => {
   res.json(viewAListing)
 
 });
+
+
+// add listing comments 
+
+app.put("/listings/:id/comments", async(req, res) => {
+
+  const postId = req.params.id
+  const comment = req.body 
+
+  console.log(comment)
+
+  // find the post to add comment by ID
+
+  const post = await Listing.findById(postId)
+
+  post.comments.push(comment)
+
+  const updatedPost = await Listing.findByIdAndUpdate(postId, post)
+
+  console.log("COMMENT ADDED", updatedPost)
+ })
+
+ // delete listing comments
 
 
  app.delete("/listings/:listingsId", async(req, res) => {

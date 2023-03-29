@@ -7,7 +7,6 @@ import { useAuthContext } from "../../hooks/useAuthContext"
 
 import { useGetUser } from "../../hooks/useGetUser"
 
-
 import { NavLink } from "react-router-dom"
 
 const ProfileNav = () => {
@@ -34,7 +33,6 @@ const [userEmail, setUserEmail] = useState("")
   setUserEmail(user.email)
   // once there is a user get their information from server
   userDetails( userEmail )
-
   } else {
   console.log("no user yet")
   }
