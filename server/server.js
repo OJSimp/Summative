@@ -89,7 +89,7 @@ app.get("/listings/:listingsId", async (req, res) => {
 
 // get listings by creator 
 
-app.get("/edit-listings/:creatorId", async (req, res) => {
+app.get("/your-listings/:creatorId", async (req, res) => {
 
   // const listingID = req.params.listingId
 
