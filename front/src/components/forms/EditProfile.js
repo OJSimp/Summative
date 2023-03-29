@@ -4,8 +4,9 @@ import { useState, useEffect } from "react"
 
 import { Link, Outlet } from "react-router-dom"
 
+// Hooks
 import { useAuthContext } from "../../hooks/useAuthContext"
-
+import { userDetails } from "../../hooks/useGetUser"
 
 const EditProfile = () => {
 
@@ -15,6 +16,7 @@ const EditProfile = () => {
 
  // storage of user information 
  const { user } = useAuthContext()
+
 
  // pull the ide from the URL –– not sure i need this here Spencer??
  const userDetails = (userEmail) => {
@@ -35,15 +37,26 @@ const EditProfile = () => {
   }
 
   getUserDetails()
- 
+ console.log("userDetails");
  }
+
+ //Put request updates
+
+ //delete
+ const deleteUser = async () =>{
+  console.log("deleteUser")
+
+  // await fertch
+  // method delete (aysnc function)
+ }
+
 
  return (
   <div className="edit-profile">
   <Link to="/profile/" className="" >My Profile</Link>
 
 {/* user email showing to amieee CAN DELETE */}
-   {user && (<p>{user.email}</p>)}
+   {/* {user && (<p>{user.email}</p>)} */}
   <div className="wrapper-profile__edit">
  
  <form className="profile__edit" id="editUserDetails">
@@ -61,11 +74,11 @@ const EditProfile = () => {
     <label htmlFor="log-in__email" className="input-label--icon" id="log-in__email">
     </label>
 
-    <button className='btn-primary'>Save Changes</button>
+    <button className='btn-primary' onClick={userDetails}>Save Changes</button>
 
  </form>  {/* form ends */}
-  <div className='delete-profile'>
-  <button className='btn-primary'>Delete Profile</button>
+  <div className='delete-profile' >
+  <button className='btn-primary' onClick={deleteUser}>Delete Profile</button>
   </div>  {/* Delete Button ends */}
   </div>  {/* Wrapper ends */}
 
