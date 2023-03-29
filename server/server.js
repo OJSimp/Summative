@@ -1,4 +1,3 @@
-
 const express = require("express");
 
 const mongoose = require("mongoose");
@@ -9,12 +8,12 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 
-const listingRoute = require("./routes/listingRoutes")
-const userRoute = require("./routes/userRoutes")
+const listingRoute = require("./routes/listingRoutes");
+const userRoute = require("./routes/userRoutes");
 
 //models
 const Image = require("./models/image");
-const Listing = require("./models/listing")
+const Listing = require("./models/listing");
 const User = require("./models/user.js");
 
 const e = require("express");
@@ -28,7 +27,7 @@ app.use(express.json());
 
 // routes will be issues here
 // app.use('/listings', listingRoute)
-app.use('/users', userRoute)
+app.use("/users", userRoute);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -44,144 +43,105 @@ const upload = multer({
   limits: { fileSize: 5242880 },
 });
 
-
-
-
 //-----------Routes START-----------//
 
 // LISTINGS //
 
-app.post("/listings", async(req, res) => {
+app.post("/listings", async (req, res) => {
+  const newListing = await Listing.create(req.body);
+  res.json(newListing);
 
-   const newListing = await Listing.create(req.body)
-   res.json(newListing)
-
-   console.log("POST CREATED", newListing)
-
- })
+  console.log("POST CREATED", newListing);
+});
 
 // view all listings
 
 app.get("/listings/", async (req, res) => {
+  const viewAllListing = await Listing.find({});
 
-  const viewAllListing = await Listing.find({})
+  console.log(viewAllListing);
 
-  console.log(viewAllListing)
-
-  res.json(viewAllListing)
-
+  res.json(viewAllListing);
 });
 
 // get listing by Id
 
 app.get("/listings/:listingsId", async (req, res) => {
-
   // const listingID = req.params.listingId
 
-  const usersListing = await Listing.findById(req.params.listingsId)
+  const usersListing = await Listing.findById(req.params.listingsId);
 
-  console.log(usersListing)
+  console.log(usersListing);
 
-  res.json(usersListing)
-
+  res.json(usersListing);
 });
 
-
-// get listings by creator 
+// get listings by creator
 
 app.get("/your-listings/:creatorId", async (req, res) => {
-
   // const listingID = req.params.listingId
 
-  const viewAListing = await Listing.find({creatorId: req.params.creatorId})
+  const viewAListing = await Listing.find({ creatorId: req.params.creatorId });
 
-  console.log(viewAListing)
+  console.log(viewAListing);
 
-  res.json(viewAListing)
-
+  res.json(viewAListing);
 });
 
+// add listing comments
 
-// add listing comments 
+app.put("/listings/:id/comments", async (req, res) => {
+  const postId = req.params.id;
+  const comment = req.body;
 
-app.put("/listings/:id/comments", async(req, res) => {
-
-  const postId = req.params.id
-  const comment = req.body 
-
-  console.log(comment)
+  console.log(comment);
 
   // find the post to add comment by ID
 
-  const post = await Listing.findById(postId)
+  const post = await Listing.findById(postId);
 
-  post.comments.push(comment)
+  post.comments.push(comment);
 
-  const updatedPost = await Listing.findByIdAndUpdate(postId, post)
+  const updatedPost = await Listing.findByIdAndUpdate(postId, post);
 
-  console.log("COMMENT ADDED", updatedPost)
- })
+  console.log("COMMENT ADDED", updatedPost);
+});
 
- // delete listing comments
+// delete listing comments
 
+app.delete("/listings/:listingId", async (req, res) => {
+  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId);
+  res.json(deleteListing);
 
- app.delete("/listings/:listingsId", async(req, res) => {
-
-  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId)
-  res.json(deleteListing)
-
-  console.log("POST DELETED", deleteListing)
-
- })
-
-
-
+  console.log("POST DELETED", deleteListing);
+});
 
 // USERS //
 
-// get users 
+// get users
 
 app.get("/users/signup", async (req, res) => {
+  const allUsers = await User.find();
 
-  const allUsers = await User.find()
+  console.log(allUsers);
 
-  console.log(allUsers)
-
-  res.json(allUsers)
-
+  res.json(allUsers);
 });
 
 // get user name based on email
 
 app.get("/users/:userEmail", async (req, res) => {
+  const userEmail = req.params.userEmail;
 
-  const userEmail = req.params.userEmail
+  const viewUser = await User.find({ email: userEmail });
 
-  const viewUser = await User.find({email: userEmail})
+  console.log(viewUser);
 
-  console.log(viewUser)
-
-  res.json(viewUser)
-
+  res.json(viewUser);
 });
 
-// AMIEE THIS IS FOR YOU 
-// Find one user based on email - email 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// AMIEE THIS IS FOR YOU
+// Find one user based on email - email
 
 // SPENCER IS PUTTIN SOME INTENSE STUFF PAST THIS POINT //
 
@@ -217,12 +177,6 @@ app.get("/users/:userEmail", async (req, res) => {
 //   res.json(requestedimage)
 
 // });
-
-
-
-
-
-
 
 //-----------Routes End-----------
 
