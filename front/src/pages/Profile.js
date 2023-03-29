@@ -5,7 +5,7 @@ import NavProfile from "../components/navigation/ProfileNav"
 
 import EditProfile from "../components/forms/EditProfile"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { Link, Outlet } from "react-router-dom"
 
