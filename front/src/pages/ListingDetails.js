@@ -13,8 +13,6 @@ import AddComment from "../components/modals/AddComment"
 
 const ListingDetials = () => {
 
- const [userEmail, setUserEmail] = useState("")
-
  const [commentDetails, setCommentDetails] = useState("")
 
  const [artDetails, setArtDetails] = useState("")
@@ -45,11 +43,11 @@ const ListingDetials = () => {
  useEffect(() => {
 
   if(user){
-  setUserEmail(user.email)
+  const userEmail = user.email
   userDetails(userEmail)
   }
 
-})
+}, [user])
 
 
  useEffect( () => {
@@ -59,7 +57,9 @@ const ListingDetials = () => {
   const resposne = await fetch(`http://localhost:8001/listings/${listingId}`, {method: "GET"})
   const details = await resposne.json()
 
-  console.log(details)
+  // console.log(details.comments)
+
+  setCommentsArray(details.comments)
 
   setArtDetails(details.artDetails)
   setArtSpecs(details.artSpecs)
@@ -70,17 +70,14 @@ const ListingDetials = () => {
   setPrice(details.price)
   setStatus(details.status)
 
-  setCommentsArray(details.comments)
-
   setCreatorId(details.creatorId)
 
   }
    
   listingDetails()
+
   
  }, [])
-
-
 
 
  const handleAddComment = (e) => {
@@ -138,6 +135,8 @@ return (
      <div className="header header--form">
       <h4>Comments</h4>
      </div>
+
+     {commentsArray ? <ListingComments comments={commentsArray} id={ID}/> : null}
       
       <form className="form--add-comments" onSubmit={handleAddComment}>
       <textarea className="text-input" name="" id="comment-input" cols="30" rows="3" onChange={(e) => setCommentDetails(e.target.value)}/>
@@ -145,9 +144,7 @@ return (
       <button >+</button>
      </form>
 
-     {commentsArray ? <ListingComments comments={commentsArray} id={ID}/> : null}
-
-      {/* {commentsArray ? <ListingComments comments={commentsArray} id={ID} /> : null } */}
+     
     </div>
    
   
