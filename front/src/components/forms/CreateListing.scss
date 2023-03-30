@@ -1,22 +1,97 @@
-
-
-.form__upload-art{
+.form__upload-art {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  
+
 }
+
+// text input
+
+.text-input{
+padding: 30px 10px 10px 10px;
+border: 1px solid grey;
+margin-bottom: 10px;
+
+}
+
+.text-input__label{
+position: relative;
+
+span{
+position: absolute;
+bottom: 40px;
+left: 10px;
+}
+
+}
+
+// text area
+
+.text-area__label{
+position: relative;
+
+span{
+position: absolute;
+bottom: 70px;
+left: 10px;
+}
+
+}
+
+// Dropdown 
 
 .select-input{
 display: flex;
 flex-direction: column;
+margin-bottom: 10px;
 
   .select-input__button{
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 0px;
+  padding: 10px 10px;
   border: 1px solid gray;
+
+  .select-input__details{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+   .select-input__value{
+    margin: 0px;
+   }
+  }  
+  }
+
+  .select-input__options--active{
+  display: flex;
+  border: 1px solid grey;
+  margin: 10px 0px;
+
+  ul{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+  .select-input__option--active{
+  background-color: #f4f4f4;
+  padding: 16px 20px;
+  margin: 0;
+  }
+
+  .select-input__option--inactive{
+  
+  padding: 16px 20px;
+  margin: 0;
+  }
+  
+  }
+  
+  }
+
+  .select-input__options--inactive{
+  display: none;
   }
 
 }

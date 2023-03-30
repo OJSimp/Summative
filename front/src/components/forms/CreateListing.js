@@ -6,10 +6,12 @@ const CreateListing = () => {
   const [price, setPrice] = useState("");
   const [artTitle, setArtTitle] = useState("");
   const [artSpecs, setArtSpecs] = useState("");
-  const [artType, setArttype] = useState("");
+  const [artType, setArtType] = useState("");
   const [artDetails, setArtDetails] = useState("");
   const [artistName, setArtistName] = useState("");
   const [artistBio, setArtistbio] = useState("");
+
+  const [dropdownActive, setDropdownActive] = useState(false)
 
   const handlePrice = (e) => {
     setPrice(e.target.value);
@@ -20,10 +22,6 @@ const CreateListing = () => {
 
   const handleArtworkSpecs = (e) => {
     setArtSpecs(e.target.value);
-  };
-
-  const handleArtworkType = (e) => {
-    setArttype(e.target.value);
   };
 
   const handleArtworkDetails = (e) => {
@@ -70,6 +68,19 @@ const CreateListing = () => {
   };
 
 
+  // select options for artwork type
+  const artTypeArray = ["Paintings", "Sculpture", "Photography", "Prints", "NFTs"]
+
+  const artTypeSelect = artTypeArray.map((option, index) => {
+  
+    const handleSetArtType = (e) => {
+    setArtType(option)
+    }
+
+    return (<li key={index} onClick={handleSetArtType} className={artType == option ? "select-input__option--active" : "select-input__option--inactive"} >{option}</li>)
+  })
+
+
   // Add the stuff
   return (
     <div className="wrapper-upload__art">
@@ -81,7 +92,7 @@ const CreateListing = () => {
 
         <input
           className="text-input"
-          placeholder="Price"
+          placeholder=""
           type="text"
           id="upload-art--price"
           onChange={handlePrice}
@@ -90,9 +101,8 @@ const CreateListing = () => {
           <span>Price</span>
         </label>
 
-
         <input
-          placeholder="Artwork Title"
+          placeholder=""
           className="text-input"
           type="text"
           id="upload-art--art-title"
@@ -105,7 +115,7 @@ const CreateListing = () => {
 
         <input
           className="text-input"
-          placeholder="Artwork Specs"
+          placeholder=""
           type="text"
           id="upload-art--art-specs"
           onChange={handleArtworkSpecs}
@@ -116,8 +126,12 @@ const CreateListing = () => {
 
         {/* custoom selector */}
         <div className="select-input" id="upload-art--artwork-type">
-          <div className="select-input__button">
-            <label htmlFor="upload-art--artwork-type"><span>Artwork Type</span></label>
+          
+          <div className="select-input__button" onClick={() => {setDropdownActive(!dropdownActive)}}>
+            <div className="select-input__details">
+              <label className="select-input__label" htmlFor="upload-art--artwork-type"><span>Artwork Type</span></label>
+              <p className="select-input__value">{artType}</p>
+            </div>
             <span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.59 8.59009L12 13.1701L7.41 8.59009L6 10.0001L12 16.0001L18 10.0001L16.59 8.59009Z" fill="#2A2E45"/>
@@ -125,56 +139,31 @@ const CreateListing = () => {
             </span>
           </div>
 
+      <div className={dropdownActive ? "select-input__options--active" : "select-input__options--inactive"}>
+        <ul>
+        {artTypeSelect}
+        </ul>
+      </div> 
 
-          <div className="select-input__options">
-            <ul>
-              <li className="select-input__option">Paintings</li>
-              <li className="select-input__option">Sculpture</li>
-              <li className="select-input__option">Prints</li>
-              <li className="select-input__option">Photography</li>
-              <li className="select-input__option">Literature</li>
-            </ul>
-          </div>
-
-        </div>
-
-
-        {/* <select
-          className="select-input"
-          name=""
-          id="upload-art--art-type"
-          placeholder="Art Type"
-          onChange={handleArtworkType}
-        >
-          <option value="">Paintings</option>
-          <option value="">Sculpture</option>
-          <option value="">Prints</option>
-          <option value="">Photography</option>
-          <option value="">NFT</option>
-          <option value="">Literature</option>
-        </select>
-        <label htmlFor="upload-art--art-type" className="text-input__label" id="log-in--password">
-          <span>Artwork Type</span>
-        </label> */}
-
+      </div>
 
         <textarea
-          className="text-areas"
+          className="text-input"
           name="ArtworkDetails"
-          placeholder="Artwork Details"
+          placeholder=""
           id="upload-art--art-details"
           cols="30"
-          rows="10"
+          rows="3"
           onChange={handleArtworkDetails}
         ></textarea>
-        <label htmlFor="upload-art--art-details" className="text-input__label" id="log-in--password">
+        <label htmlFor="upload-art--art-details" className="text-area__label" id="log-in--password">
           <span>Artwork Details</span>
         </label>
 
 
         <input
-          className="Inputs"
-          placeholder="ArtistName"
+          className="text-input"
+          placeholder=""
           type="text"
           id="upload-art--artist-name"
           onChange={handleArtistName}
@@ -186,14 +175,14 @@ const CreateListing = () => {
         
         <textarea
           name="Artist bio"
-          className="text-areas"
-          placeholder="Artist Bio"
+          className="text-input"
+          placeholder=""
           id="upload-art--artist-details"
           cols="30"
-          rows="10"
+          rows="3"
           onChange={handleArtworkbio}
         ></textarea>
-        <label htmlFor="upload-art--artist-details" className="text-input__label" id="log-in--password">
+        <label htmlFor="upload-art--artist-details" className="text-area__label" id="log-in--password">
           <span>Artist Bio</span>
         </label>
 
