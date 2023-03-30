@@ -6,50 +6,51 @@ import { Link, Outlet } from "react-router-dom"
 
 // Hooks
 import { useAuthContext } from "../../hooks/useAuthContext"
-import { userDetails } from "../../hooks/useGetUser"
+import { useGetUser } from "../../hooks/useGetUser"
+
+
 
 const EditProfile = () => {
 
- const [email, setEmail] = useState("")
+//  const [email, setEmail] = useState("")
  const [firstName, setFirstName] = useState("")
  const [lastName, setLastName] = useState("")
 
  // storage of user information 
  const { user } = useAuthContext()
 
+ // useGetUser function - get user informstion
+ const { userDetails, ID, email} = useGetUser()
 
- // pull the ide from the URL –– not sure i need this here Spencer??
- const userDetails = (userEmail) => {
+ useEffect(() =>{
 
-  console.log("getuser", userEmail)
+ if(user){
+  const userEmail = user.email
+  userDetails(userEmail)
 
-  const getUserDetails = async () => {
-  const response = await fetch(`http://localhost:8001/users/${userEmail}`, {method: "GET"})
-  const userResponse = await response.json()
+ }
+},[user])
 
-  const user = userResponse[0]
-  setFirstName(user.firstName)
-  setLastName(user.lastName)
-  setEmail(user.email)
-
-  console.log(user)
+ // method delete (aysnc function)
+ const handleDeleteProfile = async () => {  
+    console.log(ID)
   
-  }
-
-  getUserDetails()
- console.log("userDetails");
+// await fetch
+  await fetch(`http://localhost:8001/users/${ID}`, {method: "DELETE"}) 
  }
 
- //Put request updates
+ const updateProfile = (e) => {
+  e.preventdefault()
+  console.log("save")
 
- //delete
- const deleteUser = async () =>{
-  console.log("deleteUser")
+  const put = { firstName, lastName }
+  fetch(`http://localhost:8001/users/${email}`, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(put),
+  }) 
 
-  // await fertch
-  // method delete (aysnc function)
  }
-
 
  return (
   <div className="edit-profile">
@@ -58,27 +59,27 @@ const EditProfile = () => {
 {/* user email showing to amieee CAN DELETE */}
    {/* {user && (<p>{user.email}</p>)} */}
   <div className="wrapper-profile__edit">
- 
+ ``
  <form className="profile__edit" id="editUserDetails">
   <h4>Edit Profile </h4>
 
-  <input type="text" placeholder="First name" className="text-input--icon" id="first-name" onChange={(e) => {setFirstName(e.target.value)}} value={firstName}/>
+  <input type="text" placeholder="First name" className="text-input--icon" id="first-name" onChange={(e) => {setFirstName(e.target.value)}} />
     <label htmlFor="log-in--first-name" className="input-label--icon" id="log-in__first-name">
     </label>
 
-    <input type="text" placeholder="Last name" className="text-input--icon" id="log-in__last-name" onChange={(e) => {setLastName(e.target.value)}} value={lastName}/> 
+    <input type="text" placeholder="Last name" className="text-input--icon" id="log-in__last-name" onChange={(e) => {setLastName(e.target.value)}} /> 
     <label htmlFor="log-last-name" className="input-label--icon" id="log-in__last-name">
     </label>
 
-    <input type="text" placeholder="email@gmail.com" className="text-input--icon" id="log-in__email" onChange={(e) => {setEmail(e.target.value)}} value={email}/>
+    <input type="text" placeholder="email@gmail.com" className="text-input--icon" id="log-in__email"  />
     <label htmlFor="log-in__email" className="input-label--icon" id="log-in__email">
     </label>
 
-    <button className='btn-primary' onClick={userDetails}>Save Changes</button>
+    <button className='btn-primary' onClick={updateProfile}>Save Changes</button>
 
  </form>  {/* form ends */}
   <div className='delete-profile' >
-  <button className='btn-primary' onClick={deleteUser}>Delete Profile</button>
+  <button className='btn-primary' onClick={handleDeleteProfile}>Delete Profile</button>
   </div>  {/* Delete Button ends */}
   </div>  {/* Wrapper ends */}
 
