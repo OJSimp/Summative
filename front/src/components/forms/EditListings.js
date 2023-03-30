@@ -1,46 +1,47 @@
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
-import { useAuthContext } from "../../hooks/useAuthContext"
-import { useGetUser } from "../../hooks/useGetUser"
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useGetUser } from "../../hooks/useGetUser";
 
 const EditListings = () => {
+  const listingId = useParams().listingsId;
 
- const listingId = useParams().listingsId
+  const { user } = useAuthContext();
 
- const { user } = useAuthContext()
+  const { userDetails, ID, firstName, lastName } = useGetUser();
 
- const { userDetails, ID, firstName, lastName } = useGetUser()
- 
- console.log(listingId)
+  console.log(listingId);
 
-  // Render Logged-In user Details 
+  // Render Logged-In user Details
   useEffect(() => {
-
-  if(user){
-  const userEmail = user.email
-  userDetails(userEmail)
-  }
-
-  }, [user])
+    if (user) {
+      const userEmail = user.email;
+      userDetails(userEmail);
+    }
+  }, [user]);
 
   // Render listing details
-  useEffect(() => {
 
+  useEffect(() => {}, [listingId]);
 
-  
-  }, [listingId])
+  const handleDeleteListings = async () => {
+    console.log("Deleteing");
 
+    await fetch(`http://localhost:8001/listings/${listingId}`, {
+      method: "DELETE",
+    });
+  };
 
- return (
-  <div className="">
-    EDIT LISTINGS FORM
-  </div>
+  return (
+    <div className="">
+      <button onClick={handleDeleteListings} className="deletebutton">
+        delete
+      </button>
+    </div>
+  );
+};
 
-  )
+export default EditListings;
 
-}
-
-
-export default EditListings
