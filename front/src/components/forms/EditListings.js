@@ -28,6 +28,7 @@ const EditListings = () => {
   // Render listing details
   useEffect(() => {
 
+
   
   }, [listingId])
 
