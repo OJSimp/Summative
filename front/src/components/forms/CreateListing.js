@@ -80,6 +80,37 @@ const CreateListing = () => {
     return (<li key={index} onClick={handleSetArtType} className={artType == option ? "select-input__option--active" : "select-input__option--inactive"} >{option}</li>)
   })
 
+  const [file, setFile] = useState()
+
+  const handleFileChange = (event) => {
+
+    if(event.target.files)
+  
+    setFile(event.target.files[0]) 
+  
+    }
+
+  const handleUploadFile = async () => {
+  
+    if (!file) {
+
+      alert("please select a file to upload");
+
+    } else {
+
+     const formData = new FormData();
+     formData.append("image-attachment", file);
+
+      const response = await fetch("http://localhost:8001/images", {
+      method: "POST",
+      body: formData,
+      });
+
+      const data = await response.json();
+      console.log(data);
+      console.log("upload complete")
+    }
+  }
 
   // Add the stuff
   return (
@@ -130,7 +161,7 @@ const CreateListing = () => {
           <div className="select-input__button" onClick={() => {setDropdownActive(!dropdownActive)}}>
             <div className="select-input__details">
               <label className="select-input__label" htmlFor="upload-art--artwork-type"><span>Artwork Type</span></label>
-              <p className="select-input__value">{artType}</p>
+              <p className="select-input__value">{!artType ? "-" : artType }</p>
             </div>
             <span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -188,13 +219,14 @@ const CreateListing = () => {
 
         <br />
 
-        <button className="btn btn-outline" onClick={handleUploadImage}>Upload Image</button>
+        <input onChange={handleFileChange} className="btn btn-outline"  type="file" name="image" id="image"/>
+        <button onClick={handleUploadFile}>Upload Image</button>
         <div className="image-placeholder"></div>
 
          <br />
-         <br />
 
         <button onClick={handlePostSubmit} className="btn btn-primary">Publish</button>
+        <br />
         <button className="btn btn-outline">Preview</button>
       </form>
     </div>

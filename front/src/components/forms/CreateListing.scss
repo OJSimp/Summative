@@ -9,7 +9,7 @@
 
 .text-input{
 padding: 30px 10px 10px 10px;
-border: 1px solid grey;
+border: 1px solid lightgrey;
 margin-bottom: 10px;
 
 }
@@ -51,7 +51,7 @@ margin-bottom: 10px;
   align-items: center;
   justify-content: space-between;
   padding: 10px 10px;
-  border: 1px solid gray;
+  border: 1px solid lightgrey;
 
   .select-input__details{
   display: flex;
@@ -60,6 +60,7 @@ margin-bottom: 10px;
 
    .select-input__value{
     margin: 0px;
+    font-size: 14px;
    }
   }  
   }
