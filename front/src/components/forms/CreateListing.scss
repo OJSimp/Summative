@@ -1,62 +1,160 @@
-
-.TheHeader{
-  background-color: gray;
-    }
-  
-  .tabColour{
-  background-color: white;  
-  }
-  
-  .Art-feed-inputs-container{
+.form__upload-art {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  gap: 12px;
+  padding: 20px;
+
+}
+
+// text input
+
+.text-input{
+padding: 30px 10px 10px 10px;
+border: 1px solid lightgrey;
+margin-bottom: 10px;
+
+}
+
+.text-input__label{
+position: relative;
+
+span{
+position: absolute;
+bottom: 40px;
+left: 10px;
+}
+
+}
+
+// text area
+
+.text-area__label{
+position: relative;
+
+span{
+position: absolute;
+bottom: 70px;
+left: 10px;
+}
+
+}
+
+// Dropdown 
+
+.select-input{
+display: flex;
+flex-direction: column;
+margin-bottom: 10px;
+
+  .select-input__button{
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  border: 1px solid lightgrey;
+
+  .select-input__details{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+   .select-input__value{
+    margin: 0px;
+    font-size: 14px;
+   }
+  }  
+  }
+
+  .select-input__options--active{
+  display: flex;
+  border: 1px solid grey;
+  margin: 10px 0px;
+
+  ul{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+  .select-input__option--active{
+  background-color: #f4f4f4;
+  padding: 16px 20px;
+  margin: 0;
+  }
+
+  .select-input__option--inactive{
+  
+  padding: 16px 20px;
+  margin: 0;
   }
   
-  .Inputs{
-  height: 30px;
-  width: 361px;  
   }
   
-  .text-areas{
-    height: 66px;
-  width: 360px; 
   }
-  
-  .Select{
-  height: 56px;
-  width: 373px;  
+
+  .select-input__options--inactive{
+  display: none;
   }
+
+}
+
+// .TheHeader{
+//   background-color: gray;
+//     }
   
-  .preview-button{
-  background-color: white;
-  height: 41px;
-  width: 288px;
+//   .tabColour{
+//   background-color: white;  
+//   }
+  
+//   .Art-feed-inputs-container{
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   gap: 12px;
+//   }
+  
+//   .Inputs{
+//   height: 30px;
+//   width: 361px;  
+//   }
+  
+//   .text-areas{
+//     height: 66px;
+//   width: 360px; 
+//   }
+  
+//   .Select{
+//   height: 56px;
+//   width: 373px;  
+//   }
+  
+//   .preview-button{
+//   background-color: white;
+//   height: 41px;
+//   width: 288px;
   
   
-  }
+//   }
   
-  .preview-button:active{
-  background-color: gray;  
-  }
+//   .preview-button:active{
+//   background-color: gray;  
+//   }
   
-  .publish-button{
-    background-color: #023047;
-    color: white;
-    height: 41px;
-    width: 288px;
+//   .publish-button{
+//     background-color: #023047;
+//     color: white;
+//     height: 41px;
+//     width: 288px;
     
-    }
+//     }
   
-    .publish-button:active{
-      background-color: #bde0fe;
-    }
+//     .publish-button:active{
+//       background-color: #bde0fe;
+//     }
   
   
-  .image{
-    border: 1px solid black;
-    height: 191px;
-    width: 361px;
-  }
+//   .image{
+//     border: 1px solid black;
+//     height: 191px;
+//     width: 361px;
+//   }

@@ -23,6 +23,7 @@ const EditListings = () => {
   }, [user]);
 
   // Render listing details
+
   useEffect(() => {}, [listingId]);
 
   const handleDeleteListings = async () => {
@@ -43,3 +44,4 @@ const EditListings = () => {
 };
 
 export default EditListings;
+

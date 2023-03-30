@@ -6,10 +6,12 @@ const CreateListing = () => {
   const [price, setPrice] = useState("");
   const [artTitle, setArtTitle] = useState("");
   const [artSpecs, setArtSpecs] = useState("");
-  const [artType, setArttype] = useState("");
+  const [artType, setArtType] = useState("");
   const [artDetails, setArtDetails] = useState("");
   const [artistName, setArtistName] = useState("");
   const [artistBio, setArtistbio] = useState("");
+
+  const [dropdownActive, setDropdownActive] = useState(false)
 
   const handlePrice = (e) => {
     setPrice(e.target.value);
@@ -20,10 +22,6 @@ const CreateListing = () => {
 
   const handleArtworkSpecs = (e) => {
     setArtSpecs(e.target.value);
-  };
-
-  const handleArtworkType = (e) => {
-    setArttype(e.target.value);
   };
 
   const handleArtworkDetails = (e) => {
@@ -37,6 +35,13 @@ const CreateListing = () => {
   const handleArtworkbio = (e) => {
     setArtistbio(e.target.value);
   };
+
+  const handleUploadImage = (e) => {
+  e.preventDefault();
+
+  
+  
+  }
 
   const handlePostSubmit = (e) => {
     e.preventDefault();
@@ -62,82 +67,168 @@ const CreateListing = () => {
     ThePost(Artpost);
   };
 
+
+  // select options for artwork type
+  const artTypeArray = ["Paintings", "Sculpture", "Photography", "Prints", "NFTs"]
+
+  const artTypeSelect = artTypeArray.map((option, index) => {
+  
+    const handleSetArtType = (e) => {
+    setArtType(option)
+    }
+
+    return (<li key={index} onClick={handleSetArtType} className={artType == option ? "select-input__option--active" : "select-input__option--inactive"} >{option}</li>)
+  })
+
+  const [file, setFile] = useState()
+
+  const handleFileChange = (event) => {
+
+    if(event.target.files)
+  
+    setFile(event.target.files[0]) 
+  
+    }
+
+  const handleUploadFile = async () => {
+  
+    if (!file) {
+
+      alert("please select a file to upload");
+
+    } else {
+
+     const formData = new FormData();
+     formData.append("image-attachment", file);
+
+      const response = await fetch("http://localhost:8001/images", {
+      method: "POST",
+      body: formData,
+      });
+
+      const data = await response.json();
+      console.log(data);
+      console.log("upload complete")
+    }
+  }
+
   // Add the stuff
   return (
-    <div className="artfeedcontainer">
-      <header>
-        <h3>Art Feed</h3>
-      </header>
-      <header className="TheHeader">
+    <div className="wrapper-upload__art">
+
+      <header className="form-header">
         <p>Add Art</p>
       </header>
-      <div className="Art-feed-inputs-container">
+      <form className="form__upload-art">
+
         <input
-          className="Inputs"
-          placeholder="Price"
+          className="text-input"
+          placeholder=""
           type="text"
+          id="upload-art--price"
           onChange={handlePrice}
         />
+        <label htmlFor="upload-art--price" className="text-input__label" id="log-in--password">
+          <span>Price</span>
+        </label>
+
         <input
-          placeholder="Artwork Title"
-          className="Inputs"
+          placeholder=""
+          className="text-input"
           type="text"
+          id="upload-art--art-title"
           onChange={handleArtworkTitle}
         />
+        <label htmlFor="upload-art--art-title" className="text-input__label" id="log-in--password">
+          <span>Artwork Title</span>
+        </label>
+
+
         <input
-          className="Inputs"
-          placeholder="Artwork Specs"
+          className="text-input"
+          placeholder=""
           type="text"
+          id="upload-art--art-specs"
           onChange={handleArtworkSpecs}
         />
+         <label htmlFor="upload-art--art-specs" className="text-input__label" id="log-in--password">
+          <span>Artwork Specs</span>
+        </label>
 
-        <select
-          className="Select"
-          name=""
-          id=""
-          placeholder="Art Type"
-          onChange={handleArtworkType}
-        >
-          <option value="">Art type</option>
-          <option value="">Paintings</option>
-          <option value="">Sculpture</option>
-          <option value="">Literature</option>
-          <option value="">Architecture</option>
-          <option value="">Cinema</option>
-          <option value="">Music</option>
-          <option value="">Theater</option>
-        </select>
+        {/* custoom selector */}
+        <div className="select-input" id="upload-art--artwork-type">
+          
+          <div className="select-input__button" onClick={() => {setDropdownActive(!dropdownActive)}}>
+            <div className="select-input__details">
+              <label className="select-input__label" htmlFor="upload-art--artwork-type"><span>Artwork Type</span></label>
+              <p className="select-input__value">{!artType ? "-" : artType }</p>
+            </div>
+            <span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.59 8.59009L12 13.1701L7.41 8.59009L6 10.0001L12 16.0001L18 10.0001L16.59 8.59009Z" fill="#2A2E45"/>
+              </svg>
+            </span>
+          </div>
+
+      <div className={dropdownActive ? "select-input__options--active" : "select-input__options--inactive"}>
+        <ul>
+        {artTypeSelect}
+        </ul>
+      </div> 
+
+      </div>
+
         <textarea
-          className="text-areas"
+          className="text-input"
           name="ArtworkDetails"
-          placeholder="Artwork Details"
-          id=""
+          placeholder=""
+          id="upload-art--art-details"
           cols="30"
-          rows="10"
+          rows="3"
           onChange={handleArtworkDetails}
         ></textarea>
+        <label htmlFor="upload-art--art-details" className="text-area__label" id="log-in--password">
+          <span>Artwork Details</span>
+        </label>
+
+
         <input
-          className="Inputs"
-          placeholder="ArtistName"
+          className="text-input"
+          placeholder=""
           type="text"
+          id="upload-art--artist-name"
           onChange={handleArtistName}
         />
+        <label htmlFor="upload-art--art-name" className="text-input__label" id="log-in--password">
+          <span>Artist Name</span>
+        </label>
+
+        
         <textarea
           name="Artist bio"
-          className="text-areas"
-          placeholder="Artist Bio"
-          id=""
+          className="text-input"
+          placeholder=""
+          id="upload-art--artist-details"
           cols="30"
-          rows="10"
+          rows="3"
           onChange={handleArtworkbio}
         ></textarea>
-        <div className="image"></div>
-        <button onClick={handlePostSubmit} className="whitebutton">
-          Upload Image
-        </button>
-        <button className="publish-button">Publish</button>
-        <button className="preview-button">Preview</button>
-      </div>
+        <label htmlFor="upload-art--artist-details" className="text-area__label" id="log-in--password">
+          <span>Artist Bio</span>
+        </label>
+
+        <br />
+
+        <input onChange={handleFileChange} className="btn btn-outline"  type="file" name="image" id="image"/>
+        <button onClick={handleUploadFile}>Upload Image</button>
+        <div className="image-placeholder"></div>
+
+         <br />
+
+        <button onClick={handlePostSubmit} className="btn btn-primary">Publish</button>
+        <br />
+        <button className="btn btn-outline">Preview</button>
+      </form>
     </div>
   );
 };

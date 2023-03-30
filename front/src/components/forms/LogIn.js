@@ -43,7 +43,6 @@ const handleLogIn = async (e) => {
 
     <input type="password" placeholder="" className="text-input--icon" id="log-in--password" onChange={(e) => {setPassword(e.target.value)}}/>
     <label htmlFor="log-in--password" className="text-input__label" id="log-in--password">
-
      <span>Password</span>
     </label>
 

@@ -102,10 +102,21 @@ app.put("/listings/:id/comments", async (req, res) => {
 
   post.comments.push(comment);
 
+
   const updatedPost = await Listing.findByIdAndUpdate(postId, post);
 
   console.log("COMMENT ADDED", updatedPost);
 });
+
+ app.delete("/listings/:listingId", async(req, res) => {
+
+  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId)
+  res.json(deleteListing)
+
+  console.log("POST DELETED", deleteListing)
+
+ })
+
 
 // delete listing comments
 
@@ -140,8 +151,86 @@ app.get("/users/:userEmail", async (req, res) => {
   res.json(viewUser);
 });
 
-// AMIEE THIS IS FOR YOU
-// Find one user based on email - email
+
+
+// edit user profile
+
+// using userEmail as an ID to find and get all user data
+app.get("/users/:userEmail", async (req, res) => {
+  const userEmail = req.params.userEmail
+  const viewUser = await User.find({email: userEmail})
+  console.log(viewUser)
+  res.json(viewUser) 
+ });
+
+  // posting updated user data 
+    app.post("/users/:userEmail", (req, res) => {
+    const userEmail = req.params.userEmail
+    const viewUser = User.find({email: userEmail})
+
+  // decoding to JS
+    const array = JSON.parse(userEmail);
+
+  // defining schems
+    const updateProfile = {
+    id: userEmail(),
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    };
+
+  // // updating data
+  //   array.update(updateProfile);
+
+  //complete update
+      res.json(updateProfile);
+      console.log("Profile Updated!", updateProfile);
+  });  
+
+
+
+
+//////------ OPTION 2 -------\\\\\\\
+
+//updating an existing userprofile
+app.put("/users/:userEmail", async (req, res) => {
+
+  // calling the profile
+  const userEmail = req.params.userEmail;
+  const viewUser = await User.find({email: userEmail});
+ 
+  // decode buffer to JS to get the user array
+  const array = JSON.parse(userEmail);
+
+  // modify the original object in the array)
+  viewUser.firstName = req.body.firstName;
+  viewUser.lastName = req.body.lastName;
+  viewUser.email = req.body.email;
+
+  //check item is updated
+  console.log(array);
+
+  // overwrite old file with new data – not sure if this applies with mongoose... confused
+  fs.writeFileSync("/users/:userEmail", JSON.stringify(array));
+
+  res.json(viewUser);
+
+});
+
+
+
+// Delete Profile
+ app.delete("/users/:userId", async(req, res) => {
+
+  const deleteUserId = await userId.findByIdAndDelete(req.params.userId)
+  res.json(deleteUserId)
+
+  console.log("PROFILE DELETED", deleteUserId)
+
+ });
+
+
+
 
 // SPENCER IS PUTTIN SOME INTENSE STUFF PAST THIS POINT //
 
@@ -152,7 +241,7 @@ app.get("/users/:userEmail", async (req, res) => {
 //   if (!req.file) {
 //     res.json({ message: "no image received" });
 //   } else {
-//     const image = new Image({
+//     const image = new Image({`
 //       data: fs.readFileSync(
 //         path.join(__dirname + "/uploads/" + req.file.filename)
 //       ),
