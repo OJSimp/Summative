@@ -153,76 +153,36 @@ app.get("/users/:userEmail", async (req, res) => {
 
 
 
-// edit user profile
+//////------ Edit Profile Components -------\\\\\\\
 
-// using userEmail as an ID to find and get all user data
-app.get("/users/:userEmail", async (req, res) => {
-  const userEmail = req.params.userEmail
-  const viewUser = await User.find({email: userEmail})
-  console.log(viewUser)
-  res.json(viewUser) 
- });
+// EDIT PROFILE
 
-  // posting updated user data 
-    app.post("/users/:userEmail", (req, res) => {
-    const userEmail = req.params.userEmail
-    const viewUser = User.find({email: userEmail})
-
-  // decoding to JS
-    const array = JSON.parse(userEmail);
-
-  // defining schems
-    const updateProfile = {
-    id: userEmail(),
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    };
-
-  // // updating data
-  //   array.update(updateProfile);
-
-  //complete update
-      res.json(updateProfile);
-      console.log("Profile Updated!", updateProfile);
-  });  
-
-
-
-
-//////------ OPTION 2 -------\\\\\\\
-
-//updating an existing userprofile
+// updating an existing userprofile
 app.put("/users/:userEmail", async (req, res) => {
 
   // calling the profile
   const userEmail = req.params.userEmail;
-  const viewUser = await User.find({email: userEmail});
- 
-  // decode buffer to JS to get the user array
-  const array = JSON.parse(userEmail);
+  const viewUser = await User.findOne({email: userEmail});
 
   // modify the original object in the array)
   viewUser.firstName = req.body.firstName;
   viewUser.lastName = req.body.lastName;
   viewUser.email = req.body.email;
 
-  //check item is updated
-  console.log(array);
+  // save the updates to the user 
+  const updatedUser = await viewUser.save()
+  res.json(viewUser);  
 
-  // overwrite old file with new data – not sure if this applies with mongoose... confused
-  fs.writeFileSync("/users/:userEmail", JSON.stringify(array));
-
-  res.json(viewUser);
+  // show the user in the console
+  console.log("Updated user", updatedUser)
 
 });
 
 
-
-// Delete Profile
+// DELETE PROFILE
  app.delete("/users/:userId", async(req, res) => {
 
-  const deleteUserId = await userId.findByIdAndDelete(req.params.userId)
+  const deleteUserId = await User.findByIdAndDelete(req.params.userId)
   res.json(deleteUserId)
 
   console.log("PROFILE DELETED", deleteUserId)
