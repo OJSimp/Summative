@@ -2,6 +2,8 @@ import "./CreateListing.scss";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+
 const CreateListing = () => {
   const [price, setPrice] = useState("");
   const [artTitle, setArtTitle] = useState("");
@@ -90,6 +92,8 @@ const CreateListing = () => {
   
     }
 
+
+  // upload file javascript
   const handleUploadFile = async () => {
   
     if (!file) {
@@ -158,16 +162,12 @@ const CreateListing = () => {
         {/* custoom selector */}
         <div className="select-input" id="upload-art--artwork-type">
           
-          <div className="select-input__button" onClick={() => {setDropdownActive(!dropdownActive)}}>
+          <div className={ dropdownActive ? "select-input__button" : "select-input__button"} onClick={() => {setDropdownActive(!dropdownActive)}}>
             <div className="select-input__details">
               <label className="select-input__label" htmlFor="upload-art--artwork-type"><span>Artwork Type</span></label>
-              <p className="select-input__value">{!artType ? "-" : artType }</p>
+              <p className={!artType ? "select-input__value--inactive" : "select-input__value--active" }>{!artType ? "-" : artType }</p>
             </div>
-            <span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.59 8.59009L12 13.1701L7.41 8.59009L6 10.0001L12 16.0001L18 10.0001L16.59 8.59009Z" fill="#2A2E45"/>
-              </svg>
-            </span>
+            <span>{ dropdownActive ? < FaChevronUp /> : < FaChevronDown/> }</span>
           </div>
 
       <div className={dropdownActive ? "select-input__options--active" : "select-input__options--inactive"}>

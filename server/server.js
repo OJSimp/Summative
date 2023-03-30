@@ -53,6 +53,8 @@ const upload = multer({
 
 app.post("/listings", async(req, res) => {
 
+  
+
    const newListing = await Listing.create(req.body)
    res.json(newListing)
 
@@ -132,6 +134,7 @@ app.put("/listings/:id/comments", async(req, res) => {
   console.log("POST DELETED", deleteListing)
 
  })
+
 
 
 
