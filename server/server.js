@@ -1,4 +1,3 @@
-
 const express = require("express");
 
 const mongoose = require("mongoose");
@@ -9,12 +8,12 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 
-const listingRoute = require("./routes/listingRoutes")
-const userRoute = require("./routes/userRoutes")
+const listingRoute = require("./routes/listingRoutes");
+const userRoute = require("./routes/userRoutes");
 
 //models
 const Image = require("./models/image");
-const Listing = require("./models/listing")
+const Listing = require("./models/listing");
 const User = require("./models/user.js");
 
 const e = require("express");
@@ -28,7 +27,7 @@ app.use(express.json());
 
 // routes will be issues here
 // app.use('/listings', listingRoute)
-app.use('/users', userRoute)
+app.use("/users", userRoute);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -44,12 +43,10 @@ const upload = multer({
   limits: { fileSize: 5242880 },
 });
 
-
-
-
 //-----------Routes START-----------//
 
 // LISTINGS //
+
 
 app.post("/listings", async(req, res) => {
 
@@ -77,43 +74,38 @@ app.post("/listings", async(req, res) => {
 // view all listings
 
 app.get("/listings/", async (req, res) => {
+  const viewAllListing = await Listing.find({});
 
-  const viewAllListing = await Listing.find({})
+  console.log(viewAllListing);
 
-  console.log(viewAllListing)
-
-  res.json(viewAllListing)
-
+  res.json(viewAllListing);
 });
 
 // get listing by Id
 
 app.get("/listings/:listingsId", async (req, res) => {
-
   // const listingID = req.params.listingId
 
-  const usersListing = await Listing.findById(req.params.listingsId)
+  const usersListing = await Listing.findById(req.params.listingsId);
 
-  console.log(usersListing)
+  console.log(usersListing);
 
-  res.json(usersListing)
-
+  res.json(usersListing);
 });
 
-
-// get listings by creator 
+// get listings by creator
 
 app.get("/your-listings/:creatorId", async (req, res) => {
-
   // const listingID = req.params.listingId
 
-  const viewAListing = await Listing.find({creatorId: req.params.creatorId})
+  const viewAListing = await Listing.find({ creatorId: req.params.creatorId });
 
-  console.log(viewAListing)
+  console.log(viewAListing);
 
-  res.json(viewAListing)
-
+  res.json(viewAListing);
 });
+
+// add listing comments
 
 
 // add listing 
@@ -123,20 +115,20 @@ app.put("/listings/:id/comments", async(req, res) => {
   const postId = req.params.id
   const comment = req.body 
 
-  console.log(comment)
+
+  console.log(comment);
 
   // find the post to add comment by ID
 
-  const post = await Listing.findById(postId)
+  const post = await Listing.findById(postId);
 
-  post.comments.push(comment)
+  post.comments.push(comment);
 
-  const updatedPost = await Listing.findByIdAndUpdate(postId, post)
 
-  console.log("COMMENT ADDED", updatedPost)
- })
+  const updatedPost = await Listing.findByIdAndUpdate(postId, post);
 
- // delete listing comments
+  console.log("COMMENT ADDED", updatedPost);
+});
 
  app.delete("/listings/:listingId", async(req, res) => {
 
@@ -148,51 +140,77 @@ app.put("/listings/:id/comments", async(req, res) => {
  })
 
 
+// delete listing comments
 
+app.delete("/listings/:listingId", async (req, res) => {
+  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId);
+  res.json(deleteListing);
+
+  console.log("POST DELETED", deleteListing);
+});
 
 
 // USERS //
 
-// get users 
+// get users
 
 app.get("/users/signup", async (req, res) => {
+  const allUsers = await User.find();
 
-  const allUsers = await User.find()
+  console.log(allUsers);
 
-  console.log(allUsers)
-
-  res.json(allUsers)
-
+  res.json(allUsers);
 });
 
 // get user name based on email
 
 app.get("/users/:userEmail", async (req, res) => {
+  const userEmail = req.params.userEmail;
 
-  const userEmail = req.params.userEmail
+  const viewUser = await User.find({ email: userEmail });
 
-  const viewUser = await User.find({email: userEmail})
+  console.log(viewUser);
 
-  console.log(viewUser)
+  res.json(viewUser);
+});
 
-  res.json(viewUser)
+
+
+//////------ Edit Profile Components -------\\\\\\\
+
+// EDIT PROFILE
+
+// updating an existing userprofile
+app.put("/users/:userEmail", async (req, res) => {
+
+  // calling the profile
+  const userEmail = req.params.userEmail;
+  const viewUser = await User.findOne({email: userEmail});
+
+  // modify the original object in the array)
+  viewUser.firstName = req.body.firstName;
+  viewUser.lastName = req.body.lastName;
+  viewUser.email = req.body.email;
+
+  // save the updates to the user 
+  const updatedUser = await viewUser.save()
+  res.json(viewUser);  
+
+  // show the user in the console
+  console.log("Updated user", updatedUser)
 
 });
 
-// AMIEE THIS IS FOR YOU 
-// Find one user based on email - email 
 
+// DELETE PROFILE
+ app.delete("/users/:userId", async(req, res) => {
 
+  const deleteUserId = await User.findByIdAndDelete(req.params.userId)
+  res.json(deleteUserId)
 
+  console.log("PROFILE DELETED", deleteUserId)
 
-
-
-
-
-
-
-
-
+ });
 
 
 
@@ -206,7 +224,7 @@ app.get("/users/:userEmail", async (req, res) => {
 //   if (!req.file) {
 //     res.json({ message: "no image received" });
 //   } else {
-//     const image = new Image({
+//     const image = new Image({`
 //       data: fs.readFileSync(
 //         path.join(__dirname + "/uploads/" + req.file.filename)
 //       ),
@@ -231,12 +249,6 @@ app.get("/users/:userEmail", async (req, res) => {
 //   res.json(requestedimage)
 
 // });
-
-
-
-
-
-
 
 //-----------Routes End-----------
 
