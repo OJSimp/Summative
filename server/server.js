@@ -12,7 +12,6 @@ const listingRoute = require("./routes/listingRoutes");
 const userRoute = require("./routes/userRoutes");
 
 //models
-const Image = require("./models/image");
 const Listing = require("./models/listing");
 const User = require("./models/user.js");
 
@@ -28,6 +27,7 @@ app.use(express.json());
 // routes will be issues here
 // app.use('/listings', listingRoute)
 app.use("/users", userRoute);
+app.use("/listings", listingRoute);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -48,28 +48,30 @@ const upload = multer({
 // LISTINGS //
 
 
-app.post("/listings", async(req, res) => {
+// app.post("/listing", async (req, res) => {
 
-    await Listing.create({ 
+//     await Listing.create({ 
 
-      creatorId: req.body.creatorId,
-      price: req.body.price,
-      artTitle: req.body.artTitle,
-      artSpecs: req.body.artSpecs,
-      artType: req.body.artType,
-      artDetails: req.body.artDetails,
-      artistName: req.body.artistName,
-      artistBio: req.body.artistBio,
-      dateCreated: req.body.creationDate, 
-      status: req.body.status, 
-      image: req.body.file.file 
+//       creatorId: req.body.creatorId,
+//       price: req.body.price,
+//       artTitle: req.body.artTitle,
+//       artSpecs: req.body.artSpecs,
+//       artType: req.body.artType,
+//       artDetails: req.body.artDetails,
+//       artistName: req.body.artistName,
+//       artistBio: req.body.artistBio,
+//       dateCreated: req.body.creationDate, 
+//       status: req.body.status, 
+//       // image: req.body.file.file 
       
-      });
+//       });
 
-    console.log("posted");
-    res.send("posted");
+//     console.log("posted");
+//     res.send("posted");
 
- })
+//  })
+
+
 
 // view all listings
 
@@ -86,11 +88,6 @@ app.get("/listings/", async (req, res) => {
 app.get("/listings/:listingsId", async (req, res) => {
   // const listingID = req.params.listingId
 
-  const usersListing = await Listing.findById(req.params.listingsId);
-
-  console.log(usersListing);
-
-  res.json(usersListing);
 });
 
 // get listings by creator
@@ -107,28 +104,24 @@ app.get("/your-listings/:creatorId", async (req, res) => {
 
 // add listing comments
 
+// app.put("/listings/:id/comments", async(req, res) => {
 
-// add listing 
+//   const postId = req.params.id
+//   const comment = req.body 
 
-app.put("/listings/:id/comments", async(req, res) => {
+//   console.log(comment);
 
-  const postId = req.params.id
-  const comment = req.body 
+//   // find the post to add comment by ID
 
+//   const post = await Listing.findById(postId);
 
-  console.log(comment);
-
-  // find the post to add comment by ID
-
-  const post = await Listing.findById(postId);
-
-  post.comments.push(comment);
+//   post.comments.push(comment);
 
 
-  const updatedPost = await Listing.findByIdAndUpdate(postId, post);
+//   const updatedPost = await Listing.findByIdAndUpdate(postId, post);
 
-  console.log("COMMENT ADDED", updatedPost);
-});
+//   console.log("COMMENT ADDED", updatedPost);
+// });
 
  app.delete("/listings/:listingId", async(req, res) => {
 

@@ -11,24 +11,18 @@ const commentsSchema = new mongoose.Schema({
  details: {type: String}
 })
 
-
 const listingSchema = new mongoose.Schema({
- creatorId: {type: String},
- price: {type: String},
- artTitle: {type: String},
- artSpecs: {type: String},
- artType: {type: String},
- artDetails: {type: String},
- artistName: {type: String},
- artistBio: {type: String},
- dateCreated: {type: Date},
- dateModified: {type: Date},
- status: {type: String},
- image: {type: String},
+ creatorId: {type: String, required: true},
+ price: {type: String, required: true},
+ artTitle: {type: String, required: true},
+ artSpecs: {type: String, required: true},
+ artType: {type: String, required: true},
+ artDetails: {type: String, required: true},
+ artistName: {type: String, required: true},
+ artistBio: {type: String, required: true},
+ status: {type: String, required: true},
+ image: {type: String,},
  comments: {type: [commentsSchema]}
-
-})
-
-
+}, {timestamps: true})
 
 module.exports = mongoose.model("Listing",  listingSchema )
