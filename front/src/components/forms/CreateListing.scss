@@ -1,9 +1,28 @@
-.form__upload-art {
+
+// form sections - navigate between
+.upload-art__section--active{
   display: flex;
   flex-direction: column;
-  padding: 20px;
-
+  padding: 5px 20px;
+  margin-bottom: 80px;
 }
+
+.upload-art__section--inactive {
+  display: none
+}
+
+
+// form progress bar 
+
+.upload-art__navigation{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+
+
 
 // text input
 
@@ -45,25 +64,43 @@ display: flex;
 flex-direction: column;
 margin-bottom: 10px;
 
-  .select-input__button{
+  // the button of select input
+  .select-input__button--active{
   display: flex;
   position: relative;
   align-items: center;
   justify-content: space-between;
   padding: 10px 10px;
   border: 1px solid lightgrey;
+  }
+
+  .select-input__button--inactive{
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  border: 1px solid grey;
+  
+  }
+
 
   .select-input__details{
   display: flex;
   flex-direction: column;
   gap: 6px;
 
-   .select-input__value{
+   .select-input__value--active{
     margin: 0px;
     font-size: 14px;
+
    }
-  }  
+  .select-input__value--inactive {
+   color: white;
+   margin: 0px;
+   font-size: 14px;
   }
+}  
 
   .select-input__options--active{
   display: flex;
@@ -95,6 +132,20 @@ margin-bottom: 10px;
   display: none;
   }
 
+}
+
+.image-placeholder{
+  width: 100%;
+  margin-bottom: 10px;
+  img{
+  width: 100%;
+  height: auto;
+
+  }
+}
+
+.hide{
+  display: none;
 }
 
 // .TheHeader{

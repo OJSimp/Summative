@@ -33,8 +33,7 @@ const handleLogIn = async (e) => {
 }
 
  return(
-  <form className="form--log-in" onSubmit={handleLogIn}>
-    
+  <form className="form__log-in" onSubmit={handleLogIn}>
 
     <input type="text" placeholder="" className="text-input--icon" id="log-in--email" onChange={(e) => {setEmail(e.target.value)}}/>
     <label htmlFor="log-in__email" className="text-input__label" id="log-in--email">
@@ -52,8 +51,7 @@ const handleLogIn = async (e) => {
 
     <button className="btn-primary">Log In</button>
 
-
-    </form>
+  </form>
   )
 
 

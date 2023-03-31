@@ -36,8 +36,8 @@ const ProfileNav = () => {
 
  
  return(
-
-  <div className="nav-profile">
+  <>
+  {user ? <div><div className="nav-profile">
    <div className="profile__details">
 
     <h2>My Profile - {firstName} {/* Zee Insert your Get Request here for name*/}</h2>
@@ -73,8 +73,11 @@ const ProfileNav = () => {
    )}
    
  </div>
-
+</div> : <div>NO </div> }
+  
+  </>
  )
+
 
 }
 

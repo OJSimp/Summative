@@ -47,12 +47,29 @@ const upload = multer({
 
 // LISTINGS //
 
-app.post("/listings", async (req, res) => {
-  const newListing = await Listing.create(req.body);
-  res.json(newListing);
 
-  console.log("POST CREATED", newListing);
-});
+app.post("/listings", async(req, res) => {
+
+    await Listing.create({ 
+
+      creatorId: req.body.creatorId,
+      price: req.body.price,
+      artTitle: req.body.artTitle,
+      artSpecs: req.body.artSpecs,
+      artType: req.body.artType,
+      artDetails: req.body.artDetails,
+      artistName: req.body.artistName,
+      artistBio: req.body.artistBio,
+      dateCreated: req.body.creationDate, 
+      status: req.body.status, 
+      image: req.body.file.file 
+      
+      });
+
+    console.log("posted");
+    res.send("posted");
+
+ })
 
 // view all listings
 
@@ -90,9 +107,14 @@ app.get("/your-listings/:creatorId", async (req, res) => {
 
 // add listing comments
 
-app.put("/listings/:id/comments", async (req, res) => {
-  const postId = req.params.id;
-  const comment = req.body;
+
+// add listing 
+
+app.put("/listings/:id/comments", async(req, res) => {
+
+  const postId = req.params.id
+  const comment = req.body 
+
 
   console.log(comment);
 
@@ -126,6 +148,7 @@ app.delete("/listings/:listingId", async (req, res) => {
 
   console.log("POST DELETED", deleteListing);
 });
+
 
 // USERS //
 

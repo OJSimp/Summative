@@ -1,5 +1,4 @@
 
-
 textarea{
  position: relative;
 
@@ -7,4 +6,13 @@ textarea{
 
 li{
  list-style: none;
+}
+
+.btn{
+ display: flex;
+ justify-content: center;
+ padding: 10px;
+ margin-bottom: 10px;
+ border: 1px solid grey;
+
 }

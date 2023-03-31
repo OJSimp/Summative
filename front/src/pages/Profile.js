@@ -14,6 +14,7 @@ import Media from 'react-media'; // add Media
 
 const Profile = () => {
 
+
  return (
   <div className="profile">
    {/* Insert header here */}
@@ -21,7 +22,8 @@ const Profile = () => {
    < Media query="(max-width: 599px)" >
     
       {matches => matches ? 
-      (<div className="mobile">
+      (
+      <div className="mobile">
 
       < NavProfile />  
 

@@ -11,13 +11,9 @@ const commentsSchema = new mongoose.Schema({
  details: {type: String}
 })
 
-const imageSchema = new mongoose.Schema({
- data: Buffer,
- contentType: String,
-})
 
 const listingSchema = new mongoose.Schema({
- creatorId: {type: String,},
+ creatorId: {type: String},
  price: {type: String},
  artTitle: {type: String},
  artSpecs: {type: String},
@@ -28,7 +24,7 @@ const listingSchema = new mongoose.Schema({
  dateCreated: {type: Date},
  dateModified: {type: Date},
  status: {type: String},
- image: {type: [imageSchema]},
+ image: {type: String},
  comments: {type: [commentsSchema]}
 
 })

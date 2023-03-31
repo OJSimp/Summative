@@ -9,7 +9,7 @@ const FooterNav = () => {
 
 return (
  <div className="nav__footer">
-  <NavLink to="/" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}>Home
+  <NavLink to="/sign-up" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}>Home
    <span className="btn-nav__icon">
     < FaHome /> 
    </span>

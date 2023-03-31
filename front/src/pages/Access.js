@@ -34,9 +34,7 @@ const Access = () => {
 
    {/* Nested routes to show sigup form underneeth */}
 
-   < Outlet /> 
-
-
+   < Outlet />
 
     <div className="other-access-options">
   
