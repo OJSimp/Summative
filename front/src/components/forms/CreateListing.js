@@ -95,27 +95,28 @@ const CreateListing = () => {
     let imgB63 = await toBase64(image)
     const file = { file: imgB63}
     
-    // const post = { 
+    const post = { 
 
-    //   price,
-    //   artTitle,
-    //   artSpecs,
-    //   artType,
-    //   artDetails,
-    //   artistName,
-    //   artistBio,
-    //   file 
+      price,
+      artTitle,
+      artSpecs,
+      artType,
+      artDetails,
+      artistName,
+      artistBio,
+      file 
     
-    // }
+    }
 
     const ThePost = () => {
       fetch("http://localhost:8001/listings/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(file),
+        body: JSON.stringify(post),
       });
     };
-    ThePost(imgB63);
+
+    ThePost();
     
   }
 

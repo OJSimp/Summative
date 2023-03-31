@@ -53,17 +53,30 @@ const upload = multer({
 
 app.post("/listings", async(req, res) => {
 
+    console.log(req.body.price)
+    console.log(req.body.artTitle)
+    console.log(req.body.artSpecs)
+    console.log(req.body.artType)
+    console.log(req.body.artDetails)
+    console.log(req.body.artistName)
+    console.log(req.body.artistBio)
+
     await Listing.create({ 
-      
-      image: req.body.file 
+
+      price: req.body.price,
+      artTitle: req.body.artTitle,
+      artSpecs: req.body.artSpecs,
+      artType: req.body.artType,
+      artDetails: req.body.artDetails,
+      artistName: req.body.artistName,
+      artistBio: req.body.artistBio,
+      image: req.body.file.file 
       
       });
 
     console.log("posted");
     res.send("posted");
 
-
-   
  })
 
 // view all listings
