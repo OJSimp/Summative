@@ -13,6 +13,9 @@ const CreateListing = () => {
   const [artistName, setArtistName] = useState("");
   const [artistBio, setArtistbio] = useState("");
 
+  const [image, setImage] = useState(null)
+  const [imagePreview, setImagePreview] = useState(null)
+
   const [dropdownActive, setDropdownActive] = useState(false)
 
   const handlePrice = (e) => {
@@ -38,12 +41,6 @@ const CreateListing = () => {
     setArtistbio(e.target.value);
   };
 
-  const handleUploadImage = (e) => {
-  e.preventDefault();
-
-  
-  
-  }
 
   const handlePostSubmit = (e) => {
     e.preventDefault();
@@ -82,48 +79,89 @@ const CreateListing = () => {
     return (<li key={index} onClick={handleSetArtType} className={artType == option ? "select-input__option--active" : "select-input__option--inactive"} >{option}</li>)
   })
 
-  const [file, setFile] = useState()
-
-  const handleFileChange = (event) => {
-
-    if(event.target.files)
-  
-    setFile(event.target.files[0]) 
-  
-    }
-
 
   // upload file javascript
-  const handleUploadFile = async () => {
+
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
   
-    if (!file) {
+  const handleImageSubmit = async (e) => {
+    e.preventDefault()
 
-      alert("please select a file to upload");
+    let imgB63 = await toBase64(image)
+    const file = { file: imgB63}
+    
+    // const post = { 
 
-    } else {
+    //   price,
+    //   artTitle,
+    //   artSpecs,
+    //   artType,
+    //   artDetails,
+    //   artistName,
+    //   artistBio,
+    //   file 
+    
+    // }
 
-     const formData = new FormData();
-     formData.append("image-attachment", file);
-
-      const response = await fetch("http://localhost:8001/images", {
-      method: "POST",
-      body: formData,
+    const ThePost = () => {
+      fetch("http://localhost:8001/listings/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(file),
       });
-
-      const data = await response.json();
-      console.log(data);
-      console.log("upload complete")
-    }
+    };
+    ThePost(imgB63);
+    
   }
+
+  const handleImageUpload = async (e) => {
+   const fileInput = e.target.files[0]
+   setImage(fileInput)
+
+   const imgUrl = URL.createObjectURL(fileInput)
+
+   setImagePreview(imgUrl)
+
+
+  //  const base64 = await (file)
+  //  console.log(base64)
+
+  }
+
+
 
   // Add the stuff
   return (
     <div className="wrapper-upload__art">
 
+      <h3>Upload Iamge</h3>
+
+      <form action="upload-image" onSubmit={handleImageSubmit}>
+        <label htmlFor="image">Add Image</label>
+        <br />
+        <br />
+        <input onChange={(e) => handleImageUpload(e)} className="btn btn-outline" type="file" name="image" id="image" accept=".jpeg, .png, .jpg" />
+        <button >Upload Image</button>
+        <div className="image-placeholder">
+          <img src={imagePreview} alt="" />
+        </div>
+
+      </form>
+
       <header className="form-header">
         <p>Add Art</p>
       </header>
+
+      
+
       <form className="form__upload-art">
+
+      
 
         <input
           className="text-input"
@@ -218,11 +256,9 @@ const CreateListing = () => {
         </label>
 
         <br />
-
-        <input onChange={handleFileChange} className="btn btn-outline"  type="file" name="image" id="image"/>
-        <button onClick={handleUploadFile}>Upload Image</button>
-        <div className="image-placeholder"></div>
-
+        {/*  */}
+        
+        {/*  */}
          <br />
 
         <button onClick={handlePostSubmit} className="btn btn-primary">Publish</button>
@@ -233,4 +269,7 @@ const CreateListing = () => {
   );
 };
 
+
 export default CreateListing;
+
+

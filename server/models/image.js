@@ -3,8 +3,7 @@ const mongoose = require('mongoose')
 // a simple schema taken from Simons
 
 const imageSchema = new mongoose.Schema({
- data: Buffer,
- contentType: String,
+ data: String,
 })
 
 

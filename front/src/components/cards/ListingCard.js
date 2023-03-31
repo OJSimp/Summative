@@ -16,13 +16,13 @@ const ListingCard = (props) => {
 
   const navigateListingDetails = () => {
   
-   navigate(`/${cardNavigation}/${listing._id}`)
+   navigate(`/${listing._id}`)
   
   }
 
   return (
    <div key={listing._id} className="card--listing" >
-     <img className="card--listing__image" src="http://placekitten.com/g/200/300" alt="placeholder-image" />
+     <img className="card--listing__image" src={listing.image} alt="placeholder-image" />
 
     <div className="card--listing__details" onClick={navigateListingDetails}>
 

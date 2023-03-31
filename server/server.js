@@ -53,13 +53,17 @@ const upload = multer({
 
 app.post("/listings", async(req, res) => {
 
-  
+    await Listing.create({ 
+      
+      image: req.body.file 
+      
+      });
 
-   const newListing = await Listing.create(req.body)
-   res.json(newListing)
+    console.log("posted");
+    res.send("posted");
 
-   console.log("POST CREATED", newListing)
 
+   
  })
 
 // view all listings
@@ -104,7 +108,7 @@ app.get("/your-listings/:creatorId", async (req, res) => {
 });
 
 
-// add listing comments 
+// add listing 
 
 app.put("/listings/:id/comments", async(req, res) => {
 
