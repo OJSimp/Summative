@@ -50,7 +50,9 @@ const upload = multer({
 
 app.post("/listings", async(req, res) => {
 
-    await Listing.create({ 
+  try {
+
+  const listing = await Listing.create({ 
 
       creatorId: req.body.creatorId,
       price: req.body.price,
@@ -66,8 +68,14 @@ app.post("/listings", async(req, res) => {
       
       });
 
-    console.log("posted");
-    res.send("posted");
+  res.status(200).json(listing)
+    
+  } catch (error) {
+  res.status(400).json({error: error.message})
+    
+  }
+
+    
 
  })
 
@@ -106,9 +114,6 @@ app.get("/your-listings/:creatorId", async (req, res) => {
 });
 
 // add listing comments
-
-
-// add listing 
 
 app.put("/listings/:id/comments", async(req, res) => {
 

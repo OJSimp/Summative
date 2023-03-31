@@ -17,9 +17,11 @@ const Search = () => {
    const resposne = await fetch(`http://localhost:8001/listings/`, {method: "GET"})
    const data = await resposne.json()
    const dataArray = data
-   setListingArray(dataArray)
 
+   if(resposne.ok){
+    setListingArray(dataArray)
   }
+ }
 
   returnListingData()
 

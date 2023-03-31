@@ -25,6 +25,10 @@ const CreateListing = () => {
 
   const [dropdownActive, setDropdownActive] = useState(false)
 
+  // if POST error
+   
+   const [ error, setError] = useState()
+
   // Form navigation
 
   const [togglePage, setTogglePage] = useState(1)
@@ -36,6 +40,8 @@ const CreateListing = () => {
 
    // call get user details 
    const { userDetails, ID } = useGetUser()
+
+   
 
   useEffect(() => {
 
@@ -102,12 +108,29 @@ const CreateListing = () => {
     }
 
     const ThePost = () => {
-      fetch("http://localhost:8001/listings/", {
+      const response = fetch("http://localhost:8001/listings/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(post),
       });
+      const json = response.json()
+      // if error return an error 
+      if(!response.ok){
+        setError(json.error) 
+      } if(response.ok){
+        setPrice("")
+        setArtTitle("")
+        setArtSpecs("")
+        setArtType("")
+        setArtDetails("")
+        setArtistName("")
+        setArtistBio("")
+        setImage("")
+        setCreatorId("")
+        setError(null) 
+      }
     };
+    
 
     ThePost();
     
@@ -281,6 +304,10 @@ const CreateListing = () => {
         {image ? <div className="image-placeholder"><img src={imagePreview} alt="" /></div> : null  } 
         <div className="upload-art__navigation">
          <div className="btn" onClick={() => handleSectionNavigate(2)}> Back </div>
+
+         {/* Display an error */}
+          {error && <div className="error">{error}</div>}
+
          <button className="btn btn-primary">Publish</button>
         </div>
         

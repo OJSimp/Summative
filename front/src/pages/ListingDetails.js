@@ -96,7 +96,7 @@ const ListingDetials = () => {
 
     const putComment = async () => {
 
-      await fetch(`http://localhost:8001/listings/${listingId}/comments`, {
+     await fetch(`http://localhost:8001/listings/${listingId}/comments`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postArray),
