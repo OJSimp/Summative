@@ -11,60 +11,17 @@ const CreateListing = () => {
   const [artType, setArtType] = useState("");
   const [artDetails, setArtDetails] = useState("");
   const [artistName, setArtistName] = useState("");
-  const [artistBio, setArtistbio] = useState("");
-
+  const [artistBio, setArtistBio] = useState("");
   const [image, setImage] = useState(null)
+  const [creatorId, setCreatorId] = useState("")
+
   const [imagePreview, setImagePreview] = useState(null)
 
   const [dropdownActive, setDropdownActive] = useState(false)
 
-  const handlePrice = (e) => {
-    setPrice(e.target.value);
-  };
-  const handleArtworkTitle = (e) => {
-    setArtTitle(e.target.value);
-  };
+  // navigate between the sections of the form 
 
-  const handleArtworkSpecs = (e) => {
-    setArtSpecs(e.target.value);
-  };
-
-  const handleArtworkDetails = (e) => {
-    setArtDetails(e.target.value);
-  };
-
-  const handleArtistName = (e) => {
-    setArtistName(e.target.value);
-  };
-
-  const handleArtworkbio = (e) => {
-    setArtistbio(e.target.value);
-  };
-
-
-  const handlePostSubmit = (e) => {
-    e.preventDefault();
-
-    const Artpost = {
-      price,
-      artTitle,
-      artSpecs,
-      artType,
-      artDetails,
-      artistName,
-      artistBio,
-    };
-    console.log(Artpost);
-
-    const ThePost = () => {
-      fetch("http://localhost:8001/listings/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Artpost),
-      });
-    };
-    ThePost(Artpost);
-  };
+  const [togglePage, setTogglePage] = useState(1)
 
 
   // select options for artwork type
@@ -89,7 +46,7 @@ const CreateListing = () => {
     reader.onerror = error => reject(error);
   });
   
-  const handleImageSubmit = async (e) => {
+  const handlePostSubmit = async (e) => {
     e.preventDefault()
 
     let imgB63 = await toBase64(image)
@@ -97,6 +54,7 @@ const CreateListing = () => {
     
     const post = { 
 
+      creatorId,
       price,
       artTitle,
       artSpecs,
@@ -120,6 +78,7 @@ const CreateListing = () => {
     
   }
 
+  // upload image 
   const handleImageUpload = async (e) => {
    const fileInput = e.target.files[0]
    setImage(fileInput)
@@ -128,9 +87,12 @@ const CreateListing = () => {
 
    setImagePreview(imgUrl)
 
+  }
 
-  //  const base64 = await (file)
-  //  console.log(base64)
+  const handleSectionNavigate = (index) => {
+
+    setTogglePage(index)
+    console.log(index)
 
   }
 
@@ -140,83 +102,69 @@ const CreateListing = () => {
   return (
     <div className="wrapper-upload__art">
 
-      <h3>Upload Iamge</h3>
-
-      <form action="upload-image" onSubmit={handleImageSubmit}>
-        <label htmlFor="image">Add Image</label>
-        <br />
-        <br />
-        <input onChange={(e) => handleImageUpload(e)} className="btn btn-outline" type="file" name="image" id="image" accept=".jpeg, .png, .jpg" />
-        <button >Upload Image</button>
-        <div className="image-placeholder">
-          <img src={imagePreview} alt="" />
-        </div>
-
-      </form>
-
       <header className="form-header">
         <p>Add Art</p>
       </header>
 
-      
+      <form className="form__upload-art" onSubmit={handlePostSubmit}>
 
-      <form className="form__upload-art">
-
-      
-
+{/* Section ONE */}
+      <div className={togglePage === 1 ? "upload-art__section--active" : "upload-art__section--inactive" }>
+      {/* Price */}
         <input
           className="text-input"
           placeholder=""
           type="text"
           id="upload-art--price"
-          onChange={handlePrice}
+          onChange={(e) => setPrice(e.target.value)}
         />
         <label htmlFor="upload-art--price" className="text-input__label" id="log-in--password">
           <span>Price</span>
         </label>
 
+      {/* Art Title */}
         <input
           placeholder=""
           className="text-input"
           type="text"
           id="upload-art--art-title"
-          onChange={handleArtworkTitle}
+          onChange={(e) => setArtTitle(e.target.value)}
         />
         <label htmlFor="upload-art--art-title" className="text-input__label" id="log-in--password">
           <span>Artwork Title</span>
         </label>
 
-
+        {/* Art Specs */}
         <input
           className="text-input"
           placeholder=""
           type="text"
           id="upload-art--art-specs"
-          onChange={handleArtworkSpecs}
+          onChange={(e) => setArtSpecs(e.target.value)}
         />
          <label htmlFor="upload-art--art-specs" className="text-input__label" id="log-in--password">
           <span>Artwork Specs</span>
         </label>
 
-        {/* custoom selector */}
+        {/* Art Type - custom selector */}
         <div className="select-input" id="upload-art--artwork-type">
-          
-          <div className={ dropdownActive ? "select-input__button" : "select-input__button"} onClick={() => {setDropdownActive(!dropdownActive)}}>
+          {/* dropdown button */}
+          <div className={ dropdownActive ? " select-input__button--inactive" : "select-input__button--active" } onClick={() => {setDropdownActive(!dropdownActive)}}>
             <div className="select-input__details">
               <label className="select-input__label" htmlFor="upload-art--artwork-type"><span>Artwork Type</span></label>
               <p className={!artType ? "select-input__value--inactive" : "select-input__value--active" }>{!artType ? "-" : artType }</p>
             </div>
             <span>{ dropdownActive ? < FaChevronUp /> : < FaChevronDown/> }</span>
           </div>
+          {/* the dropdown */}
+          <div className={dropdownActive ? "select-input__options--active" : "select-input__options--inactive"}>
+            <ul>
+            {artTypeSelect}
+            </ul>
+          </div> 
+        </div>
 
-      <div className={dropdownActive ? "select-input__options--active" : "select-input__options--inactive"}>
-        <ul>
-        {artTypeSelect}
-        </ul>
-      </div> 
-
-      </div>
-
+        {/* Artwork Details */}
         <textarea
           className="text-input"
           name="ArtworkDetails"
@@ -224,25 +172,37 @@ const CreateListing = () => {
           id="upload-art--art-details"
           cols="30"
           rows="3"
-          onChange={handleArtworkDetails}
+          onChange={(e) => setArtDetails(e.target.value)}
         ></textarea>
         <label htmlFor="upload-art--art-details" className="text-area__label" id="log-in--password">
           <span>Artwork Details</span>
         </label>
 
+        <div className="btn" onClick={() => handleSectionNavigate(2)}>Next</div>
 
+        </div>
+
+
+ {/* Section TWO */}              
+        <div className={togglePage === 2 ? "upload-art__section--active" : "upload-art__section--inactive" }>
+        {/* navigate back */}
+        <div className="navigation">
+          <div className="btn" onClick={() => handleSectionNavigate(1)}>back</div>
+        </div>
+
+        {/* Artist Name */}
         <input
           className="text-input"
           placeholder=""
           type="text"
           id="upload-art--artist-name"
-          onChange={handleArtistName}
+          onChange={(e) => setArtistName(e.target.value)}
         />
         <label htmlFor="upload-art--art-name" className="text-input__label" id="log-in--password">
           <span>Artist Name</span>
         </label>
 
-        
+        {/* Artist Details */}
         <textarea
           name="Artist bio"
           className="text-input"
@@ -250,21 +210,31 @@ const CreateListing = () => {
           id="upload-art--artist-details"
           cols="30"
           rows="3"
-          onChange={handleArtworkbio}
+          onChange={(e) => setArtistBio(e.target.value)}
         ></textarea>
         <label htmlFor="upload-art--artist-details" className="text-area__label" id="log-in--password">
           <span>Artist Bio</span>
         </label>
 
-        <br />
-        {/*  */}
-        
-        {/*  */}
-         <br />
+        <div className="btn" onClick={() => handleSectionNavigate(3)}>Next</div>
 
-        <button onClick={handlePostSubmit} className="btn btn-primary">Publish</button>
-        <br />
-        <button className="btn btn-outline">Preview</button>
+        </div>
+
+{/* Section THREE */}
+        {/* Upload Images */}
+        <div className={togglePage === 3 ? "upload-art__section--active" : "upload-art__section--inactive" }>
+        <div className="navigation">
+          <div className="btn" onClick={() => handleSectionNavigate(2)}>back</div>
+        </div>
+        {/* upload images section */}
+        <label className="btn btn-outline" htmlFor="image">Add Image</label>
+        <input onChange={(e) => handleImageUpload(e)} className="hide" type="file" name="image" id="image" accept=".jpeg, .png, .jpg" />
+        {/* conditional rendering of placeholder */}
+        {image ? <div className="image-placeholder"><img src={imagePreview} alt="" /></div> : null  } 
+
+        <button className="btn btn-primary">Publish</button>
+        </div>
+
       </form>
     </div>
   );

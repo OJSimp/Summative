@@ -53,16 +53,9 @@ const upload = multer({
 
 app.post("/listings", async(req, res) => {
 
-    console.log(req.body.price)
-    console.log(req.body.artTitle)
-    console.log(req.body.artSpecs)
-    console.log(req.body.artType)
-    console.log(req.body.artDetails)
-    console.log(req.body.artistName)
-    console.log(req.body.artistBio)
-
     await Listing.create({ 
 
+      creatorId: req.body.creatorId,
       price: req.body.price,
       artTitle: req.body.artTitle,
       artSpecs: req.body.artSpecs,

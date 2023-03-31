@@ -1,8 +1,14 @@
-.form__upload-art {
+
+// navigate between form sections 
+.upload-art__section--active{
   display: flex;
   flex-direction: column;
   padding: 20px;
+  margin-bottom: 80px;
+}
 
+.upload-art__section--inactive {
+  display: none
 }
 
 // text input
@@ -45,16 +51,26 @@ display: flex;
 flex-direction: column;
 margin-bottom: 10px;
 
-
-  .select-input__button{
+  // the button of select input
+  .select-input__button--active{
   display: flex;
   position: relative;
   align-items: center;
   justify-content: space-between;
   padding: 10px 10px;
   border: 1px solid lightgrey;
-    
-   
+  }
+
+  .select-input__button--inactive{
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  border: 1px solid grey;
+  
+  }
+
 
   .select-input__details{
   display: flex;
@@ -72,7 +88,6 @@ margin-bottom: 10px;
    font-size: 14px;
   }
 }  
-  }
 
   .select-input__options--active{
   display: flex;
@@ -104,6 +119,20 @@ margin-bottom: 10px;
   display: none;
   }
 
+}
+
+.image-placeholder{
+  width: 100%;
+  margin-bottom: 10px;
+  img{
+  width: 100%;
+  height: auto;
+
+  }
+}
+
+.hide{
+  display: none;
 }
 
 // .TheHeader{
