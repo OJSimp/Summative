@@ -2,6 +2,9 @@ import "./CreateListing.scss";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+import ProgressBar from "../navigation/ProgressBar"
+import FormHeader from "../headers/FormHeader"
+
 import { useGetUser } from "../../hooks/useGetUser"
 import { useAuthContext } from "../../hooks/useAuthContext"
 
@@ -22,9 +25,11 @@ const CreateListing = () => {
 
   const [dropdownActive, setDropdownActive] = useState(false)
 
-  // navigate between the sections of the form 
+  // Form navigation
 
   const [togglePage, setTogglePage] = useState(1)
+  const [ progressFilled, setprogressFilled ] = useState(0)
+  const [ header, setHeader ]= useState("About the artwork")
 
    // check if user is logged in from token 
    const { user } = useAuthContext()
@@ -122,7 +127,24 @@ const CreateListing = () => {
   const handleSectionNavigate = (index) => {
 
     setTogglePage(index)
-    console.log(index)
+
+    if (index === 1){
+
+      setprogressFilled(0)
+      setHeader("About the art")
+    
+    }  if (index === 2){
+
+      setprogressFilled(50)
+      setHeader("About the Artsit")
+    
+    } 
+     if (index === 3){
+
+      setprogressFilled(100)
+      setHeader("Upload an image")
+    
+    } 
 
   }
 
@@ -132,23 +154,12 @@ const CreateListing = () => {
   return (
     <div className="wrapper-upload__art">
 
-      <header className="form-header">
-        <p>Add Art</p>
-      </header>
+      < FormHeader header={header}/>
 
       <form className="form__upload-art" onSubmit={handlePostSubmit}>
-
+      < ProgressBar progress={progressFilled}/> 
 {/* Section ONE */}
       <div className={togglePage === 1 ? "upload-art__section--active" : "upload-art__section--inactive" }>
-      
-      <h4>Art Information</h4>
-
-      <div className="upload-art__navigation-progress">
-         <div className={togglePage === 1 ? "navigation-progress--active" : "navigation-progress" }></div>
-         <div className={togglePage === 2 ? "navigation-progress--active" : "navigation-progress" }></div>
-         <div className={togglePage === 3 ? "navigation-progress--active" : "navigation-progress" }></div>
-      </div>
-
       {/* Price */}
         <input
           className="text-input"
@@ -224,18 +235,6 @@ const CreateListing = () => {
 
  {/* Section TWO */}              
         <div className={togglePage === 2 ? "upload-art__section--active" : "upload-art__section--inactive" }>
-        {/* progress bar and navigate between form sections */}
-        <div className="upload-art__navigation">
-         <div className="btn" onClick={() => handleSectionNavigate(1)}> <FaChevronLeft/> </div>
-          <h4>Artist Information</h4>
-         <div className="btn" onClick={() => handleSectionNavigate(3)}> <FaChevronRight /> </div>
-        </div>
-
-          <div className="upload-art__navigation-progress">
-            <div className={togglePage === 1 ? "navigation-progress--active" : "navigation-progress" }></div>
-            <div className={togglePage === 2 ? "navigation-progress--active" : "navigation-progress" }></div>
-            <div className={togglePage === 3 ? "navigation-progress--active" : "navigation-progress" }></div>
-          </div>
 
         {/* Artist Name */}
         <input
@@ -263,8 +262,10 @@ const CreateListing = () => {
           <span>Artist Bio</span>
         </label>
 
-        <div className="btn" onClick={() => handleSectionNavigate(3)}>Next</div>
-
+        <div className="upload-art__navigation">
+         <div className="btn" onClick={() => handleSectionNavigate(1)}> Back </div>
+         <div className="btn" onClick={() => handleSectionNavigate(3)}> Next </div>
+        </div>
         </div>
 
 {/* Section THREE */}
@@ -273,25 +274,16 @@ const CreateListing = () => {
         {/* Upload Images */}
         <div className={togglePage === 3 ? "upload-art__section--active" : "upload-art__section--inactive" }>
 
-        <div className="upload-art__navigation">
-         <div className="btn" onClick={() => handleSectionNavigate(2)}> <FaChevronLeft/> </div>
-          <h4>Add Art Image</h4>
-         <div className="btn" onClick={() => handleSectionNavigate(3)}> <FaChevronRight /> </div>
-        </div>
-
-        <div className="upload-art__navigation-progress">
-         <div className={togglePage === 1 ? "navigation-progress--active" : "navigation-progress" }></div>
-         <div className={togglePage === 2 ? "navigation-progress--active" : "navigation-progress" }></div>
-         <div className={togglePage === 3 ? "navigation-progress--active" : "navigation-progress" }></div>
-        </div>
-
         {/* upload images section */}
         <label className="btn btn-outline" htmlFor="image">Add Image</label>
         <input onChange={(e) => handleImageUpload(e)} className="hide" type="file" name="image" id="image" accept=".jpeg, .png, .jpg" />
         {/* conditional rendering of placeholder */}
         {image ? <div className="image-placeholder"><img src={imagePreview} alt="" /></div> : null  } 
-
-        <button className="btn btn-primary">Publish</button>
+        <div className="upload-art__navigation">
+         <div className="btn" onClick={() => handleSectionNavigate(2)}> Back </div>
+         <button className="btn btn-primary">Publish</button>
+        </div>
+        
         </div>
 
       </form>

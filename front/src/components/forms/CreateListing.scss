@@ -3,7 +3,7 @@
 .upload-art__section--active{
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 5px 20px;
   margin-bottom: 80px;
 }
 
@@ -21,33 +21,8 @@
   
 }
 
-  .upload-art__navigation-progress{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    margin: 20px 0px;
-
-  .navigation-progress{
-  border-radius: 1px;
-  border: 1px solid black;
-  padding: 5px;
-  width: 100%;
-
-  }
-
-  .navigation-progress--active{
-  border-radius: 1px;
-  background-color: black;
-  border: 1px solid black;
-  padding: 5px;
-  width: 100%;
-
-  }
 
 
-  
-  }
 
 // text input
 
