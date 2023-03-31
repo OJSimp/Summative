@@ -22,6 +22,7 @@ const ListingDetials = () => {
  const [artistName, setArtistName] = useState("")
  const [price, setPrice] = useState("")
  const [status, setStatus] = useState("")
+ const [image, setImage] = useState("")
 
  const [commentsArray, setCommentsArray] = useState(null)
 
@@ -51,7 +52,7 @@ const ListingDetials = () => {
 
  useEffect( () => {
 
-  const listingDetails =  async() => {
+  const listingDetails =  async () => {
   
   const resposne = await fetch(`http://localhost:8001/listings/${listingId}`, {method: "GET"})
   const details = await resposne.json()
@@ -68,6 +69,7 @@ const ListingDetials = () => {
   setArtistName(details.artistName)
   setPrice(details.price)
   setStatus(details.status)
+  setImage(details.image)
 
   setCreatorId(details.creatorId)
 
@@ -80,6 +82,7 @@ const ListingDetials = () => {
 
 
  const handleAddComment = (e) => {
+  
   e.preventDefault()
 
   if(commentDetails){
@@ -99,8 +102,12 @@ const ListingDetials = () => {
         body: JSON.stringify(postArray),
   
       })
+         
+     window.location.reload(); 
     } 
     putComment(postArray)
+    
+    
   }
 
   else{
@@ -112,7 +119,7 @@ const ListingDetials = () => {
 
 return (
  <div className="listing-details">
-  <img className=" listing-details__img" src="" alt="" />
+  <img className=" listing-details__img" src={image} alt="" />
  
   <div className="listing-details__info">
    <div className="listing-details__container listing-details__header" >

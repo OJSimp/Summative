@@ -16,7 +16,7 @@ const ListingCard = (props) => {
 
   const navigateListingDetails = () => {
   
-   navigate(`/${listing._id}`)
+   navigate(`/${cardNavigation}/${listing._id}`)
   
   }
 

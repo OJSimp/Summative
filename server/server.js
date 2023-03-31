@@ -63,6 +63,8 @@ app.post("/listings", async(req, res) => {
       artDetails: req.body.artDetails,
       artistName: req.body.artistName,
       artistBio: req.body.artistBio,
+      dateCreated: req.body.creationDate, 
+      status: req.body.status, 
       image: req.body.file.file 
       
       });
