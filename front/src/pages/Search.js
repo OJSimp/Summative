@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 
 import ListingCard from "../components/cards/ListingCard"
 
+import { AiOutlineSearch } from "react-icons/ai";
+
 const Search = () => {
 
  const [listingArray, setListingArray] = useState(null)
@@ -27,7 +29,7 @@ const Search = () => {
 
  return(
   <div className="search__page">
-   <p>search</p>
+   <button className="btn-search">Search <span><AiOutlineSearch/></span></button>
    {listingArray ? < ListingCard listings={listingArray} link={editListingsPage}/> : null}
   </div>
   )

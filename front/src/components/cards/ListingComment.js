@@ -19,9 +19,15 @@ const ListingComments = (props) => {
   console.log("Edit Comment")
 }
 
-const handleDelete = () => {
+const handleDelete = async (e) => {
 
-console.log("Delete Comment")
+  const commentID = e.target.id
+  const listingId = props.listingId
+
+  await fetch(`http://localhost:8001/listings/${listingId}/comments/${commentID}`, {
+  method: "DELETE",
+  })
+ 
 }
 
  const commentsArray = props.comments
@@ -31,14 +37,14 @@ console.log("Delete Comment")
   const commentCreator = comment.creatorId
 
 return (
-  <div className="card-comment" key={index} >
+  <div className="card-comment" key={comment._id} >
    <p>{comment.firstName} {comment.lastName}</p>
    <p>{comment.details}</p>
 
    {/* if the signed in user created the comment show the edit and delete button */}
    {commentCreator == ID ? <div className="card-comment__utility">
     <button onClick={handleEdit}>Edit</button>
-    <button onClick={handleDelete}>Delete</button>
+    <button id={comment._id} onClick={handleDelete}>Delete</button>
    </div>
    : null}
   </div> 
