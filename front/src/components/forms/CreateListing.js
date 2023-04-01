@@ -8,7 +8,7 @@ import FormHeader from "../headers/FormHeader"
 import { useGetUser } from "../../hooks/useGetUser"
 import { useAuthContext } from "../../hooks/useAuthContext"
 
-import { FaChevronDown, FaChevronUp, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const CreateListing = () => {
   const [price, setPrice] = useState("");

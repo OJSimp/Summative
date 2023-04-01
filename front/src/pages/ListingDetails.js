@@ -103,10 +103,8 @@ const ListingDetials = () => {
   
       })
          
-     window.location.reload(); 
     } 
     putComment(postArray)
-    
     
   }
 
@@ -142,7 +140,7 @@ return (
       <h4>Comments</h4>
      </div>
 
-     {commentsArray ? <ListingComments comments={commentsArray} id={ID}/> : null}
+     {commentsArray ? <ListingComments listingId={listingId} comments={commentsArray} id={ID}/> : null}
       
       <form className="form--add-comments" onSubmit={handleAddComment}>
       <textarea className="text-input" name="" id="comment-input" cols="30" rows="3" onChange={(e) => setCommentDetails(e.target.value)}/>
