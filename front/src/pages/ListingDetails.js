@@ -45,9 +45,13 @@ const ListingDetials = () => {
     }
   }, [user]);
 
+  // load data once on page load
+
   useEffect(() => {
     listingDetails();
   }, []);
+
+  // get listing details
 
   const listingDetails = async () => {
     const resposne = await fetch(
@@ -55,8 +59,6 @@ const ListingDetials = () => {
       { method: "GET" }
     );
     const details = await resposne.json();
-
-    // console.log(details.comments)
 
     setCommentsArray(details.comments);
 
@@ -72,6 +74,8 @@ const ListingDetials = () => {
 
     setCreatorId(details.creatorId);
   };
+
+  // adds comment to listing
 
   const handleAddComment = (e) => {
     e.preventDefault();
@@ -130,6 +134,7 @@ const ListingDetials = () => {
               listingId={listingId}
               comments={commentsArray}
               id={ID}
+              reloadData={listingDetails}
             />
           ) : null}
 
