@@ -133,10 +133,14 @@ app.delete("/listings/:listingid/comments/:commentid", async(req, res) => {
   const postId = req.params.listingid
   const commentId = req.params.commentid
 
-  const post = await Listing.deleteOne({"comments._id": [commentId]});
+  const post = await Listing.findById(postId);
+
+  post.comments.pull(commentId)
+
+  const commentsPulled = await post.save()
   res.json(post);
 
-  console.log("Deleted Comment", post)
+  console.log("Deleted Comment", commentsPulled.post)
   
 
 });
