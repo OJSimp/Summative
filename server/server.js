@@ -115,7 +115,6 @@ app.put("/listings/:id/comments", async(req, res) => {
   const postId = req.params.id
   const comment = req.body 
 
-
   console.log(comment);
 
   // find the post to add comment by ID
@@ -124,11 +123,28 @@ app.put("/listings/:id/comments", async(req, res) => {
 
   post.comments.push(comment);
 
-
   const updatedPost = await Listing.findByIdAndUpdate(postId, post);
 
   console.log("COMMENT ADDED", updatedPost);
 });
+
+
+app.delete("/listings/:listingid/comments/:commentid", async(req, res) => {
+  const postId = req.params.listingid
+  const commentId = req.params.commentid
+
+  const post = await Listing.findById(postId);
+
+  post.comments.pull(commentId)
+
+  const commentsPulled = await post.save()
+  res.json(post);
+
+  console.log("Deleted Comment", commentsPulled.post)
+  
+
+});
+
 
  app.delete("/listings/:listingId", async(req, res) => {
 
@@ -214,41 +230,6 @@ app.put("/users/:userEmail", async (req, res) => {
 
 
 
-
-// SPENCER IS PUTTIN SOME INTENSE STUFF PAST THIS POINT //
-
-// POST request - uplaoding image with Multer
-// name = image-attachment
-
-// app.post("/images", upload.single("image-attachment"), async (req, res) => {
-//   if (!req.file) {
-//     res.json({ message: "no image received" });
-//   } else {
-//     const image = new Image({`
-//       data: fs.readFileSync(
-//         path.join(__dirname + "/uploads/" + req.file.filename)
-//       ),
-//       contentType: "image/png",
-//     });
-
-//     await image.save();
-
-//     fs.unlinkSync(path.join(__dirname + "/uploads/" + req.file.filename));
-//     res.json({ message: "hello" });
-//   }
-// });
-
-// GET request - receiveing an image using Multer
-
-//  app.get("/images", async (req, res) => {
-
-//   const requestedimage = await Image.find().lean()
-
-//   console.log(requestedimage)
-
-//   res.json(requestedimage)
-
-// });
 
 //-----------Routes End-----------
 
