@@ -10,7 +10,7 @@ const EditListings = () => {
 
   const { user } = useAuthContext();
 
-  const { userDetails, ID, firstName, lastName } = useGetUser();
+  const { userDetails } = useGetUser();
 
   console.log(listingId);
 

@@ -84,6 +84,7 @@ const ListingDetials = () => {
   const handleAddComment = (e) => {
     e.preventDefault();
 
+    // If there is comment data
     if (commentDetails) {
       const postArray = {
         creatorId: ID,
@@ -100,12 +101,19 @@ const ListingDetials = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(postArray),
           }
-        ).then(listingDetails());
+        );
+        const data = await resposne.json();
+        console.log(data);
+        listingDetails();
       };
       putComment(postArray);
+
+      // If there is no comment data
     } else {
       console.log("Cannot postComment");
     }
+
+    setCommentDetails("");
   };
 
   return (
@@ -117,9 +125,15 @@ const ListingDetials = () => {
           <h3>{artTitle}</h3>
           <p>{artistName}</p>
           <p>{price}</p>
+          <p>{artType}</p>
         </div>
 
-        <Accordion details={artDetails} heading="Artwork Details" index="0" />
+        <Accordion
+          details={artDetails}
+          subDetails={artSpecs}
+          heading="Artwork Details"
+          index="0"
+        />
 
         <Accordion details={artistBio} heading="Artist Details" index="1" />
 
@@ -149,6 +163,7 @@ const ListingDetials = () => {
               id="comment-input"
               cols="30"
               rows="3"
+              value={commentDetails}
               onChange={(e) => setCommentDetails(e.target.value)}
             />
             <label className="text-input__label" htmlFor="comment-input">

@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 import { useLogout } from "../../hooks/useLogOut";
 import { useAuthContext } from "../../hooks/useAuthContext";
-
 import { useGetUser } from "../../hooks/useGetUser";
 
 import { NavLink } from "react-router-dom";
@@ -18,6 +17,8 @@ const ProfileNav = () => {
 
   // call get user details
   const { userDetails, firstName } = useGetUser();
+
+  console.log(window.localStorage.getItem("users"));
 
   useEffect(() => {
     if (user) {

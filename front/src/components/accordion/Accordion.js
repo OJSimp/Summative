@@ -1,43 +1,50 @@
-import "./Accordion.scss"
+import "./Accordion.scss";
 
-import { useState, useEffect } from "react"
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+
+import { useState } from "react";
 
 const Accordion = (props) => {
+  const [open, setOpen] = useState(null);
 
- const [open, setOpen] = useState(null)
+  const handleToggle = (index) => {
+    // using index to target individual accordions by giving them a value
 
+    if (open == index) {
+      setOpen(null);
+    } else {
+      setOpen(index);
+    }
+  };
 
- const handleToggle = (index) => {
- 
-  // using index to target individual accordions by giving them a value
+  return (
+    <div>
+      <div
+        className="accordion"
+        onClick={() => {
+          handleToggle(props.index);
+        }}
+      >
+        <div className="accordion__header">
+          <h4>{props.heading}</h4>
+          <span>
+            {open == props.index ? <FaChevronUp /> : <FaChevronDown />}
+          </span>
+        </div>
 
-  if(open == index ){
-  setOpen(null) 
-  } else{
-  setOpen(index) 
-  }
- }
-
-
- return(
-  <div>
-   
-   
-   <div className="accordion" onClick={() => {handleToggle(props.index)}}>
-
-    <div className="accordion__header">
-     <h4>{props.heading}</h4>
-     <span>+</span>
+        <div
+          className={
+            open == props.index
+              ? "accordion__content accordion__content--active"
+              : "accordion__content accordion__content--inactive"
+          }
+        >
+          <p>{props.subDetails}</p>
+          <p>{props.details}</p>
+        </div>
+      </div>
     </div>
+  );
+};
 
-    <div className={open == props.index ? "accordion__content accordion__content--active" : "accordion__content accordion__content--inactive" }>
-     <p>{props.details}</p>
-    </div>
-   </div>
-
-  </div>
-  )
-
-}
-
-export default Accordion
+export default Accordion;

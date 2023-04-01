@@ -47,29 +47,24 @@ const upload = multer({
 
 // LISTINGS //
 
+app.post("/listings", async (req, res) => {
+  await Listing.create({
+    creatorId: req.body.creatorId,
+    price: req.body.price,
+    artTitle: req.body.artTitle,
+    artSpecs: req.body.artSpecs,
+    artType: req.body.artType,
+    artDetails: req.body.artDetails,
+    artistName: req.body.artistName,
+    artistBio: req.body.artistBio,
+    dateCreated: req.body.creationDate,
+    status: req.body.status,
+    image: req.body.file.file,
+  });
 
-app.post("/listings", async(req, res) => {
-
-    await Listing.create({ 
-
-      creatorId: req.body.creatorId,
-      price: req.body.price,
-      artTitle: req.body.artTitle,
-      artSpecs: req.body.artSpecs,
-      artType: req.body.artType,
-      artDetails: req.body.artDetails,
-      artistName: req.body.artistName,
-      artistBio: req.body.artistBio,
-      dateCreated: req.body.creationDate, 
-      status: req.body.status, 
-      image: req.body.file.file 
-      
-      });
-
-    console.log("posted");
-    res.send("posted");
-
- })
+  console.log("posted");
+  res.send("posted");
+});
 
 // view all listings
 
@@ -107,13 +102,11 @@ app.get("/your-listings/:creatorId", async (req, res) => {
 
 // add listing comments
 
+// add listing
 
-// add listing 
-
-app.put("/listings/:id/comments", async(req, res) => {
-
-  const postId = req.params.id
-  const comment = req.body 
+app.put("/listings/:id/comments", async (req, res) => {
+  const postId = req.params.id;
+  const comment = req.body;
 
   console.log(comment);
 
@@ -124,36 +117,30 @@ app.put("/listings/:id/comments", async(req, res) => {
   post.comments.push(comment);
 
   const updatedPost = await Listing.findByIdAndUpdate(postId, post);
-
+  res.json(updatedPost);
   console.log("COMMENT ADDED", updatedPost);
 });
 
-
-app.delete("/listings/:listingid/comments/:commentid", async(req, res) => {
-  const postId = req.params.listingid
-  const commentId = req.params.commentid
+app.delete("/listings/:listingid/comments/:commentid", async (req, res) => {
+  const postId = req.params.listingid;
+  const commentId = req.params.commentid;
 
   const post = await Listing.findById(postId);
 
-  post.comments.pull(commentId)
+  post.comments.pull(commentId);
 
-  const commentsPulled = await post.save()
+  const commentsPulled = await post.save();
   res.json(post);
 
-  console.log("Deleted Comment", commentsPulled.post)
-
+  console.log("Deleted Comment", commentsPulled.post);
 });
 
+app.delete("/listings/:listingId", async (req, res) => {
+  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId);
+  res.json(deleteListing);
 
- app.delete("/listings/:listingId", async(req, res) => {
-
-  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId)
-  res.json(deleteListing)
-
-  console.log("POST DELETED", deleteListing)
-
- })
-
+  console.log("POST DELETED", deleteListing);
+});
 
 // delete listing comments
 
@@ -163,7 +150,6 @@ app.delete("/listings/:listingId", async (req, res) => {
 
   console.log("POST DELETED", deleteListing);
 });
-
 
 // USERS //
 
@@ -189,46 +175,36 @@ app.get("/users/:userEmail", async (req, res) => {
   res.json(viewUser);
 });
 
-
-
 //////------ Edit Profile Components -------\\\\\\\
 
 // EDIT PROFILE
 
 // updating an existing userprofile
 app.put("/users/:userEmail", async (req, res) => {
-
   // calling the profile
   const userEmail = req.params.userEmail;
-  const viewUser = await User.findOne({email: userEmail});
+  const viewUser = await User.findOne({ email: userEmail });
 
   // modify the original object in the array)
   viewUser.firstName = req.body.firstName;
   viewUser.lastName = req.body.lastName;
   viewUser.email = req.body.email;
 
-  // save the updates to the user 
-  const updatedUser = await viewUser.save()
-  res.json(viewUser);  
+  // save the updates to the user
+  const updatedUser = await viewUser.save();
+  res.json(viewUser);
 
   // show the user in the console
-  console.log("Updated user", updatedUser)
-
+  console.log("Updated user", updatedUser);
 });
 
-
 // DELETE PROFILE
- app.delete("/users/:userId", async(req, res) => {
+app.delete("/users/:userId", async (req, res) => {
+  const deleteUserId = await User.findByIdAndDelete(req.params.userId);
+  res.json(deleteUserId);
 
-  const deleteUserId = await User.findByIdAndDelete(req.params.userId)
-  res.json(deleteUserId)
-
-  console.log("PROFILE DELETED", deleteUserId)
-
- });
-
-
-
+  console.log("PROFILE DELETED", deleteUserId);
+});
 
 //-----------Routes End-----------
 
