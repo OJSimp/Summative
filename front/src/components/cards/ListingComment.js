@@ -1,18 +1,8 @@
 import "./ListingComment.scss";
 
-import { useAuthContext } from "../../hooks/useAuthContext";
-import { useGetUser } from "../../hooks/useGetUser";
+import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 
 const ListingComments = (props) => {
-  const { user } = useAuthContext();
-  const { userDetails, ID } = useGetUser();
-
-  // the comments for a post
-  const userEmail = user.email;
-
-  // get the signed-in users id
-  userDetails(userEmail);
-
   const handleEdit = () => {
     console.log("Edit Comment");
   };
@@ -28,7 +18,8 @@ const ListingComments = (props) => {
       }
     );
     const data = await response.json();
-    props.reloadData()();
+    console.log(data);
+    props.reloadData();
   };
 
   const commentsArray = props.comments;
@@ -45,11 +36,13 @@ const ListingComments = (props) => {
         <p>{comment.details}</p>
 
         {/* if the signed in user created the comment show the edit and delete button */}
-        {commentCreator == ID ? (
+        {commentCreator == props.id ? (
           <div className="card-comment__utility">
-            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleEdit}>
+              Edit <AiOutlineEdit />
+            </button>
             <button id={comment._id} onClick={handleDelete}>
-              Delete
+              Delete <AiFillDelete />
             </button>
           </div>
         ) : null}

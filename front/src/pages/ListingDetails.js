@@ -10,6 +10,8 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import Accordion from "../components/accordion/Accordion";
 import ListingComments from "../components/cards/ListingComment";
 
+import { AiOutlineSend } from "react-icons/ai";
+
 const ListingDetials = () => {
   const [commentDetails, setCommentDetails] = useState("");
 
@@ -42,6 +44,8 @@ const ListingDetials = () => {
     if (user) {
       const userEmail = user.email;
       userDetails(userEmail);
+    } else {
+      console.log("No use is logged in");
     }
   }, [user]);
 
@@ -150,7 +154,9 @@ const ListingDetials = () => {
             <label className="text-input__label" htmlFor="comment-input">
               Add Comment
             </label>
-            <button>+</button>
+            <button className="btn-primary">
+              <AiOutlineSend />
+            </button>
           </form>
         </div>
       </div>

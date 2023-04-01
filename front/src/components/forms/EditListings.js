@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useGetUser } from "../../hooks/useGetUser";
@@ -36,12 +36,11 @@ const EditListings = () => {
 
   return (
     <div className="">
-      <button onClick={handleDeleteListings} className="deletebutton">
-        delete
+      <button onClick={handleDeleteListings} className="btn-primary">
+        Delete
       </button>
     </div>
   );
 };
 
 export default EditListings;
-
