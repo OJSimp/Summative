@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
@@ -13,6 +13,10 @@ const EditListings = () => {
   const { userDetails, ID, firstName, lastName } = useGetUser();
 
   console.log(listingId);
+
+  // navigate to profile page
+
+  const navigate = useNavigate();
 
   // Render Logged-In user Details
   useEffect(() => {
@@ -29,9 +33,12 @@ const EditListings = () => {
   const handleDeleteListings = async () => {
     console.log("Deleteing");
 
-    await fetch(`http://localhost:8001/listings/${listingId}`, {
-      method: "DELETE",
-    });
+    await fetch(
+      `http://localhost:8001/listings/${listingId}`,
+      {
+        method: "DELETE",
+      }.then(navigate("/profile"))
+    );
   };
 
   return (
@@ -44,4 +51,3 @@ const EditListings = () => {
 };
 
 export default EditListings;
-
