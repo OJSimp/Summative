@@ -141,7 +141,6 @@ app.delete("/listings/:listingid/comments/:commentid", async(req, res) => {
   res.json(post);
 
   console.log("Deleted Comment", commentsPulled.post)
-  
 
 });
 
