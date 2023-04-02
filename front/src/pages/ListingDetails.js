@@ -26,6 +26,7 @@ const ListingDetials = () => {
   const [image, setImage] = useState("");
 
   const [commentsArray, setCommentsArray] = useState(null);
+  const [commentsError, setCommentsError] = useState("");
 
   const [creatorId, setCreatorId] = useState("");
 
@@ -104,13 +105,14 @@ const ListingDetials = () => {
         );
         const data = await resposne.json();
         console.log(data);
+        // reload data after PUT request is fired
         listingDetails();
       };
       putComment(postArray);
 
       // If there is no comment data
     } else {
-      console.log("Cannot postComment");
+      setCommentsError("Cannot postComment");
     }
 
     setCommentDetails("");
@@ -131,6 +133,7 @@ const ListingDetials = () => {
         <Accordion
           details={artDetails}
           subDetails={artSpecs}
+          artType={artType}
           heading="Artwork Details"
           index="0"
         />
