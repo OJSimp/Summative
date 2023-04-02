@@ -18,8 +18,6 @@ const ProfileNav = () => {
   // call get user details
   const { userDetails, firstName } = useGetUser();
 
-  console.log(window.localStorage.getItem("users"));
-
   useEffect(() => {
     if (user) {
       const userEmail = user.email;
@@ -119,7 +117,10 @@ const ProfileNav = () => {
           </div>
         </div>
       ) : (
-        <div>No Profile Information</div>
+        <div>
+          <button className="btn-outline">Log In</button>
+          <button className="btn-outline">Sign Up</button>
+        </div>
       )}
     </>
   );

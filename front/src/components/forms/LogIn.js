@@ -28,10 +28,6 @@ const LogIn = () => {
     e.preventDefault();
 
     await login(email, password);
-
-    // await userDetails(email);
-
-    await navigate("/search");
   };
 
   return (
