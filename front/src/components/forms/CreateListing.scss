@@ -7,7 +7,7 @@ margin-bottom: 90px;
 .upload-art__section--active{
   display: flex;
   flex-direction: column;
-  padding: 5px 20px;
+  padding: 10px 20px;
   
   
 }
@@ -23,7 +23,15 @@ margin-bottom: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+  padding-top: 10px;
   
+  button{
+  width: 100%;
+  
+  }
+  
+
 }
 
 
@@ -119,6 +127,11 @@ margin-bottom: 10px;
 .image-placeholder{
   width: 100%;
   margin-bottom: 10px;
+  min-height: 257px;
+  background-color: #EEEEEE;
+  margin: 10px 0px;
+  border: #2A2A2A solid 1px;
+
   img{
   width: 100%;
   height: auto;

@@ -319,6 +319,11 @@ border-radius: 2px;
 
 // text area
 
+.text-input{
+ font-family: 'Roboto', Arial, sans-serif;
+ 
+}
+
 .text-area__label {
  position: relative;
 
@@ -327,7 +332,6 @@ border-radius: 2px;
   transform: translate(20px,
     -90px);
   font-family: 'Roboto', Arial, sans-serif;
-  color: #606060;
   font-size: .9rem;
   font-weight: 500;
 
