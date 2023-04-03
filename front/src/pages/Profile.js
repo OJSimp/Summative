@@ -1,18 +1,18 @@
 import "./Profile.scss";
 
 import NavProfile from "../components/navigation/ProfileNav";
+import EditProfile from "../components/forms/EditProfile";
 
-import { useState, useEffect } from "react";
-
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import Media from "react-media"; // add Media
 
 const Profile = () => {
   return (
     <div className="profile">
-      {/* Insert header here */}
+      <p>Profile</p>
 
+      {/* --MEDIA QUERY START-- */}
       <Media query="(max-width: 599px)">
         {(matches) =>
           matches ? (
@@ -22,13 +22,14 @@ const Profile = () => {
           ) : (
             <div className="desktop">
               <NavProfile />
-
               <Outlet />
             </div>
           )
         }
       </Media>
+      {/* --MEDIA QUERY END-- */}
 
+      {/* <EditProfile /> */}
       {/* Display Profile Edit and Post Edit underneath hide on keyframes  */}
     </div>
   );

@@ -5,12 +5,14 @@ import Access from "./pages/Access";
 import UplaodArt from "./pages/UploadArt";
 
 import Home from "./pages/Home";
+
 import Profile from "./pages/Profile";
 import SignUp from "./components/forms/SignUp";
 import LogIn from "./components/forms/LogIn";
 
 import EditProfile from "./components/forms/EditProfile";
 import YourListings from "./pages/YourListings";
+
 import EditListingPage from "./pages/EditListingPage";
 import Search from "./pages/Search";
 import ListingDetails from "./pages/ListingDetails";
@@ -20,6 +22,7 @@ import NoMatch from "./components/error/NoMatch";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 const AppRoutes = () => {
+
   const { user } = useAuthContext();
 
   return (
