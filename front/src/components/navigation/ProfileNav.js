@@ -6,6 +6,8 @@ import { useLogout } from "../../hooks/useLogOut";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useGetUser } from "../../hooks/useGetUser";
 
+import { BiChevronRight } from "react-icons/bi";
+
 import { NavLink } from "react-router-dom";
 
 const ProfileNav = () => {
@@ -49,18 +51,9 @@ const ProfileNav = () => {
             >
               <h3>Edit Profile</h3>
               <span className="right-cheveron">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6Z"
-                    fill="#2A2E45"
-                  />
-                </svg>
+                <span className="btn-icon">
+                  <BiChevronRight />
+                </span>
               </span>
             </NavLink>
 
@@ -73,19 +66,8 @@ const ProfileNav = () => {
               }
             >
               <h3>Edit Listings</h3>
-              <span className="right-cheveron">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6Z"
-                    fill="#2A2E45"
-                  />
-                </svg>
+              <span className="btn-icon">
+                <BiChevronRight />
               </span>
             </NavLink>
 
@@ -98,19 +80,8 @@ const ProfileNav = () => {
                 }}
               >
                 <h3>Log Out</h3>
-                <span className="right-cheveron">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6Z"
-                      fill="#2A2E45"
-                    />
-                  </svg>
+                <span className="btn-icon">
+                  <BiChevronRight />
                 </span>
               </div>
             )}

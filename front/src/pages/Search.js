@@ -1,41 +1,37 @@
-import "./Search.scss"
+import "./Search.scss";
 
-import { useState, useEffect } from "react"
+import SearchModal from "../components/modals/SearchModal";
 
-import ListingCard from "../components/cards/ListingCard"
+import { useState, useEffect } from "react";
 
-import { AiOutlineSearch } from "react-icons/ai";
+import ListingCard from "../components/cards/ListingCard";
 
 const Search = () => {
+  const [listingArray, setListingArray] = useState(null);
 
- const [listingArray, setListingArray] = useState(null)
+  const editListingsPage = "listing-details";
 
- const editListingsPage = "listing-details"
+  useEffect(() => {
+    const returnListingData = async () => {
+      const resposne = await fetch(`http://localhost:8001/listings/`, {
+        method: "GET",
+      });
+      const data = await resposne.json();
+      const dataArray = data;
+      setListingArray(dataArray);
+    };
 
- useEffect( () => {
+    returnListingData();
+  }, []);
 
-  const returnListingData = async () => {
-  
-   const resposne = await fetch(`http://localhost:8001/listings/`, {method: "GET"})
-   const data = await resposne.json()
-   const dataArray = data
-   setListingArray(dataArray)
+  return (
+    <div className="search__page">
+      <SearchModal />
+      {listingArray ? (
+        <ListingCard listings={listingArray} link={editListingsPage} />
+      ) : null}
+    </div>
+  );
+};
 
-  }
-
-  returnListingData()
-
- }, [])
-
- return(
-  <div className="search__page">
-   <button className="btn-search">Search <span><AiOutlineSearch/></span></button>
-   {listingArray ? < ListingCard listings={listingArray} link={editListingsPage}/> : null}
-  </div>
-  )
-
-
-}
-
-
-export default Search
+export default Search;
