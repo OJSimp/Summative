@@ -25,25 +25,85 @@ const AppRoutes = () => {
 
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
+      <Media query="(max-width: 599px)">
+        {(matches) =>
+          matches ? (
+            <Routes>
+              {/* MOBILE Routes */}
 
-        <Route path="/search" element={<Search />}></Route>
-        <Route
-          path="/listing-details/:listingsId"
-          element={<ListingDetails />}
-        ></Route>
+              {/* user is not logged in */}
+              {!user && (
+                <Route path="/" element={<Access />}>
+                  <Route path="/sign-up" element={<SignUp />}></Route>
+                  <Route path="/log-in" element={<LogIn />}></Route>
+                  <Route path="/About" element={<About />}></Route>
+                </Route>
+              )}
 
-        <Route path="/upload-art" element={<UplaodArt />}></Route>
+              {/* user is logged in */}
+              {user && <Route path="/" element={<Home />}></Route>}
 
-        <Route path="profile" element={<Profile />}></Route>
-        <Route path="profile/edit-profile" element={<EditProfile />}></Route>
-        <Route path="profile/edit-listings" element={<YourListings />}></Route>
-        <Route
-          path="/edit-listings/:listingsId"
-          element={<EditListingPage />}
-        ></Route>
-      </Routes>
+              <Route path="profile" element={<Profile />}></Route>
+              <Route
+                path="profile/edit-profile"
+                element={<EditProfile />}
+              ></Route>
+              <Route
+                path="profile/edit-listings"
+                element={<YourListings />}
+              ></Route>
+              <Route
+                path="/edit-listings/:listingsId"
+                element={<EditListingPage />}
+              ></Route>
+
+              <Route path="/upload-art" element={<UplaodArt />}></Route>
+
+              <Route path="/search" element={<Search />}></Route>
+
+              <Route
+                path="/listing-details/:listingsId"
+                element={<ListingDetails />}
+              ></Route>
+            </Routes>
+          ) : (
+            <Routes>
+              {/* DESKTOP Routes */}
+
+              {/* user is not logged in */}
+              {!user && (
+                <Route path="/" element={<Access />}>
+                  <Route path="/sign-up" element={<SignUp />}></Route>
+                  <Route path="/log-in" element={<LogIn />}></Route>
+                  <Route path="/About" element={<About />}></Route>
+                </Route>
+              )}
+
+              {/* user is logged in */}
+              {user && <Route path="/" element={<Home />}></Route>}
+
+              <Route path="/profile" element={<Profile />}>
+                <Route path="edit-listings" element={<YourListings />}></Route>
+                <Route path="edit-profile" element={<EditProfile />}></Route>
+              </Route>
+
+              <Route
+                path="/edit-listings/:listingsId"
+                element={<EditListingPage />}
+              ></Route>
+
+              <Route path="/upload-art" element={<UplaodArt />}></Route>
+
+              <Route path="/search" element={<Search />}></Route>
+
+              <Route
+                path="/listing-details/:listingsId"
+                element={<ListingDetails />}
+              ></Route>
+            </Routes>
+          )
+        }
+      </Media>
     </div>
   );
 };

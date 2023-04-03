@@ -10,8 +10,6 @@ import Media from "react-media"; // add Media
 const Profile = () => {
   return (
     <div className="profile">
-      <p>Profile</p>
-
       {/* --MEDIA QUERY START-- */}
       <Media query="(max-width: 599px)">
         {(matches) =>
