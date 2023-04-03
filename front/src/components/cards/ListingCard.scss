@@ -3,6 +3,8 @@
  grid-template-columns: 1fr;
  grid-gap: 10px;
  margin-bottom: 80px;
+ padding: 15px 10px;
+ background-color: #FDFDFD;
 }
 
 .card--listing{
@@ -16,6 +18,8 @@
 .card--listing__details{
 display: flex;
 flex-direction: column;
+padding: 20px 0px;
+gap: 14px;
 
 .card--listing__header{
  display: flex;

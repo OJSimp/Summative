@@ -48,7 +48,9 @@ const Search = () => {
 
   return (
     <div className="search__page">
-      <SearchModal searchModal={searchModal} />
+      <div className="search__header">
+        <SearchModal searchModal={searchModal} />
+      </div>
       {listingArray ? (
         <ListingCard listings={listingArray} link={editListingsPage} />
       ) : null}
