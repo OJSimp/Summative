@@ -29,7 +29,7 @@ const Profile = () => {
       </Media>
       {/* --MEDIA QUERY END-- */}
 
-      <EditProfile />
+      {/* <EditProfile /> */}
       {/* Display Profile Edit and Post Edit underneath hide on keyframes  */}
     </div>
   );
