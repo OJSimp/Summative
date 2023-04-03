@@ -283,12 +283,9 @@ const CreateListing = () => {
             <span>Artwork Details</span>
           </label>
 
-          <button
-            className="btn-outline"
-            onClick={() => handleSectionNavigate(2)}
-          >
+          <div className="btn-outline" onClick={() => handleSectionNavigate(2)}>
             Next
-          </button>
+          </div>
         </div>
 
         {/* Section TWO */}
@@ -334,19 +331,19 @@ const CreateListing = () => {
           </label>
 
           <div className="upload-art__navigation">
-            <button
+            <div
               className="btn-outline"
               onClick={() => handleSectionNavigate(1)}
             >
               {" "}
               Back{" "}
-            </button>
-            <button
+            </div>
+            <div
               className="btn-outline"
               onClick={() => handleSectionNavigate(3)}
             >
               Next
-            </button>
+            </div>
           </div>
         </div>
 
@@ -377,12 +374,12 @@ const CreateListing = () => {
             {image ? <img src={imagePreview} alt="" /> : null}
           </div>
           <div className="upload-art__navigation">
-            <button
+            <div
               className="btn-outline"
               onClick={() => handleSectionNavigate(2)}
             >
               Back
-            </button>
+            </div>
             <button className="btn-primary">Publish</button>
           </div>
         </div>

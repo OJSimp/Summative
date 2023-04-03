@@ -29,8 +29,9 @@ const Search = () => {
 
   // take the search value taken from the modal
   const searchModal = (searchValue) => {
+    console.log(searchValue);
     setSearchValue(searchValue);
-    // re-run the get requ
+    // re-run the get request once information received
     const getSearchData = async () => {
       const response = await fetch(
         `http://localhost:8001/searchlistings/${searchValue}`,

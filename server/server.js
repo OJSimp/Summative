@@ -76,6 +76,17 @@ app.get("/listings/", async (req, res) => {
   res.json(viewAllListing);
 });
 
+// // search for listing by
+app.get("/searchlistings/:type", async (req, res) => {
+  const artType = req.params.type;
+
+  const viewListings = await Listing.find({ artType: artType });
+
+  console.log(viewListings);
+
+  res.json(viewListings);
+});
+
 // get listing by Id
 
 app.get("/listings/:listingsId", async (req, res) => {

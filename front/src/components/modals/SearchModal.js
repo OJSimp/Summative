@@ -1,7 +1,6 @@
-// import "./SearchModal.scss";
+import "./SearchModal.scss";
 
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
@@ -12,8 +11,6 @@ const SearchModal = (props) => {
   const [searchModal, setSearchModal] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [showArtType, setShowArtType] = useState(false);
-
-  const navigate = useNavigate();
 
   const artTypeObject = [
     "Paintings",
