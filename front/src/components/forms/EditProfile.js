@@ -2,7 +2,7 @@ import './EditProfile.scss'
 
 import { useState, useEffect } from "react"
 
-import { Link } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 
 // Hooks
 import { useAuthContext } from "../../hooks/useAuthContext"
@@ -56,8 +56,10 @@ const EditProfile = () => {
   <div className="edit-profile">
   <Link to="/profile/" className="" >My Profile</Link>
 
+{/* user email showing to amieee CAN DELETE */}
+   {/* {user && (<p>{user.email}</p>)} */}
   <div className="wrapper-profile__edit">
- 
+ ``
  <form className="profile__edit" id="editUserDetails">
   <h4>Edit Profile </h4>
 
