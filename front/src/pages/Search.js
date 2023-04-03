@@ -1,58 +1,41 @@
-import "./Search.scss";
+import "./Search.scss"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-import ListingCard from "../components/cards/ListingCard";
-import SearchModal from "../components/modals/SearchModal";
+import ListingCard from "../components/cards/ListingCard"
+
+import { AiOutlineSearch } from "react-icons/ai";
 
 const Search = () => {
-  const [listingArray, setListingArray] = useState(null);
 
-  const [searchValue, setSearchValue] = useState(null);
+ const [listingArray, setListingArray] = useState(null)
 
-  const editListingsPage = "listing-details";
+ const editListingsPage = "listing-details"
 
-  // on page load get all data
+ useEffect( () => {
 
-  useEffect(() => {
-    const getAllData = async () => {
-      const resposne = await fetch(`http://localhost:8001/listings/`, {
-        method: "GET",
-      });
-      const data = await resposne.json();
-      const dataArray = data;
-      setListingArray(dataArray);
-    };
+  const returnListingData = async () => {
+  
+   const resposne = await fetch(`http://localhost:8001/listings/`, {method: "GET"})
+   const data = await resposne.json()
+   const dataArray = data
+   setListingArray(dataArray)
 
-    getAllData();
-  }, []);
+  }
 
-  // take the search value taken from the modal
-  const searchModal = (searchValue) => {
-    setSearchValue(searchValue);
-    // re-run the get requ
-    const getSearchData = async () => {
-      const response = await fetch(
-        `http://localhost:8001/searchlistings/${searchValue}`,
-        {
-          method: "GET",
-        }
-      );
-      const data = await response.json();
-      const dataArray = data;
-      setListingArray(dataArray);
-    };
-    getSearchData();
-  };
+  returnListingData()
 
-  return (
-    <div className="search__page">
-      <SearchModal searchModal={searchModal} />
-      {listingArray ? (
-        <ListingCard listings={listingArray} link={editListingsPage} />
-      ) : null}
-    </div>
-  );
-};
+ }, [])
 
-export default Search;
+ return(
+  <div className="search__page">
+   <button className="btn-search">Search <span><AiOutlineSearch/></span></button>
+   {listingArray ? < ListingCard listings={listingArray} link={editListingsPage}/> : null}
+  </div>
+  )
+
+
+}
+
+
+export default Search
