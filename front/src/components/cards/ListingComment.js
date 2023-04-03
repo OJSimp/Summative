@@ -1,65 +1,60 @@
-import "./ListingComment.scss"
+import "./ListingComment.scss";
 
-import { useAuthContext } from "../../hooks/useAuthContext"
-import { useGetUser } from "../../hooks/useGetUser"
+import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 
 const ListingComments = (props) => {
+  const handleEdit = () => {
+    console.log("Edit Comment");
+  };
 
-  const { user } = useAuthContext()
-  const { userDetails, ID } = useGetUser()
+  const handleDelete = async (e) => {
+    const commentID = e.target.id;
+    const listingId = props.listingId;
 
- // the comments for a post
- const userEmail = user.email
+    const response = await fetch(
+      `http://localhost:8001/listings/${listingId}/comments/${commentID}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+    props.reloadData();
+  };
 
- // get the signed-in users id
- userDetails(userEmail)
+  const commentsArray = props.comments;
 
- const handleEdit = () => {
+  const commentCards = commentsArray.map((comment, index) => {
+    // if commentCreator = userID then option to edit
+    const commentCreator = comment.creatorId;
 
-  console.log("Edit Comment")
-}
+    return (
+      <div className="card-comment" key={comment._id}>
+        <p>
+          {comment.firstName} {comment.lastName}
+        </p>
+        <p>{comment.details}</p>
 
-const handleDelete = async (e) => {
+        {/* if the signed in user created the comment show the edit and delete button */}
+        {commentCreator == props.id ? (
+          <div className="card-comment__utility">
+            <button className="btn-text" onClick={handleEdit}>
+              Edit <AiOutlineEdit />
+            </button>
+            <button
+              className="btn-text"
+              id={comment._id}
+              onClick={handleDelete}
+            >
+              Delete <AiFillDelete />
+            </button>
+          </div>
+        ) : null}
+      </div>
+    );
+  });
 
-  const commentID = e.target.id
-  const listingId = props.listingId
+  return <div>{commentCards}</div>;
+};
 
-  await fetch(`http://localhost:8001/listings/${listingId}/comments/${commentID}`, {
-  method: "DELETE",
-  })
- 
-}
-
- const commentsArray = props.comments
-
- const commentCards = commentsArray.map((comment, index) => {
- // if commentCreator = userID then option to edit 
-  const commentCreator = comment.creatorId
-
-return (
-  <div className="card-comment" key={comment._id} >
-   <p>{comment.firstName} {comment.lastName}</p>
-   <p>{comment.details}</p>
-
-   {/* if the signed in user created the comment show the edit and delete button */}
-   {commentCreator == ID ? <div className="card-comment__utility">
-    <button onClick={handleEdit}>Edit</button>
-    <button id={comment._id} onClick={handleDelete}>Delete</button>
-   </div>
-   : null}
-  </div> 
-  )
-})
-
- return(
-  <div>
-
-   {commentCards}
-
-   
-   
-  </div>
-  )
-}
-
-export default ListingComments
+export default ListingComments;
