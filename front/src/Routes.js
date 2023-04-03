@@ -1,118 +1,116 @@
-import { Route, Routes } from "react-router-dom"
-import Media from 'react-media'; // add Media
+import { Route, Routes } from "react-router-dom";
+import Media from "react-media"; // add Media
 
-import Access from "./pages/Access"
-import UplaodArt from './pages/UploadArt'
+import Access from "./pages/Access";
+import UplaodArt from "./pages/UploadArt";
 
 import Home from "./pages/Home";
-import About from './pages/About';
-import Profile from './pages/Profile';
-import SignUp from './components/forms/SignUp';
-import LogIn from './components/forms/LogIn';
 
+import Profile from "./pages/Profile";
+import SignUp from "./components/forms/SignUp";
+import LogIn from "./components/forms/LogIn";
 
-import EditProfile from "./components/forms/EditProfile"
-import YourListings from "./pages/YourListings"
+import EditProfile from "./components/forms/EditProfile";
+import YourListings from "./pages/YourListings";
+
 import EditListingPage from "./pages/EditListingPage";
 import Search from "./pages/Search";
-import ListingDetails from "./pages/ListingDetails"
+import ListingDetails from "./pages/ListingDetails";
 
 import NoMatch from "./components/error/NoMatch";
 
-import { useAuthContext } from "./hooks/useAuthContext"
-
+import { useAuthContext } from "./hooks/useAuthContext";
 
 const AppRoutes = () => {
 
-const { user } = useAuthContext()
+  const { user } = useAuthContext();
 
- return(
+  return (
+    <div>
+      <Routes>
+        <Route path="*" element={null}></Route>
+        <Route path="*/" element={<NoMatch />}></Route>
+      </Routes>
 
-  <div>
-  <Routes>
-   
-   <Route path="*" element={ null }></Route>
-   <Route path="*/" element={ <NoMatch /> }></Route>
-   
-  </Routes>
-  
-  <Media query="(max-width: 599px)">
-    {matches => matches ? 
+      <Media query="(max-width: 599px)">
+        {(matches) =>
+          matches ? (
+            <Routes>
+              {/* MOBILE Routes */}
 
-  <Routes>
+              {/* user is not logged in */}
+              {!user && (
+                <Route path="/" element={<Access />}>
+                  <Route path="/sign-up" element={<SignUp />}></Route>
+                  <Route path="/log-in" element={<LogIn />}></Route>
+                </Route>
+              )}
 
-    {/* MOBILE Routes */}
+              {/* user is logged in */}
+              {user && <Route path="/" element={<Home />}></Route>}
 
-    {/* user is not logged in */}
-    {!user && (
-    <Route path='/' element={< Access/>}>
-      <Route path='/sign-up' element={< SignUp/>}></Route>
-      <Route path='/log-in' element={< LogIn/>}></Route>
-      <Route path='/About' element={< About/>}></Route>
-    </Route>
-    )}
+              <Route path="profile" element={<Profile />}></Route>
+              <Route
+                path="profile/edit-profile"
+                element={<EditProfile />}
+              ></Route>
+              <Route
+                path="profile/edit-listings"
+                element={<YourListings />}
+              ></Route>
+              <Route
+                path="/edit-listings/:listingsId"
+                element={<EditListingPage />}
+              ></Route>
 
-    {/* user is logged in */}
-    {user && (
-    <Route path='/' element={< Home />}></Route>
-    )}
+              <Route path="/upload-art" element={<UplaodArt />}></Route>
 
-   <Route path="profile" element={< Profile/>}></Route>
-   <Route path="profile/edit-profile" element={< EditProfile/>}></Route>
-   <Route path="profile/edit-listings" element={< YourListings/>}></Route>
-   <Route path="/edit-listings/:listingsId" element={< EditListingPage/>}></Route>
+              <Route path="/search" element={<Search />}></Route>
 
-   <Route path='/upload-art' element={< UplaodArt/>}></Route>
+              <Route
+                path="/listing-details/:listingsId"
+                element={<ListingDetails />}
+              ></Route>
+            </Routes>
+          ) : (
+            <Routes>
+              {/* DESKTOP Routes */}
 
-   <Route path='/search' element={< Search/>}></Route>
+              {/* user is not logged in */}
+              {!user && (
+                <Route path="/" element={<Access />}>
+                  <Route path="/sign-up" element={<SignUp />}></Route>
+                  <Route path="/log-in" element={<LogIn />}></Route>
+                </Route>
+              )}
 
-   <Route path="/listing-details/:listingsId" element={< ListingDetails/>}></Route>
-    
-  </Routes> 
-  : 
-  <Routes>
+              {/* user is logged in */}
+              {user && <Route path="/" element={<Home />}></Route>}
 
-    {/* DESKTOP Routes */}
+              <Route path="/profile" element={<Profile />}>
+                <Route path="edit-listings" element={<YourListings />}></Route>
+                <Route path="edit-profile" element={<EditProfile />}></Route>
+              </Route>
 
-    {/* user is not logged in */}
-    {!user && (
-    <Route path='/' element={< Access/>}>
-      <Route path='/sign-up' element={< SignUp/>}></Route>
-      <Route path='/log-in' element={< LogIn/>}></Route>
-      <Route path='/About' element={< About/>}></Route>
-    </Route>
-    )}
+              <Route
+                path="/edit-listings/:listingsId"
+                element={<EditListingPage />}
+              ></Route>
 
-    {/* user is logged in */}
-    {user && (
-    <Route path='/' element={< Home />}></Route>
-    )}
-    
-    <Route path="/profile" element= {< Profile/>}>
-      <Route path="edit-listings" element={< YourListings/>}>
-        
-      </Route>
-      <Route path="edit-profile" element={< EditProfile/>}></Route>
-   </Route>
+              <Route path="/upload-art" element={<UplaodArt />}></Route>
 
-   <Route path="/edit-listings/:listingsId" element={< EditListingPage/>}></Route>
-    
-   <Route path='/upload-art' element={< UplaodArt/>}></Route>
+              <Route path="/search" element={<Search />}></Route>
 
-   <Route path='/search' element={< Search/>}></Route>
+              <Route
+                path="/listing-details/:listingsId"
+                element={<ListingDetails />}
+              ></Route>
+            </Routes>
+          )
+        }
+      </Media>
+    </div>
+  );
+};
 
-   <Route path="/listing-details/:listingsId" element={< ListingDetails/>}></Route>
-
-  </Routes>}
-
-  </Media>
-
-  </div>
-  
-  
-  )
-
-}
-
-
-export default AppRoutes
+export default AppRoutes;
