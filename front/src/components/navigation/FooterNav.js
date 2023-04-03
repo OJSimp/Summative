@@ -9,25 +9,25 @@ const FooterNav = () => {
 
 return (
  <div className="nav__footer">
-  <NavLink to="/sign-up" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}>Home
+  <NavLink to="/sign-up" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}><p>Home</p> 
    <span className="btn-nav__icon">
     < FaHome /> 
    </span>
   </NavLink>
 
-  <NavLink to="/search" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}>Search
+  <NavLink to="/search" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}><p>Search</p> 
    <span className="btn-nav__icon">
     < FaSearch /> 
    </span>
   </NavLink>
 
-  <NavLink to="/upload-art" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}>Add Art
+  <NavLink to="/upload-art" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}><p>Add art</p>  
    <span className="btn-nav__icon">
     < FaPlus /> 
    </span>
   </NavLink>
 
-  <NavLink to="/profile" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}>Profile
+  <NavLink to="/profile" className={({ isActive }) =>(isActive ? 'btn-nav btn-nav--active' : 'btn-nav btn-nav--inactive')}><p>Profile</p> 
    <span className="btn-nav__icon">
     < FaUser />
    </span>
