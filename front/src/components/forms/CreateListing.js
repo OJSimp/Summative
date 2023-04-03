@@ -101,6 +101,8 @@ const CreateListing = () => {
     const status = "active";
 
     setCreatorId(ID);
+    console.log(ID);
+    const creatorId = ID;
 
     const post = {
       creatorId,
