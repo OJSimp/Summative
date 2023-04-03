@@ -175,6 +175,7 @@ p:visited{
 
 .btn-primary{
     background-color: #2A2E45;
+    border: none;
     border-radius: 2px;
     font-family: 'Roboto', Arial, sans-serif;
     color: #FDFDFD;
@@ -273,6 +274,65 @@ border-radius: 2px;
     color: #606060 ; 
     font-size: .8rem; 
     font-weight: 400;
+}
+
+// Input no icon
+
+.text-input{
+ padding: 30px 10px 10px 20px;
+ margin-bottom: 10px;
+ 
+
+ .text-input__label {
+ 
+   span {
+    position: absolute;
+    transform: translate(20px,
+     -60px);
+   }
+  }
+}
+
+
+// Input with Icon
+
+.text-input--icon {
+
+ padding: 30px 10px 10px 20px;
+ border: 1px solid #606060;
+ margin-bottom: 10px;
+}
+
+.text-input__label {
+ position: relative;
+ font-family: 'Roboto', Arial, sans-serif;
+ color: #2A2A2A;
+ font-size: .9rem;
+ font-weight: 500;
+
+ span {
+  position: absolute;
+  transform: translate(20px, -60px);
+ }
+
+}
+
+// text area
+
+.text-area__label {
+ position: relative;
+
+ span {
+  position: absolute;
+  transform: translate(20px,
+    -90px);
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #606060;
+  font-size: .9rem;
+  font-weight: 500;
+
+ }
+
 }
 
 

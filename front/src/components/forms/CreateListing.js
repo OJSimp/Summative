@@ -29,7 +29,7 @@ const CreateListing = () => {
 
   const [togglePage, setTogglePage] = useState(1);
   const [progressFilled, setprogressFilled] = useState(0);
-  const [header, setHeader] = useState("About the artwork");
+  const [header, setHeader] = useState("Add Art");
 
   // navigate to search
 
@@ -144,15 +144,15 @@ const CreateListing = () => {
 
     if (index === 1) {
       setprogressFilled(0);
-      setHeader("About the art");
+      // setHeader("About the art");
     }
     if (index === 2) {
       setprogressFilled(50);
-      setHeader("About the Artsit");
+      // setHeader("About the Artsit");
     }
     if (index === 3) {
       setprogressFilled(100);
-      setHeader("Upload an image");
+      // setHeader("Upload an image");
     }
   };
 
@@ -225,8 +225,8 @@ const CreateListing = () => {
             <div
               className={
                 dropdownActive
-                  ? " select-input__button--inactive"
-                  : "select-input__button--active"
+                  ? "select-input__btn--active"
+                  : "select-input__btn--inactive"
               }
               onClick={() => {
                 setDropdownActive(!dropdownActive);
@@ -283,7 +283,7 @@ const CreateListing = () => {
             <span>Artwork Details</span>
           </label>
 
-          <div className="btn" onClick={() => handleSectionNavigate(2)}>
+          <div className="btn-outline" onClick={() => handleSectionNavigate(2)}>
             Next
           </div>
         </div>
@@ -331,11 +331,17 @@ const CreateListing = () => {
           </label>
 
           <div className="upload-art__navigation">
-            <div className="btn" onClick={() => handleSectionNavigate(1)}>
+            <div
+              className="btn-outline"
+              onClick={() => handleSectionNavigate(1)}
+            >
               {" "}
               Back{" "}
             </div>
-            <div className="btn" onClick={() => handleSectionNavigate(3)}>
+            <div
+              className="btn-outline"
+              onClick={() => handleSectionNavigate(3)}
+            >
               {" "}
               Next{" "}
             </div>
@@ -353,7 +359,7 @@ const CreateListing = () => {
           }
         >
           {/* upload images section */}
-          <label className="btn btn-outline" htmlFor="image">
+          <label className="btn-outline" htmlFor="image">
             Add Image
           </label>
           <input
@@ -371,11 +377,13 @@ const CreateListing = () => {
             </div>
           ) : null}
           <div className="upload-art__navigation">
-            <div className="btn" onClick={() => handleSectionNavigate(2)}>
-              {" "}
-              Back{" "}
+            <div
+              className="btn-outline"
+              onClick={() => handleSectionNavigate(2)}
+            >
+              Back
             </div>
-            <button className="btn btn-primary">Publish</button>
+            <button className="btn-primary">Publish</button>
           </div>
         </div>
       </form>

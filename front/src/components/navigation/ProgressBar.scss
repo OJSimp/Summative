@@ -1,12 +1,12 @@
 
 .progress-bar {
  height: 10px;
- border: 1px solid black;
+ border: 1px solid #2A2A2A;
  margin-bottom: 10px;
- margin: 5px 20px;
+ margin: 10px 20px;
 
  .progress-bar--filled {
-  background-color: black;
+  background-color: #2A2A2A;
   transition: width 0.5s;
  }
 }

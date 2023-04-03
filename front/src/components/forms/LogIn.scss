@@ -2,29 +2,10 @@
  display: flex;
  flex-direction: column;
  padding: 10px 10%;
-
-
- .text-input--icon {
-
-  padding: 35px 30px 10px 20px;
-  margin: 10px 0px;
- }
-
- .input-label--icon {
-
-  position: relative;
-
-  span {
-   position: absolute;
-   bottom: 44px;
-   left: 22px;
-  }
-
- }
+ background-color: white;
 
  button {
   padding: 16px 20px;
   margin: 10px 0;
-
  }
 }

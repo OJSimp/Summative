@@ -2,23 +2,9 @@
  display: flex;
  flex-direction: column;
  padding: 10px 10%;
+ background-color: white;
 
- .text-input--icon {
-
-  padding: 35px 30px 10px 20px;
-  margin: 10px 0px;
- }
-
- .text-input__label {
-  position: relative;
-
-  span {
-   position: absolute;
-   bottom: 44px;
-   left: 22px;
-  }
-
- }
+ 
 
  button {
   padding: 16px 20px;

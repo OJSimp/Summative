@@ -4,11 +4,14 @@ import { NavLink } from "react-router-dom";
 
 import { FaHome, FaSearch, FaPlus, FaUser } from "react-icons/fa";
 
+import { useAuthContext } from "../../hooks/useAuthContext";
+
 const FooterNav = () => {
+  const { user } = useAuthContext();
   return (
     <div className="nav__footer">
       <NavLink
-        to="/"
+        to={user ? "/" : "/sign-up"}
         className={({ isActive }) =>
           isActive ? "btn-nav btn-nav--active" : "btn-nav btn-nav--inactive"
         }
