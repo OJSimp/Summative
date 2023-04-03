@@ -5,9 +5,11 @@ import Access from "./pages/Access"
 import UplaodArt from './pages/UploadArt'
 
 import Home from "./pages/Home";
+import About from './pages/About';
 import Profile from './pages/Profile';
 import SignUp from './components/forms/SignUp';
 import LogIn from './components/forms/LogIn';
+
 
 import EditProfile from "./components/forms/EditProfile"
 import YourListings from "./pages/YourListings"
@@ -46,6 +48,7 @@ const { user } = useAuthContext()
     <Route path='/' element={< Access/>}>
       <Route path='/sign-up' element={< SignUp/>}></Route>
       <Route path='/log-in' element={< LogIn/>}></Route>
+      <Route path='/About' element={< About/>}></Route>
     </Route>
     )}
 
@@ -76,6 +79,7 @@ const { user } = useAuthContext()
     <Route path='/' element={< Access/>}>
       <Route path='/sign-up' element={< SignUp/>}></Route>
       <Route path='/log-in' element={< LogIn/>}></Route>
+      <Route path='/About' element={< About/>}></Route>
     </Route>
     )}
 
