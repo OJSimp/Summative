@@ -1,18 +1,14 @@
+import "./App.scss";
 
-import './App.scss';
+import FooterNav from "./components/navigation/FooterNav";
 
-import FooterNav from "./components/navigation/FooterNav"
-
-import AppRoutes from "./Routes"
-
-
+import AppRoutes from "./Routes";
 
 function App() {
   return (
     <div className="App">
-      
-      < AppRoutes />
-      < FooterNav />
+      <AppRoutes />
+      <FooterNav />
     </div>
   );
 }

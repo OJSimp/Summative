@@ -9,6 +9,8 @@ import Profile from "./pages/Profile";
 import SignUp from "./components/forms/SignUp";
 import LogIn from "./components/forms/LogIn";
 
+import About from "./pages/About";
+
 import EditProfile from "./components/forms/EditProfile";
 import YourListings from "./pages/YourListings";
 import EditListingPage from "./pages/EditListingPage";
@@ -47,6 +49,7 @@ const AppRoutes = () => {
               {user && <Route path="/" element={<Home />}></Route>}
 
               <Route path="profile" element={<Profile />}></Route>
+              <Route path="/about" element={<About />}></Route>
               <Route
                 path="profile/edit-profile"
                 element={<EditProfile />}
@@ -83,6 +86,8 @@ const AppRoutes = () => {
 
               {/* user is logged in */}
               {user && <Route path="/" element={<Home />}></Route>}
+
+              <Route path="/about" element={<About />}></Route>
 
               <Route path="/profile" element={<Profile />}>
                 <Route path="edit-listings" element={<YourListings />}></Route>
