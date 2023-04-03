@@ -7,28 +7,18 @@
  text-align: center;
  bottom: 0px;
  width: 100vw;
- background: #FDFDFD;
-
+background: rgba(255, 255, 255, 0.9);
 
 
  .btn-nav{
  display: flex;
- flex-direction: column-reverse;  
- font-size: 1.4rem; 
- color:#2A2E45;
- padding:20px 10px;
- text-decoration: none;
+ flex-direction: column-reverse;
+ padding: 10px 16px;
+ 
+ .btn-nav__icon{
+ padding-bottom: 10px;
 
-
-        p{
-        font-family: 'Roboto', Arial, sans-serif;
-        color: #2A2E45; 
-        font-size: 0.8rem; 
-        font-weight: 400;
-        text-align: center;
-        margin:0 auto;
-        padding:4px;
-        }
+ }
  }
 
  .btn-nav--active{
