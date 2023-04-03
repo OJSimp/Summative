@@ -1,88 +1,110 @@
 import "./SearchModal.scss";
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
 
-const SearchModal = () => {
+import FormHeader from "../headers/FormHeader";
+
+const SearchModal = (props) => {
   const [searchModal, setSearchModal] = useState(false);
-  const [searchValue, setSearchValue] = useState("hello");
+  const [searchValue, setSearchValue] = useState("");
   const [showArtType, setShowArtType] = useState(false);
 
-  return (
-    <>
-      {/* button to activate modal */}
-      <button
-        className="btn-search"
-        onClick={() => {
-          setSearchModal(true);
-        }}
-      >
-        Search
-        <span>
-          <AiOutlineSearch />
-        </span>
-      </button>
+  const navigate = useNavigate();
 
-      {/* search modal only shown when showSearchModal set to true*/}
-      {searchModal ? (
-        <div className="search-modal">
-          <div className="search-modal__header">
-            <h2>Search by - {}</h2>
-            <button
-              className="btn-icon"
-              onClick={() => {
-                setSearchModal(false);
-                setShowArtType(false);
-              }}
-            >
-              <AiOutlineClose />
-            </button>
+  const artTypeObject = [
+    "Paintings",
+    "Photography",
+    "Sculpture",
+    "NFT’s",
+    "Prints",
+  ];
+
+  const handleSearchValue = (e) => {
+    setSearchValue(e.target.id);
+    // run search
+    // const searchValue = e.target.id;
+    const searchValue = e.target.id;
+    props.searchModal(searchValue);
+  };
+
+  const artTypes = artTypeObject.map((types, index) => {
+    return (
+      <p
+        className="btn-filter"
+        key={index}
+        id={types}
+        onClick={handleSearchValue}
+      >
+        {types}
+        <BiChevronRight />
+      </p>
+    );
+  });
+
+  return (
+    searchValue,
+    (
+      <>
+        {/* button to activate modal */}
+        <button
+          className="btn-search"
+          onClick={() => {
+            setSearchModal(true);
+          }}
+        >
+          Search
+          <span>
+            <AiOutlineSearch />
+          </span>
+        </button>
+
+        {/* search modal only shown when showSearchModal set to true*/}
+        {searchModal ? (
+          <div className="search-modal">
+            <div className="search-modal__header">
+              <div className="search-modal__header-title">
+                <h2>Search by</h2>
+                <button
+                  className="btn-icon"
+                  onClick={() => {
+                    setSearchModal(false);
+                    setShowArtType(false);
+                  }}
+                >
+                  <AiOutlineClose />
+                </button>
+              </div>
+              <div className="search-modal__header-input">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
+                <span>
+                  <AiOutlineSearch />
+                </span>
+              </div>
+            </div>
+            <div className="seach-modal__body">
+              <div className="search-modal__art-type">
+                <FormHeader header="Art Type" />
+                {artTypes}
+              </div>
+              <div className="search-modal__ft-artist">
+                <FormHeader header="Featured Artists" />
+              </div>
+            </div>
+
+            {/* conditonal rendering the search options */}
+            {/* when show art type is true pick filter by art type*/}
           </div>
-          {/* conditonal rendering the search options */}
-          {/* when show art type is true pick filter by art type*/}
-          {showArtType ? (
-            <div className="search-modal__body--art-type">
-              <h3>Art Type</h3>
-              <button
-                onClick={() => {
-                  setShowArtType(false);
-                }}
-              >
-                back
-              </button>
-            </div>
-          ) : (
-            <div className="search-modal__body">
-              <div className="nav-btn--search">
-                <h3>Price</h3>
-                <span className="btn-icon">
-                  <BiChevronRight />
-                </span>
-              </div>
-              <div
-                className="nav-btn--search"
-                onClick={() => {
-                  setShowArtType(true);
-                }}
-              >
-                <h3>Art Type</h3>
-                <span className="btn-icon">
-                  <BiChevronRight />
-                </span>
-              </div>
-              <div className="nav-btn--search">
-                <h3>Artist</h3>
-                <span className="btn-icon">
-                  <BiChevronRight />
-                </span>
-              </div>
-            </div>
-          )}
-        </div>
-      ) : null}
-    </>
+        ) : null}
+      </>
+    )
   );
 };
 
