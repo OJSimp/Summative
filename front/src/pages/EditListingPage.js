@@ -8,7 +8,6 @@ const EditListingPage = () => {
 
  return (
   <div className="edit-listings">
-    EditListingPage
   
 
    < EditListings />

@@ -7,102 +7,76 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useGetUser } from "../../hooks/useGetUser";
 
 const EditProfile = () => {
-  //  const [email, setEmail] = useState("")
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
 
-  // storage of user information
-  const { user } = useAuthContext();
+//  const [email, setEmail] = useState("")
+ const [firstName, setFirstName] = useState("")
+ const [lastName, setLastName] = useState("")
 
-  // useGetUser function - get user informstion
-  const { userDetails, ID, email } = useGetUser();
+ // storage of user information 
+ const { user } = useAuthContext()
 
-  useEffect(() => {
-    if (user) {
-      const userEmail = user.email;
-      userDetails(userEmail);
-    }
-  }, [user]);
+ // useGetUser function - get user information
+ const { userDetails, ID, email} = useGetUser()
 
-  // method delete (aysnc function)
-  const handleDeleteProfile = async () => {
-    console.log(ID);
+ useEffect(() =>{
 
-    // await fetch
-    await fetch(`http://localhost:8001/users/${ID}`, { method: "DELETE" });
-  };
+ if(user){
+  const userEmail = user.email
+  userDetails(userEmail)
 
-  const updateProfile = (e) => {
-    e.preventdefault();
-    console.log("save");
+ }
+},[user])
 
-    const put = { firstName, lastName };
-    fetch(`http://localhost:8001/users/${email}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(put),
-    });
-  };
+ // method delete (aysnc function)
+ const handleDeleteProfile = async () => {  
+    console.log(ID)
+  
+// await fetch
+  await fetch(`http://localhost:8001/users/${ID}`, {method: "DELETE"}) 
+ }
 
-  return (
-    <div className="edit-profile">
-      {/* <Link to="/profile/" className="btn-text" >My Profile</Link> */}
-      <form className="form-profile__edit" id="editUserDetails">
-        <h4>My profile </h4>
+ const updateProfile = (e) => {
+  e.preventdefault()
+  console.log("save")
 
-        <input
-          type="text"
-          placeholder="First name"
-          className="text-input--icon"
-          id="first-name"
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-        />
-        <label
-          htmlFor="log-in--first-name"
-          className="input-label--icon"
-          id="log-in__first-name"
-        ></label>
+  const put = { firstName, lastName }
+  fetch(`http://localhost:8001/users/${email}`, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(put),
+  }) 
 
-        <input
-          type="text"
-          placeholder="Last name"
-          className="text-input--icon"
-          id="log-in__last-name"
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-        />
-        <label
-          htmlFor="log-last-name"
-          className="input-label--icon"
-          id="log-in__last-name"
-        ></label>
+ }
 
-        <input
-          type="text"
-          placeholder="email@gmail.com"
-          className="text-input--icon"
-          id="log-in__email"
-        />
-        <label
-          htmlFor="log-in__email"
-          className="input-label--icon"
-          id="log-in__email"
-        ></label>
+ return (
+  <div className="edit-profile">
+  {/* <Link to="/profile/" className="btn-text" >My Profile</Link> */}
+ 
+ <form className="form-profile__edit" id="editUserDetails">
+  <h4>My profile </h4>
 
-        <button className="btn-primary" onClick={updateProfile}>
-          Save Changes
-        </button>
+  <input type="text" placeholder="First name" className="text-input--icon" id="first-name" onChange={(e) => {setFirstName(e.target.value)}} />
+    <label htmlFor="log-in--first-name" className="input-label--icon" id="log-in__first-name">
+    </label>
 
-        <button className="btn-outline" onClick={handleDeleteProfile}>
-          Delete Profile
-        </button>
-      </form>{" "}
-      {/* form ends */}
-    </div>
-  );
-};
+    <input type="text" placeholder="Last name" className="text-input--icon" id="log-in__last-name" onChange={(e) => {setLastName(e.target.value)}} /> 
+    <label htmlFor="log-last-name" className="input-label--icon" id="log-in__last-name">
+    </label>
 
-export default EditProfile;
+    <input type="text" placeholder="email@gmail.com" className="text-input--icon" id="log-in__email"  />
+    <label htmlFor="log-in__email" className="input-label--icon" id="log-in__email">
+    </label>
+
+    <button className='btn-primary' onClick={updateProfile}>Save Changes</button>
+  
+  <button className='btn-outline' onClick={handleDeleteProfile}>Delete Profile</button>
+
+ </form>  {/* form ends */}
+
+  </div>
+  
+  )
+
+}
+
+export default EditProfile

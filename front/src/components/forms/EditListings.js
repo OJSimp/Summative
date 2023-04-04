@@ -1,7 +1,7 @@
 import './EditListings.scss';
 
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,6 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 
 const EditListings = () => {
 
-  // const [ID, setID] = useState("")
   const [price, setPrice] = useState("");
   const [artTitle, setArtTitle] = useState("");
   const [artSpecs, setArtSpecs] = useState("");
@@ -18,13 +17,18 @@ const EditListings = () => {
   const [artDetails, setArtDetails] = useState("");
   const [artistName, setArtistName] = useState("");
   const [artistBio, setArtistBio] = useState("");
-  const [status, setStatus] = useState("");
   const [image, setImage] = useState("");
+
+    // storage of listing info
+    const { listing } = useAuthContext()
    
     // pull the id from the URL
     const listingId = useParams().listingsId;
 
-    // get listing details
+    // fetch listing details
+  useEffect(() => {
+
+  
      const listingDetails = async () => {
    
      const response = await fetch(
@@ -41,57 +45,52 @@ const EditListings = () => {
      setArtDetails(details.artDetails);
      setArtistName(details.artistName);
      setArtistBio(details.artistBio);
-     setStatus(details.status);
      setImage(details.image);
+
+    //  console.log(details)
      };
    
      listingDetails();
-    //  console.log(listingId);
+    }, [])
+
+
+    const handleDeleteListing = async() => {
+
+       await fetch(
+        `http://localhost:8001/listings/${listingId}`, 
+        { method: "DELETE" }
+        );
+    }
     
-   
 
- 
 
-  // // storage of listings information 
-  // const { listing } = useAuthContext()
+// update the listing – List Artwork
+const updateListing = () => {
+ console.log("save")
 
-  // get listing information
-//   const getListing = () => { price, artTitle, artSpecs, artType, artDetails, artistName, artistBio } 
-//   listingId()
+ const put = { price, artTitle, artSpecs, artType, artDetails, artistName, artistBio }
+fetch(`http://localhost:8001/listings/${listingId}`, {
+   method: "PUT",
+   headers: {"Content-Type": "application/json"},
+   body: JSON.stringify(put),
+ }) 
 
-//   useEffect(() =>{
-//       const usersListing = async () => {
-//       await fetch (`http://localhost:8001/listings/${listingId}`, {method: "GET"})
-//       }
-//     usersListing()
-// }, [])
+}
 
-// // update the listing
-// const updateListing = (e) => {
-//  e.preventdefault()
-//  console.log("save")
-
-//  const put = { price, artTitle, artSpecs, artType, artDetails, artistName, artistBio }
-// fetch(`http://localhost:8001/listings/${listingId}`, {
-//    method: "PUT",
-//    headers: {"Content-Type": "application/json"},
-//    body: JSON.stringify(put),
-//  }) 
-
-  // const listingId = useParams().listingsId;
-  // console.log(listingId);
 
 
  return (
     <div className="edit-listing">
-      <form className="form-listing__edit" >
+      <div className="form-listing__edit" >
   <h4>My Listing </h4>
 
-  <input type="text" placeholder="NZ$" className="text-input--icon" id="edit__price" onChange={(e) => {setPrice (e.target.value)}} />
-    <label htmlFor="edit__price" className="input-label--icon" >
+  <input value={price
+  } type="text" placeholder="NZ$" className="text-input" id="edit__price" onChange={(e) => {setPrice (e.target.value)}} />
+    <label htmlFor="edit__price" className="input-label__label" >
+      <span>NZD</span>
     </label>
 
-    <input type="text" placeholder="Artwork title" className="text-input--icon" id="edit__art-title" onChange={(e) => {setArtTitle(e.target.value)}} /> 
+    <input value={artTitle}  type="text" placeholder="Artwork title" className="text-input--icon" id="edit__art-title" onChange={(e) => {setArtTitle(e.target.value)}} /> 
     <label htmlFor="edit__art-title" className="input-label--icon" >
     </label>
 
@@ -119,23 +118,20 @@ const EditListings = () => {
     <label htmlFor="edit__image" className="input-label--icon" >
     </label>
 
-    <input type="text" placeholder="Title of work" className="text-input--icon" id="edit__art-title" onChange={(e) => {setArtTitle(e.target.value)}} /> 
-    <label htmlFor="edit__art-title" className="input-label--icon" >
-    </label>
-
-    {/* <button className='btn-primary' onClick={updateListing}>Save Changes</button>
   
-  <button className='btn-outline' onClick={handleDeleteListing}>Delete Listing</button> */}
 
- </form>  {/* form ends */}
-      <button className="btn-primary" >
-   {/* onClick={updateListing}  */}
-        Save Changes
-      </button>
-    </div>
-  )
+    <button className="btn-primary" onClick={updateListing}>  List Artwork </button>
+  
+    <button className='btn-outline' onClick={handleDeleteListing}>
+    
+    Delete Listing
+    </button> 
 
-};
+  </div>  {/* form ends */}
+  
+      </div>
+    )
+  }
 
 export default EditListings;
 
