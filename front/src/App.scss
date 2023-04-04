@@ -222,6 +222,15 @@ outline: inherit;
     
 }
 
+.btn-outline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid #2A2E45;
+    background-color: inherit;
+}
+
 .btn-outline:hover{
     background-color: #f4f4f4;
 }

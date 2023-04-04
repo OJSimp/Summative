@@ -32,12 +32,18 @@ const AppRoutes = () => {
               {/* MOBILE Routes */}
 
               {/* user is not logged in */}
-              {!user && (
+              {/* {!user && (
                 <Route path="/" element={<Access />}>
                   <Route path="/sign-up" element={<SignUp />}></Route>
                   <Route path="/log-in" element={<LogIn />}></Route>
                 </Route>
-              )}
+              )} */}
+              <Route path="/access" element={<Access />}>
+                <Route path="sign-up" element={<SignUp />}></Route>
+                <Route path="log-in" element={<LogIn />}></Route>
+              </Route>
+
+              <Route path="/" element={<Home />}></Route>
 
               <Route path="/about" element={<About />}></Route>
 
