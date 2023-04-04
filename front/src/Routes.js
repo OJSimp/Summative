@@ -31,13 +31,6 @@ const AppRoutes = () => {
             <Routes>
               {/* MOBILE Routes */}
 
-              {/* user is not logged in */}
-              {/* {!user && (
-                <Route path="/" element={<Access />}>
-                  <Route path="/sign-up" element={<SignUp />}></Route>
-                  <Route path="/log-in" element={<LogIn />}></Route>
-                </Route>
-              )} */}
               <Route path="/access" element={<Access />}>
                 <Route path="sign-up" element={<SignUp />}></Route>
                 <Route path="log-in" element={<LogIn />}></Route>
@@ -46,9 +39,6 @@ const AppRoutes = () => {
               <Route path="/" element={<Home />}></Route>
 
               <Route path="/about" element={<About />}></Route>
-
-              {/* user is logged in */}
-              {user && <Route path="/" element={<Home />}></Route>}
 
               <Route path="profile" element={<Profile />}></Route>
               <Route
@@ -77,18 +67,14 @@ const AppRoutes = () => {
             <Routes>
               {/* DESKTOP Routes */}
 
-              {/* user is not logged in */}
-              {!user && (
-                <Route path="/" element={<Access />}>
-                  <Route path="/sign-up" element={<SignUp />}></Route>
-                  <Route path="/log-in" element={<LogIn />}></Route>
-                </Route>
-              )}
+              <Route path="/access" element={<Access />}>
+                <Route path="sign-up" element={<SignUp />}></Route>
+                <Route path="log-in" element={<LogIn />}></Route>
+              </Route>
+
+              <Route path="/" element={<Home />}></Route>
 
               <Route path="/about" element={<About />}></Route>
-
-              {/* user is logged in */}
-              {user && <Route path="/" element={<Home />}></Route>}
 
               <Route path="/profile" element={<Profile />}>
                 <Route path="edit-listings" element={<YourListings />}></Route>
