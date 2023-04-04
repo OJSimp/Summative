@@ -82,6 +82,7 @@ const ListingComments = (props) => {
                 placeholder="Comment Details"
                 className="edit-comment_input"
                 type="text"
+                useState
                 name=""
                 id=""
               />
