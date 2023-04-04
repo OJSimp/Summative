@@ -1,13 +1,15 @@
 import "./ListingDetails.scss";
 
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom";
 
 import { useGetUser } from "../hooks/useGetUser";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 import Accordion from "../components/accordion/Accordion";
+import EditListingPage from "../components/forms/EditListings";
+
 import ListingComments from "../components/cards/ListingComment";
 import FormHeader from "../components/headers/FormHeader";
 

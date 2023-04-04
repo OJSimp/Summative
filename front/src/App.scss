@@ -86,13 +86,15 @@ h3{
     color: #606060; 
     font-size: 1.1rem; 
     font-weight: 400;
+  
 }
 
 h4{
     font-family: 'Roboto', Arial, sans-serif;
     color: #2A2A2A; 
     font-size: 1rem; 
-    font-weight: 500;
+    font-weight: 500;  
+    line-height:2.5;
 }
 
 //---- H5 = LOGO ONLY USE !!-----\\
@@ -162,6 +164,28 @@ p:visited{
     font-weight: 900;
 }
 
+a:active{
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #2A2E45; 
+    font-size: 1rem; 
+    font-weight: 900;
+}
+
+a:hover{
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #606060; 
+    font-size: 1rem; 
+    font-weight: 900;
+}
+
+a:visited{
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #606060; 
+    font-size: 1rem; 
+    font-weight: 900;
+}
+
+
 
 ///----------- BUTTONS -----------\\\
 
@@ -211,7 +235,7 @@ outline: inherit;
     background-color:#2A2A2A;
 }
 
-.btn-outline{
+.btn-outline {
     border: 1px solid #2A2E45;
     border-radius: 2px;
     border-width: 0px;
