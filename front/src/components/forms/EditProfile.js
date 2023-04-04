@@ -17,7 +17,7 @@ const EditProfile = () => {
  // storage of user information 
  const { user } = useAuthContext()
 
- // useGetUser function - get user informstion
+ // useGetUser function - get user information
  const { userDetails, ID, email} = useGetUser()
 
  useEffect(() =>{
@@ -74,8 +74,6 @@ const EditProfile = () => {
   <button className='btn-outline' onClick={handleDeleteProfile}>Delete Profile</button>
 
  </form>  {/* form ends */}
- <EditProfile />
-
 
   </div>
   

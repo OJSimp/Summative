@@ -111,9 +111,30 @@ app.get("/your-listings/:creatorId", async (req, res) => {
   res.json(viewAListing);
 });
 
-// add listing comments
-
 // add listing
+
+app.put("/listings/:listingId", async (req, res) => {
+
+  const listingId = req.params.listingId
+  const putListing = req.body
+
+  const updatedListing = await Listing.findByIdAndUpdate(listingId)
+
+  // modify the original object in the array)
+  updatedListing.price = putListing.price;
+  updatedListing.artTitle = putListing.artTitle;
+  updatedListing.artSpecs = putListing.artSpecs;
+  updatedListing.artType = putListing.artType;
+  updatedListing.artDetails = putListing.artDetails;
+  updatedListing.artistName = putListing.artistName;
+  updatedListing.artistBio = putListing.artistBio;
+
+  const post = await updatedListing.save();
+  res.json(post);
+
+})
+
+// add listing comments
 
 app.put("/listings/:id/comments", async (req, res) => {
   const postId = req.params.id;
@@ -144,13 +165,6 @@ app.delete("/listings/:listingid/comments/:commentid", async (req, res) => {
   res.json(post);
 
   console.log("Deleted Comment", commentsPulled.post);
-});
-
-app.delete("/listings/:listingId", async (req, res) => {
-  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId);
-  res.json(deleteListing);
-
-  console.log("POST DELETED", deleteListing);
 });
 
 // delete listing comments
