@@ -23,14 +23,6 @@ const SignUp = () => {
 
     // POST request being sent to useSignUp.js Hook
     await signup(firstName, lastName, email, password);
-    if (error == null) {
-      navigate("/search");
-    }
-    if (error != null) {
-      console.log("not", error);
-    }
-
-    // navigate("/search");
   };
 
   return (
