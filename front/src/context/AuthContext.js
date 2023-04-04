@@ -31,6 +31,14 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, []);
 
+  // if user changes log in user // check for errors
+  const user = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    if (user) {
+      dispatch({ type: "LOGIN", payload: user });
+    }
+  }, [user]);
+
   console.log("AuthContext state:", state);
 
   return (
