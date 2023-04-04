@@ -19,13 +19,10 @@
 .listing-details__container{
  display: flex;
  flex-direction: column;
- background-color: white;
+ background-color: #FDFDFD;
  padding: 20px;
  margin-bottom: 5px;
-
  gap: 10px;
-
-
 }
 
 // Comments scss
@@ -35,7 +32,7 @@
   .form--add-comments {
    display: flex;
    justify-content: space-between;
-   background-color: white;
+   background-color: #FDFDFD;
    padding: 20px;
    gap: 10px;
 
@@ -57,5 +54,12 @@
     }
   }
 }
+
+  .text-error{
+  display: flex;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  background-color: #FDFDFD;
+  }
 }
 }
