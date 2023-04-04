@@ -1,12 +1,15 @@
+// lsiting details scss
+
 .listing-details{
   display: grid;
   grid-template-columns: auto;
 
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 
 .listing-details__img{
  display: flex;
- height: 500px;
+ height: 420px;
+ width: 100%;
  background-color: #f4f4f4;
 }
 
@@ -16,31 +19,20 @@
 .listing-details__container{
  display: flex;
  flex-direction: column;
- background-color: white;
+ background-color: #FDFDFD;
  padding: 20px;
  margin-bottom: 5px;
-
  gap: 10px;
-
- button{
-  padding: 10px;
- }
-
 }
 
-.listing-details__comments{
+// Comments scss
 
- .header--form {
-   display: flex;
-   padding: 0px 0px 0px 20px;
-   background-color: white;
-   width: 50%;
-  }
+.listing-details__comments{
  
   .form--add-comments {
    display: flex;
    justify-content: space-between;
-   background-color: white;
+   background-color: #FDFDFD;
    padding: 20px;
    gap: 10px;
 
@@ -55,11 +47,19 @@
     position: absolute;
     transform: translate(10px, 10px);
   }
-    button {
-      margin-bottom: 10px;
-      padding: 10px;
+    button {  
+     margin-top: 0;
+     margin-bottom: 10px;
+     padding: 10px;
     }
   }
 }
+
+  .text-error{
+  display: flex;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  background-color: #FDFDFD;
+  }
 }
 }

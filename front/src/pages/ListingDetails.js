@@ -9,6 +9,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 import Accordion from "../components/accordion/Accordion";
 import ListingComments from "../components/cards/ListingComment";
+import FormHeader from "../components/headers/FormHeader";
 
 import { AiOutlineSend } from "react-icons/ai";
 
@@ -111,10 +112,14 @@ const ListingDetials = () => {
       putComment(postArray);
 
       // If there is no comment data
-    } else {
-      setCommentsError("Cannot postComment");
     }
-
+    if (!commentDetails) {
+      setCommentsError("Please add a comment");
+    }
+    if (!user) {
+      setCommentsError("Log in to comment on this post");
+    }
+    // clear the input aftter PUT request
     setCommentDetails("");
   };
 
@@ -125,15 +130,20 @@ const ListingDetials = () => {
       <div className="listing-details__info">
         <div className="listing-details__container listing-details__header">
           <h3>{artTitle}</h3>
-          <p>{artistName}</p>
-          <p>{price}</p>
-          <p>{artType}</p>
+          <p>
+            <span>Artist: </span>
+            {artistName}
+          </p>
+          <p>
+            <span>Price: </span>
+            {price}
+          </p>
         </div>
 
         <Accordion
           details={artDetails}
-          subDetails={artSpecs}
           artType={artType}
+          artSpecs={artSpecs}
           heading="Artwork Details"
           index="0"
         />
@@ -146,10 +156,7 @@ const ListingDetials = () => {
         </div>
 
         <div className="listing-details__comments">
-          <div className="header header--form">
-            <h4>Comments</h4>
-          </div>
-
+          <FormHeader header={"Comments"} />
           {commentsArray ? (
             <ListingComments
               listingId={listingId}
@@ -158,7 +165,6 @@ const ListingDetials = () => {
               reloadData={listingDetails}
             />
           ) : null}
-
           <form className="form--add-comments" onSubmit={handleAddComment}>
             <textarea
               className="text-input"
@@ -176,6 +182,7 @@ const ListingDetials = () => {
               <AiOutlineSend />
             </button>
           </form>
+          <span className="text-error">{commentsError}</span>
         </div>
       </div>
     </div>
