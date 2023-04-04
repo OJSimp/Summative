@@ -12,12 +12,9 @@ const Search = () => {
 
   const [listingArray, setListingArray] = useState(null);
 
-  const [searchValue, setSearchValue] = useState(null);
-
   const editListingsPage = "listing-details";
 
-  // log in user if there is local storage information
-
+  // log in user if there is a user in local storage
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
@@ -42,8 +39,6 @@ const Search = () => {
 
   // take the search value taken from the modal
   const searchModal = (searchValue) => {
-    console.log(searchValue);
-    setSearchValue(searchValue);
     // re-run the get request once information received
     const getSearchData = async () => {
       const response = await fetch(

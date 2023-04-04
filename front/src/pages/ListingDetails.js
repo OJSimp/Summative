@@ -114,7 +114,7 @@ const ListingDetials = () => {
     } else {
       setCommentsError("Cannot postComment");
     }
-
+    // clear the input aftter PUT request
     setCommentDetails("");
   };
 
@@ -125,15 +125,20 @@ const ListingDetials = () => {
       <div className="listing-details__info">
         <div className="listing-details__container listing-details__header">
           <h3>{artTitle}</h3>
-          <p>{artistName}</p>
-          <p>{price}</p>
-          <p>{artType}</p>
+          <p>
+            <span>Artist: </span>
+            {artistName}
+          </p>
+          <p>
+            <span>Price: </span>
+            {price}
+          </p>
         </div>
 
         <Accordion
           details={artDetails}
-          subDetails={artSpecs}
           artType={artType}
+          artSpecs={artSpecs}
           heading="Artwork Details"
           index="0"
         />
@@ -176,6 +181,7 @@ const ListingDetials = () => {
               <AiOutlineSend />
             </button>
           </form>
+          <span>{commentsError}</span>
         </div>
       </div>
     </div>

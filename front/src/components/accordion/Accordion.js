@@ -39,7 +39,21 @@ const Accordion = (props) => {
               : "accordion__content accordion__content--inactive"
           }
         >
-          <p>{props.subDetails}</p>
+          {/* If there are subdetails return header Art Specs*/}
+
+          {props.artType ? (
+            <p>
+              <span>Art Type: </span>
+              {props.artType}
+            </p>
+          ) : null}
+          {props.artSpecs ? (
+            <p>
+              <span>Art Specs: </span>
+              {props.artSpecs}
+            </p>
+          ) : null}
+
           <p>{props.details}</p>
         </div>
       </div>
