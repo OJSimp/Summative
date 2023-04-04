@@ -85,6 +85,7 @@ const ListingComments = (props) => {
                 name=""
                 id=""
               />
+              <p>Make sure to be polite thank you.</p>
             </body>
             <footer className="modal-footer_element">
               <button
