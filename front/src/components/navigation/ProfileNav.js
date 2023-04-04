@@ -2,6 +2,8 @@ import "./ProfileNav.scss";
 
 import { useEffect } from "react";
 
+import Access from "../../pages/Access";
+
 import { useLogout } from "../../hooks/useLogOut";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useGetUser } from "../../hooks/useGetUser";
@@ -118,8 +120,7 @@ const ProfileNav = () => {
         </div>
       ) : (
         <div>
-          <button className="btn-outline">Log In</button>
-          <button className="btn-outline">Sign Up</button>
+          <Access />
         </div>
       )}
     </>
