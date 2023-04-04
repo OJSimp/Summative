@@ -27,7 +27,13 @@ const LogIn = () => {
   const handleLogIn = async (e) => {
     e.preventDefault();
 
-    await login(email, password);
+    await login(email, password, error);
+    if (error == null) {
+      // navigate("/search");
+    }
+    if (error !== null) {
+      console.log("bad", error);
+    }
   };
 
   return (
