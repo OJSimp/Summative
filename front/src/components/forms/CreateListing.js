@@ -25,6 +25,9 @@ const CreateListing = () => {
 
   const [dropdownActive, setDropdownActive] = useState(false);
 
+  // Error handling
+  const [error, setError] = useState("");
+
   // Form navigation
 
   const [togglePage, setTogglePage] = useState(1);
@@ -32,7 +35,6 @@ const CreateListing = () => {
   const [header, setHeader] = useState("Add Art");
 
   // navigate to search
-
   const navigate = useNavigate();
 
   // check if user is logged in from token
@@ -48,6 +50,7 @@ const CreateListing = () => {
     }
   }, [user]);
 
+  // CUSTOM SELECTOR
   // select options for artwork type
   const artTypeArray = [
     "Paintings",
@@ -56,12 +59,11 @@ const CreateListing = () => {
     "Prints",
     "NFTs",
   ];
-
+  // Map options to custom selector
   const artTypeSelect = artTypeArray.map((option, index) => {
     const handleSetArtType = (e) => {
       setArtType(option);
     };
-
     return (
       <li
         key={index}
@@ -77,8 +79,7 @@ const CreateListing = () => {
     );
   });
 
-  // upload file javascript
-
+  // MAGIC FUNCTION - turns file to base64 so monboDB can read
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -87,6 +88,17 @@ const CreateListing = () => {
       reader.onerror = (error) => reject(error);
     });
 
+  // upload image
+  const handleImageUpload = async (e) => {
+    const fileInput = e.target.files[0];
+    setImage(fileInput);
+
+    const imgUrl = URL.createObjectURL(fileInput);
+
+    setImagePreview(imgUrl);
+  };
+
+  // Submit POST request - Create Art Listing
   const handlePostSubmit = async (e) => {
     e.preventDefault();
 
@@ -97,11 +109,10 @@ const CreateListing = () => {
     // set a creation date
     const creationDate = new Date();
 
-    // set the status of the listing to active
+    // set the status of the listing to active - only show active - can pause listings later in dev
     const status = "active";
 
     setCreatorId(ID);
-    console.log(ID);
     const creatorId = ID;
 
     const post = {
@@ -118,29 +129,48 @@ const CreateListing = () => {
       file,
     };
 
-    const ThePost = () => {
-      fetch("http://localhost:8001/listings/", {
+    // POST data to mongoDB -- Zee's code untouched
+    // basic logic/ error handling for POST request
+
+    // if there in no post throw error
+    if (!price) {
+      setError("No post exists");
+    }
+
+    const ThePost = async () => {
+      const resposne = await fetch("http://localhost:8001/listings/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(post),
       });
+
+      const json = resposne.json();
+      if (!resposne.ok) {
+        setError(json.error);
+      }
+      if (resposne.ok) {
+        console.log("good");
+        // go to search page
+        // navigate("/search");
+      }
     };
 
     ThePost();
 
-    navigate("/search");
+    // const ThePost = () => {
+    //   fetch("http://localhost:8001/listings/", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(post),
+    //   });
+    // };
+
+    // ThePost();
+
+    // navigate("/search");
   };
 
-  // upload image
-  const handleImageUpload = async (e) => {
-    const fileInput = e.target.files[0];
-    setImage(fileInput);
-
-    const imgUrl = URL.createObjectURL(fileInput);
-
-    setImagePreview(imgUrl);
-  };
-
+  // navigate between sections of form
   const handleSectionNavigate = (index) => {
     setTogglePage(index);
 
@@ -383,6 +413,7 @@ const CreateListing = () => {
               Back
             </div>
             <button className="btn-primary">Publish</button>
+            {error ? <span>{error}</span> : null}
           </div>
         </div>
       </form>

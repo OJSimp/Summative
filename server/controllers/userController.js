@@ -1,57 +1,45 @@
-const User = require("../models/user")
-const jwt = require("jsonwebtoken")
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 const userToken = (_id) => {
- // sending the user _id exlusively as a payload to user cookie data
- return jwt.sign({_id}, process.env.TOKEN, {expiresIn: '3d'})
-}
+  // sending the user _id exlusively as a payload to user cookie data
+  return jwt.sign({ _id }, process.env.TOKEN, { expiresIn: "3d" });
+};
 
 // login user
 
 const loginUser = async (req, res) => {
+  const { email, password } = req.body;
 
-const { email, password } = req.body 
+  try {
+    const user = await User.login(email, password);
+    const token = userToken(user._id);
 
- try {
+    res.status(200).json({ email, token });
 
-  const user = await User.login( email, password)
-  const token = userToken(user._id)
+    // cannot signup user
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-  res.status(200).json({ email, token })
- 
-  // cannot signup user 
- } catch(error){
- 
-  res.status(400).json({ error: error.message })
-
- }
-}
-
-// signup a new user 
+// signup a new user
 
 const signupUser = async (req, res) => {
+  const { firstName, lastName, email, password } = req.body;
 
- const { firstName, lastName, email, password } = req.body
+  try {
+    const user = await User.signup(firstName, lastName, email, password);
 
- try {
+    // after user is signed up take the id and create the token
+    const token = userToken(user._id);
 
-  const user = await User.signup( firstName, lastName, email, password)
+    res.status(200).json({ email, token });
 
-  // after user is signed up take the id and create the token
-  const token = userToken(user._id)
+    // cannot signup user
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-  res.status(200).json({ email, token })
- 
-  // cannot signup user 
- } catch(error){
- 
-  res.status(400).json({ error: error.message })
-
- }
- 
-}
-
-
-
-
- module.exports = { loginUser, signupUser }
+module.exports = { loginUser, signupUser };
