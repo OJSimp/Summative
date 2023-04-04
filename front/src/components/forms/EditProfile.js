@@ -1,12 +1,10 @@
-import './EditProfile.scss'
+import "./EditProfile.scss";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 // Hooks
-import { useAuthContext } from "../../hooks/useAuthContext"
-import { useGetUser } from "../../hooks/useGetUser"
-
-
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useGetUser } from "../../hooks/useGetUser";
 
 const EditProfile = () => {
 
