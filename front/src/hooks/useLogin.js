@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const useLogIn = () => {
   //if there is an error  // is loading
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
+
+  const navigate = useNavigate();
 
   // use the dispatch function to fire the right "case"
   const { dispatch } = useAuthContext();
@@ -42,6 +45,7 @@ export const useLogIn = () => {
 
       // finsihed loading now false
       setLoading(false);
+      navigate("/search");
     }
   };
 

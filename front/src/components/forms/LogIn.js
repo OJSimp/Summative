@@ -27,7 +27,7 @@ const LogIn = () => {
   const handleLogIn = async (e) => {
     e.preventDefault();
 
-    await login(email, password);
+    await login(email, password, error);
   };
 
   return (
