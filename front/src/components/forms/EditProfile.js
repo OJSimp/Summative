@@ -2,8 +2,6 @@ import './EditProfile.scss'
 
 import { useState, useEffect } from "react"
 
-import { Link } from "react-router-dom"
-
 // Hooks
 import { useAuthContext } from "../../hooks/useAuthContext"
 import { useGetUser } from "../../hooks/useGetUser"
@@ -54,12 +52,10 @@ const EditProfile = () => {
 
  return (
   <div className="edit-profile">
-  <Link to="/profile/" className="" >My Profile</Link>
-
-  <div className="wrapper-profile__edit">
+  {/* <Link to="/profile/" className="btn-text" >My Profile</Link> */}
  
- <form className="profile__edit" id="editUserDetails">
-  <h4>Edit Profile </h4>
+ <form className="form-profile__edit" id="editUserDetails">
+  <h4>My profile </h4>
 
   <input type="text" placeholder="First name" className="text-input--icon" id="first-name" onChange={(e) => {setFirstName(e.target.value)}} />
     <label htmlFor="log-in--first-name" className="input-label--icon" id="log-in__first-name">
@@ -74,12 +70,12 @@ const EditProfile = () => {
     </label>
 
     <button className='btn-primary' onClick={updateProfile}>Save Changes</button>
+  
+  <button className='btn-outline' onClick={handleDeleteProfile}>Delete Profile</button>
 
  </form>  {/* form ends */}
-  <div className='delete-profile' >
-  <button className='btn-primary' onClick={handleDeleteProfile}>Delete Profile</button>
-  </div>  {/* Delete Button ends */}
-  </div>  {/* Wrapper ends */}
+ <EditProfile />
+
 
   </div>
   

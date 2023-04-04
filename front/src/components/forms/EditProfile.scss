@@ -1,1 +1,22 @@
 // Items to be added into forms if we have time: btn-icon
+// pre loading current data.
+
+.edit-profile{
+    height:100vh;
+    background-color: #FDFDFD;
+}
+
+.form-profile__edit {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10%;
+
+    // h4{
+    //     line-height:2.5;
+    // }
+   
+    button {
+     padding: 16px 20px;
+     margin: 5px 0;
+    }
+   }

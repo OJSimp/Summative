@@ -1,7 +1,7 @@
 import "./Profile.scss";
 
 import NavProfile from "../components/navigation/ProfileNav";
-import EditProfile from "../components/forms/EditProfile";
+
 
 import { Outlet } from "react-router-dom";
 
@@ -27,8 +27,8 @@ const Profile = () => {
       </Media>
       {/* --MEDIA QUERY END-- */}
 
-      {/* <EditProfile /> */}
-      {/* Display Profile Edit and Post Edit underneath hide on keyframes  */}
+
+   
     </div>
   );
 };
