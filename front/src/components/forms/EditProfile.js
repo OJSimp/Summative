@@ -1,86 +1,108 @@
-import './EditProfile.scss'
+import "./EditProfile.scss";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 // Hooks
-import { useAuthContext } from "../../hooks/useAuthContext"
-import { useGetUser } from "../../hooks/useGetUser"
-
-
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useGetUser } from "../../hooks/useGetUser";
 
 const EditProfile = () => {
+  //  const [email, setEmail] = useState("")
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
-//  const [email, setEmail] = useState("")
- const [firstName, setFirstName] = useState("")
- const [lastName, setLastName] = useState("")
+  // storage of user information
+  const { user } = useAuthContext();
 
- // storage of user information 
- const { user } = useAuthContext()
+  // useGetUser function - get user informstion
+  const { userDetails, ID, email } = useGetUser();
 
- // useGetUser function - get user informstion
- const { userDetails, ID, email} = useGetUser()
+  useEffect(() => {
+    if (user) {
+      const userEmail = user.email;
+      userDetails(userEmail);
+    }
+  }, [user]);
 
- useEffect(() =>{
+  // method delete (aysnc function)
+  const handleDeleteProfile = async () => {
+    console.log(ID);
 
- if(user){
-  const userEmail = user.email
-  userDetails(userEmail)
+    // await fetch
+    await fetch(`http://localhost:8001/users/${ID}`, { method: "DELETE" });
+  };
 
- }
-},[user])
+  const updateProfile = (e) => {
+    e.preventdefault();
+    console.log("save");
 
- // method delete (aysnc function)
- const handleDeleteProfile = async () => {  
-    console.log(ID)
-  
-// await fetch
-  await fetch(`http://localhost:8001/users/${ID}`, {method: "DELETE"}) 
- }
+    const put = { firstName, lastName };
+    fetch(`http://localhost:8001/users/${email}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(put),
+    });
+  };
 
- const updateProfile = (e) => {
-  e.preventdefault()
-  console.log("save")
+  return (
+    <div className="edit-profile">
+      {/* <Link to="/profile/" className="btn-text" >My Profile</Link> */}
+      <form className="form-profile__edit" id="editUserDetails">
+        <h4>My profile </h4>
 
-  const put = { firstName, lastName }
-  fetch(`http://localhost:8001/users/${email}`, {
-    method: "PUT",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(put),
-  }) 
+        <input
+          type="text"
+          placeholder="First name"
+          className="text-input--icon"
+          id="first-name"
+          onChange={(e) => {
+            setFirstName(e.target.value);
+          }}
+        />
+        <label
+          htmlFor="log-in--first-name"
+          className="input-label--icon"
+          id="log-in__first-name"
+        ></label>
 
- }
+        <input
+          type="text"
+          placeholder="Last name"
+          className="text-input--icon"
+          id="log-in__last-name"
+          onChange={(e) => {
+            setLastName(e.target.value);
+          }}
+        />
+        <label
+          htmlFor="log-last-name"
+          className="input-label--icon"
+          id="log-in__last-name"
+        ></label>
 
- return (
-  <div className="edit-profile">
-  {/* <Link to="/profile/" className="btn-text" >My Profile</Link> */}
- 
- <form className="form-profile__edit" id="editUserDetails">
-  <h4>My profile </h4>
+        <input
+          type="text"
+          placeholder="email@gmail.com"
+          className="text-input--icon"
+          id="log-in__email"
+        />
+        <label
+          htmlFor="log-in__email"
+          className="input-label--icon"
+          id="log-in__email"
+        ></label>
 
-  <input type="text" placeholder="First name" className="text-input--icon" id="first-name" onChange={(e) => {setFirstName(e.target.value)}} />
-    <label htmlFor="log-in--first-name" className="input-label--icon" id="log-in__first-name">
-    </label>
+        <button className="btn-primary" onClick={updateProfile}>
+          Save Changes
+        </button>
 
-    <input type="text" placeholder="Last name" className="text-input--icon" id="log-in__last-name" onChange={(e) => {setLastName(e.target.value)}} /> 
-    <label htmlFor="log-last-name" className="input-label--icon" id="log-in__last-name">
-    </label>
+        <button className="btn-outline" onClick={handleDeleteProfile}>
+          Delete Profile
+        </button>
+      </form>{" "}
+      {/* form ends */}
+    </div>
+  );
+};
 
-    <input type="text" placeholder="email@gmail.com" className="text-input--icon" id="log-in__email"  />
-    <label htmlFor="log-in__email" className="input-label--icon" id="log-in__email">
-    </label>
-
-    <button className='btn-primary' onClick={updateProfile}>Save Changes</button>
-  
-  <button className='btn-outline' onClick={handleDeleteProfile}>Delete Profile</button>
-
- </form>  {/* form ends */}
- <EditProfile />
-
-
-  </div>
-  
-  )
-
-}
-
-export default EditProfile
+export default EditProfile;
