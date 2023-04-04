@@ -1,3 +1,5 @@
+// manully adding btn-outline styling to div
+
 .form__upload-art{
 background-color: white;
 padding-top: 10px;
@@ -7,9 +9,7 @@ margin-bottom: 90px;
 .upload-art__section--active{
   display: flex;
   flex-direction: column;
-  padding: 10px 20px;
-  
-  
+  padding: 10px 20px; 
 }
 
 .upload-art__section--inactive {
@@ -28,10 +28,7 @@ margin-bottom: 90px;
   
   button{
   width: 100%;
-  
   }
-  
-
 }
 
 
@@ -62,7 +59,6 @@ margin-bottom: 10px;
   padding: 10px 20px;
   
   }
-
 
   .select-input__details{
   display: flex;

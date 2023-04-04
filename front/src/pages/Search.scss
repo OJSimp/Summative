@@ -1,12 +1,11 @@
 .search__page{
- padding: 20px;
+
+ .search__header{
+ padding: 10px 15px;
+ background-color: #FDFDFD;
+ border-bottom: #f4f4f4 1px solid;
+ border-top: #f4f4f4 1px solid;
+ margin-bottom: 20px;
+ }
 }
 
-.btn-search{
- display: flex;
- justify-content: space-between;
- padding: 14px;
- width: 100%;
- margin: 20px 0px;
-
-}

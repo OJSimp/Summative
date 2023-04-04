@@ -189,12 +189,27 @@ a:visited{
 
 ///----------- BUTTONS -----------\\\
 
+// remove base styling
+button{
+outline: inherit;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
+
+}
 
 .btn-text{
     font-family: 'Roboto', Arial, sans-serif;
     color: #2A2A2A; 
     font-size: 1rem; 
     font-weight: 500;
+    // Spencer's additions
+    padding: 8px;
+    border-radius: 2px;
+    background-color: #FDFDFD;
 }
 
 .btn-primary{
@@ -209,6 +224,7 @@ a:visited{
     text-align: center;
     margin-top: 10px;
     padding: 10px 20px;
+    outline: none;
 }
 
 .btn-primary:hover{
@@ -231,6 +247,16 @@ a:visited{
     text-align: center;
     margin-top: 10px;
     padding: 10px 20px;
+    
+}
+
+.btn-outline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid #2A2E45;
+    background-color: inherit;
 }
 
 .btn-outline:hover{
@@ -358,9 +384,7 @@ border-radius: 2px;
   font-family: 'Roboto', Arial, sans-serif;
   font-size: .9rem;
   font-weight: 500;
-
  }
-
 }
 
 
