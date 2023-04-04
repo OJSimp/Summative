@@ -5,12 +5,25 @@ import { useState, useEffect } from "react";
 import ListingCard from "../components/cards/ListingCard";
 import SearchModal from "../components/modals/SearchModal";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 const Search = () => {
+  const { dispatch } = useAuthContext();
+
   const [listingArray, setListingArray] = useState(null);
 
   const [searchValue, setSearchValue] = useState(null);
 
   const editListingsPage = "listing-details";
+
+  // log in user if there is local storage information
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      dispatch({ type: "LOGIN", payload: user });
+    }
+  }, []);
 
   // on page load get all data
 
