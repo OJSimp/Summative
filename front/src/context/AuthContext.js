@@ -23,16 +23,15 @@ export const AuthContextProvider = ({ children }) => {
 
   // check the user is logged in - if token exists in Application Console
   // get the user item from local storage
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (user) {
-      dispatch({ type: "LOGIN", payload: user });
-    }
-  }, []);
-
-  // if user changes log in user // check for errors
   const user = JSON.parse(localStorage.getItem("user"));
+  // useEffect(() => {
+
+  //   if (user) {
+  //     dispatch({ type: "LOGIN", payload: user });
+  //   }
+  // }, []);
+
+  // if user changes log in user // Error user needs to log out twice
   useEffect(() => {
     if (user) {
       dispatch({ type: "LOGIN", payload: user });
