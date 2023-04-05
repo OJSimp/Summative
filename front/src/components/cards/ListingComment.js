@@ -4,11 +4,11 @@ import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 import { MdClose } from "react-icons/md";
 
 const ListingComments = (props) => {
-  const handleEdit = () => {
-    console.log("Edit Comment");
-  };
-
   const [modal, setModal] = useState(false);
+  const [EditThisComment, setEditThisComment] = useState("");
+  const handleEdit = () => {
+    console.log(EditThisComment);
+  };
 
   const handleDelete = async (e) => {
     const commentID = e.target.id;
@@ -68,6 +68,7 @@ const ListingComments = (props) => {
     <div>
       {commentCards}
       {/* Modal HTML */}
+
       {modal ? (
         <div className="edit-modal__overlay">
           <div className="modal">
@@ -82,15 +83,18 @@ const ListingComments = (props) => {
                 placeholder="Comment Details"
                 className="edit-comment_input"
                 type="text"
-                useState
                 name=""
                 id=""
+                onChange={(e) => setEditThisComment(e.target.value)}
               />
-              <p>Make sure to be polite thank you.</p>
             </body>
             <footer className="modal-footer_element">
               <button
-                onClick={handleEdit}
+                onClick={() => {
+                  handleEdit();
+                  toggleModal();
+                }}
+                // its this one
                 className="btn-primary edit-button_size "
               >
                 edit
