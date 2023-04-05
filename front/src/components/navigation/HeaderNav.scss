@@ -2,9 +2,24 @@
 
 .nav-header--mobile{
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #FDFDFD;
+
  @media (min-width: 599px) {
    display: none;
   }
+
+  span{
+    padding-left: 10px;
+    }
+
+    p{
+      font-size: .8rem;;
+    }
+    
 }
 
 // Desktop header

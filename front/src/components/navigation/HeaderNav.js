@@ -1,6 +1,6 @@
 import "./HeaderNav.scss";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import { FaInfoCircle } from "react-icons/fa";
 
@@ -8,27 +8,27 @@ const HeaderNav = () => {
   return (
     <>
       <div className="nav-header--mobile">
-        <div className="af__logo">
-          <h5>Art feed</h5>
-        </div>
+        
+        <Link to="./home" className="app__logo">
+          <h5>+ Art</h5></Link> 
+       
         <div className="about__link">
           <NavLink
             to="./about"
             className={({ isActive }) =>
               isActive ? "btn-nav btn-nav--active" : "btn-nav btn-nav--inactive"
-            }
-          >
-            <p>About</p>
-            <span className="btn-nav__icon">
+            }>    <span className="btn-nav__icon">
               <FaInfoCircle />
             </span>
+            <p>About</p>
+        
           </NavLink>
         </div>
       </div>
 
       <div className="nav-header--desktop">
         <div className="af__logo">
-          <h5>Art feed</h5>
+          <h5>+ Art</h5>
         </div>
         <div className="header__nav-links">
           <NavLink to="/" className="btn-text">
@@ -39,6 +39,9 @@ const HeaderNav = () => {
           </NavLink>
           <NavLink to="/upload-art" className="btn-text">
             Add Art
+          </NavLink>
+          <NavLink to="/about" className="btn-text">
+            About
           </NavLink>
         </div>
         <div className="header__profile">
