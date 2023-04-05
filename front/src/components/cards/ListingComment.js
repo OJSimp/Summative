@@ -48,7 +48,7 @@ const ListingComments = (props) => {
           <div className="card-comment__utility">
             <button className="btn-text" onClick={toggleModal}>
               Edit <AiOutlineEdit />
-            </button> */}
+            </button>
             <button
               className="btn-text"
               id={comment._id}
@@ -78,7 +78,7 @@ const ListingComments = (props) => {
                 <MdClose />
               </button>
             </header>
-            <body className="modal-body_element">
+            <div className="modal-body_element">
               <input
                 placeholder="Comment Details"
                 className="edit-comment_input"
@@ -87,7 +87,7 @@ const ListingComments = (props) => {
                 id=""
                 onChange={(e) => setEditThisComment(e.target.value)}
               />
-            </body>
+            </div>
             <footer className="modal-footer_element">
               <button
                 onClick={() => {
