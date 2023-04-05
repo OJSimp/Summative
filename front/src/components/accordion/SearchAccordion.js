@@ -4,13 +4,13 @@ import { BiChevronRight, BiChevronDown } from "react-icons/bi";
 
 const SearchAccordion = ({
   setSearchModal,
-  setSearchValue,
   setPriceMin,
   setPriceMax,
+  handleMinMaxPrice,
 }) => {
-  const [minPrice, setMinPrice] = useState("");
-
-  console.log(minPrice);
+  // capture the input values
+  const [minValue, setMinValue] = useState();
+  const [maxValue, setMaxValue] = useState();
 
   return (
     <>
@@ -21,18 +21,22 @@ const SearchAccordion = ({
         <input
           type="number"
           onChange={(e) => {
-            setPriceMin(e.target.value);
+            setMinValue(e.target.value);
           }}
         />
         <input
           type="number"
           onChange={(e) => {
-            setPriceMax(e.target.value);
+            setMaxValue(e.target.value);
           }}
         />
         <button
           onClick={() => {
+            // only set the min and max search values onClick
+            // setPriceMin(minValue);
+            // setPriceMax(maxValue);
             setSearchModal(false);
+            handleMinMaxPrice(maxValue, minValue);
           }}
         >
           GO

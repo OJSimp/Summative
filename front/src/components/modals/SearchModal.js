@@ -28,8 +28,12 @@ const SearchModal = (props) => {
     // run search
     // const searchValue = e.target.id;
     const searchValue = e.target.id;
-    props.searchModal(searchValue);
+    props.searchModal(searchValue, priceMin, priceMax);
     setSearchModal(false);
+  };
+
+  const handleMinMaxPrice = () => {
+    props.searchModal(searchValue, priceMin, priceMax);
   };
 
   const artTypes = artTypeObject.map((types, index) => {
@@ -48,6 +52,8 @@ const SearchModal = (props) => {
 
   return (
     searchValue,
+    priceMin,
+    priceMax,
     (
       <>
         {/* button to activate modal */}
@@ -107,6 +113,7 @@ const SearchModal = (props) => {
                   setSearchValue={setSearchValue}
                   setPriceMin={setPriceMin}
                   setPriceMax={setPriceMax}
+                  handleMinMaxPrice={handleMinMaxPrice}
                 />
               </div>
             </div>

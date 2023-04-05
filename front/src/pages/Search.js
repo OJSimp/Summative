@@ -8,9 +8,8 @@ import SearchModal from "../components/modals/SearchModal";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const Search = () => {
-  const { dispatch } = useAuthContext();
-
   const [listingArray, setListingArray] = useState(null);
+  const { dispatch } = useAuthContext();
 
   const editListingsPage = "listing-details";
 
@@ -38,7 +37,8 @@ const Search = () => {
   }, []);
 
   // take the search value taken from the modal
-  const searchModal = (searchValue) => {
+  const searchModal = (searchValue, priceMin, priceMax) => {
+    console.log(priceMin);
     // re-run the get request once information received
     const getSearchData = async () => {
       const response = await fetch(
