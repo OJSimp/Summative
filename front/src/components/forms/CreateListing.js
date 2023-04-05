@@ -19,7 +19,6 @@ const CreateListing = () => {
   const [artistName, setArtistName] = useState("");
   const [artistBio, setArtistBio] = useState("");
   const [image, setImage] = useState(null);
-  const [creatorId, setCreatorId] = useState("");
 
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -27,6 +26,14 @@ const CreateListing = () => {
 
   // Error handling
   const [error, setError] = useState("");
+  // Errors for inputs
+  const [errorPrice, setErrorPrice] = useState(null);
+  const [errorArtTitle, setErrorArtTitle] = useState(null);
+  const [errorArtSpecs, setErrorArtSpecs] = useState(null);
+  const [errorArtType, setErrorArtType] = useState(null);
+  const [errorArtDetails, setErrorArtDetails] = useState(null);
+  const [errorArtistName, setErrorArtistName] = useState(null);
+  const [errorArtistBio, setErrorArtistBio] = useState(null);
 
   // Form navigation
 
@@ -111,8 +118,6 @@ const CreateListing = () => {
 
     // set the status of the listing to active - only show active - can pause listings later in dev
     const status = "active";
-
-    setCreatorId(ID);
     const creatorId = ID;
 
     const post = {
@@ -132,11 +137,6 @@ const CreateListing = () => {
     // POST data to mongoDB -- Zee's code untouched
     // basic logic/ error handling for POST request
 
-    // if there in no post throw error
-    if (!price) {
-      setError("No post exists");
-    }
-
     const ThePost = async () => {
       const resposne = await fetch("http://localhost:8001/listings/", {
         method: "POST",
@@ -144,30 +144,34 @@ const CreateListing = () => {
         body: JSON.stringify(post),
       });
 
-      const json = resposne.json();
+      const json = await resposne.json();
+
       if (!resposne.ok) {
-        setError(json.error);
+        setError("Please fill all information correctly");
+        // set the errors to inform the user
+        setErrorPrice(json.price.kind);
+        setErrorArtTitle(json.artTitle.kind);
+        setErrorArtType(json.artType.kind);
+        setErrorArtSpecs(json.artSpecs.kind);
+        setErrorArtDetails(json.artDetails.kind);
+        setErrorArtistName(json.artistName.kind);
+        setErrorArtistBio(json.artistBio.kind);
       }
       if (resposne.ok) {
-        console.log("good");
-        // go to search page
-        // navigate("/search");
+        // set all errors to null
+        setErrorPrice(null);
+        setErrorArtTitle(null);
+        setErrorArtType(null);
+        setErrorArtSpecs(null);
+        setErrorArtDetails(null);
+        setErrorArtistName(null);
+        setErrorArtistBio(null);
+        // go to search page if everything is okay
+        navigate("/search");
       }
     };
 
     ThePost();
-
-    // const ThePost = () => {
-    //   fetch("http://localhost:8001/listings/", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(post),
-    //   });
-    // };
-
-    // ThePost();
-
-    // navigate("/search");
   };
 
   // navigate between sections of form
@@ -188,14 +192,13 @@ const CreateListing = () => {
     }
   };
 
-  // Add the stuff
   return (
     <div className="wrapper-upload__art">
       <FormHeader header={header} />
 
       <form className="form__upload-art" onSubmit={handlePostSubmit}>
         <ProgressBar progress={progressFilled} />
-        {/* Section ONE */}
+        {/* SECTION ONE */}
         <div
           className={
             togglePage === 1
@@ -205,7 +208,7 @@ const CreateListing = () => {
         >
           {/* Price */}
           <input
-            className="text-input"
+            className={errorPrice ? "text-input--error" : "text-input"}
             placeholder=""
             type="text"
             id="upload-art--price"
@@ -213,10 +216,15 @@ const CreateListing = () => {
           />
           <label
             htmlFor="upload-art--price"
-            className="text-input__label"
+            className={
+              errorPrice ? "text-input__label--error" : "text-input__label"
+            }
             id="log-in--password"
           >
             <span>Price</span>
+            {errorPrice ? (
+              <span className="text-error"> Price is {errorPrice}</span>
+            ) : null}
           </label>
 
           {/* Art Title */}
@@ -320,7 +328,7 @@ const CreateListing = () => {
           </div>
         </div>
 
-        {/* Section TWO */}
+        {/* SECTION TWO */}
         <div
           className={
             togglePage === 2
@@ -379,7 +387,7 @@ const CreateListing = () => {
           </div>
         </div>
 
-        {/* Section THREE */}
+        {/* SECTION THREE */}
 
         {/* Upload Images */}
         <div
@@ -405,6 +413,7 @@ const CreateListing = () => {
             {/* conditional rendering of placeholder */}
             {image ? <img src={imagePreview} alt="" /> : null}
           </div>
+          {error ? <span>{error}</span> : null}
           <div className="upload-art__navigation">
             <div
               className="btn-outline"
@@ -413,7 +422,6 @@ const CreateListing = () => {
               Back
             </div>
             <button className="btn-primary">Publish</button>
-            {error ? <span>{error}</span> : null}
           </div>
         </div>
       </form>

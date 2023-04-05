@@ -9,6 +9,9 @@
  width: 100vw;
  background: #FDFDFD;
 
+@media (min-width: 599px) {
+              display: none;
+       }
 
 
  .btn-nav{
