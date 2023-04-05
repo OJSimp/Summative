@@ -120,6 +120,20 @@ p{
     font-weight: 400;
 }
 
+.text-error{
+    background-color: white;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #cc0000;
+    font-size: 0.75rem;
+    font-weight: 400;
+    top: 40px;
+}
+
+a{
+text-decoration: none;
+
+}
+
 
 ///----------- LINKS -----------\\\
 
@@ -343,11 +357,27 @@ border-radius: 2px;
   }
 }
 
+.text-input--error{
+    border-radius: 2px;
+    border: 1px solid #cc0000;
+    padding: 30px 10px 10px 20px;
+    margin-bottom: 10px;
+ 
+}
+.text-input__label--error {
+    position: relative;
+
+    span {
+        position: absolute;
+        transform: translate(20px, -60px);
+        
+    }
+}
+
 
 // Input with Icon
 
 .text-input--icon {
-
  padding: 30px 10px 10px 20px;
  border: 1px solid #606060;
  margin-bottom: 10px;
@@ -360,12 +390,21 @@ border-radius: 2px;
  font-size: .9rem;
  font-weight: 500;
 
- span {
-  position: absolute;
-  transform: translate(20px, -60px);
- }
+    span {
+     position: absolute;
+     transform: translate(20px, -60px);
+    }
+}
+.input-icon {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    bottom: 52px;
+    padding-right: 20px;
+    height: 0px;
 
 }
+
 
 // text area
 

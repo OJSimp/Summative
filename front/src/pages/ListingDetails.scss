@@ -23,6 +23,11 @@
  padding: 20px;
  margin-bottom: 5px;
  gap: 10px;
+
+}
+// removes the gaps on the buttons
+.listing-details__buttons{
+  gap: 0px;
 }
 
 // Comments scss

@@ -48,22 +48,28 @@ const upload = multer({
 // LISTINGS //
 
 app.post("/listings", async (req, res) => {
-  await Listing.create({
-    creatorId: req.body.creatorId,
-    price: req.body.price,
-    artTitle: req.body.artTitle,
-    artSpecs: req.body.artSpecs,
-    artType: req.body.artType,
-    artDetails: req.body.artDetails,
-    artistName: req.body.artistName,
-    artistBio: req.body.artistBio,
-    dateCreated: req.body.creationDate,
-    status: req.body.status,
-    image: req.body.file.file,
-  });
+  // add try catch block to POST request
+  try {
+    const artListing = await Listing.create({
+      creatorId: req.body.creatorId,
+      price: req.body.price,
+      artTitle: req.body.artTitle,
+      artSpecs: req.body.artSpecs,
+      artType: req.body.artType,
+      artDetails: req.body.artDetails,
+      artistName: req.body.artistName,
+      artistBio: req.body.artistBio,
+      dateCreated: req.body.creationDate,
+      status: req.body.status,
+      image: req.body.file.file,
+    });
 
-  console.log("posted");
-  res.send("posted");
+    res.status(200).json(artListing);
+    console.log("posted");
+  } catch (error) {
+    res.status(400).json(error.errors);
+    console.log(error.message);
+  }
 });
 
 // view all listings

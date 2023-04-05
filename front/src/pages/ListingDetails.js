@@ -1,7 +1,7 @@
 import "./ListingDetails.scss";
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import { useGetUser } from "../hooks/useGetUser";
@@ -88,39 +88,42 @@ const ListingDetials = () => {
   const handleAddComment = (e) => {
     e.preventDefault();
 
-    // If there is comment data
-    if (commentDetails) {
-      const postArray = {
-        creatorId: ID,
-        firstName: firstName,
-        lastName: lastName,
-        details: commentDetails,
-      };
-
-      const putComment = async () => {
-        const resposne = await fetch(
-          `http://localhost:8001/listings/${listingId}/comments`,
-          {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(postArray),
-          }
-        );
-        const data = await resposne.json();
-        console.log(data);
-        // reload data after PUT request is fired
-        listingDetails();
-      };
-      putComment(postArray);
-
-      // If there is no comment data
-    }
-    if (!commentDetails) {
-      setCommentsError("Please add a comment");
-    }
     if (!user) {
       setCommentsError("Log in to comment on this post");
     }
+    if (user) {
+      // If there is comment data
+      if (commentDetails) {
+        const postArray = {
+          creatorId: ID,
+          firstName: firstName,
+          lastName: lastName,
+          details: commentDetails,
+        };
+
+        const putComment = async () => {
+          const resposne = await fetch(
+            `http://localhost:8001/listings/${listingId}/comments`,
+            {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(postArray),
+            }
+          );
+          const data = await resposne.json();
+          console.log(data);
+          // reload data after PUT request is fired
+          listingDetails();
+        };
+        putComment(postArray);
+
+        // If there is no comment data
+      }
+      if (!commentDetails) {
+        setCommentsError("Please add a comment");
+      }
+    }
+
     // clear the input aftter PUT request
     setCommentDetails("");
   };

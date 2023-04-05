@@ -5,19 +5,13 @@ import SignUp from "../components/forms/SignUp";
 
 import { useState } from "react";
 
-import { NavLink, useNavigate, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const Access = () => {
   const [showSignUp, setShowSignUp] = useState(true);
 
-  const navigate = useNavigate();
-
-  const navigateToProfile = () => {
-    navigate("/profile");
-  };
-
   return (
-    <div className="home-page">
+    <div className="access-page">
       <div className="access-container">
         <div className="access__nav">
           <NavLink
@@ -74,9 +68,7 @@ const Access = () => {
         </div>
       </div>
 
-      <div className="access-fallback-right">
-        {/* <img src="https://media.istockphoto.com/id/1134512518/photo/abstract-hand-painted-art-background-on-canvas.jpg?b=1&s=612x612&w=0&k=20&c=UfkeC1cZHV-jAB1pUEg5zdr_0wMv32eZWDbPTQn6748=" alt="" /> */}
-      </div>
+      <div className="access-desktop"></div>
     </div>
   );
 };

@@ -19,11 +19,21 @@ const CreateListing = () => {
   const [artistName, setArtistName] = useState("");
   const [artistBio, setArtistBio] = useState("");
   const [image, setImage] = useState(null);
-  const [creatorId, setCreatorId] = useState("");
 
   const [imagePreview, setImagePreview] = useState(null);
 
   const [dropdownActive, setDropdownActive] = useState(false);
+
+  // Error handling
+  const [error, setError] = useState("");
+  // Errors for inputs
+  const [errorPrice, setErrorPrice] = useState(null);
+  const [errorArtTitle, setErrorArtTitle] = useState(null);
+  const [errorArtSpecs, setErrorArtSpecs] = useState(null);
+  const [errorArtType, setErrorArtType] = useState(null);
+  const [errorArtDetails, setErrorArtDetails] = useState(null);
+  const [errorArtistName, setErrorArtistName] = useState(null);
+  const [errorArtistBio, setErrorArtistBio] = useState(null);
 
   // Form navigation
 
@@ -32,7 +42,6 @@ const CreateListing = () => {
   const [header, setHeader] = useState("Add Art");
 
   // navigate to search
-
   const navigate = useNavigate();
 
   // check if user is logged in from token
@@ -48,6 +57,7 @@ const CreateListing = () => {
     }
   }, [user]);
 
+  // CUSTOM SELECTOR
   // select options for artwork type
   const artTypeArray = [
     "Paintings",
@@ -56,12 +66,11 @@ const CreateListing = () => {
     "Prints",
     "NFTs",
   ];
-
+  // Map options to custom selector
   const artTypeSelect = artTypeArray.map((option, index) => {
     const handleSetArtType = (e) => {
       setArtType(option);
     };
-
     return (
       <li
         key={index}
@@ -77,8 +86,7 @@ const CreateListing = () => {
     );
   });
 
-  // upload file javascript
-
+  // MAGIC FUNCTION - turns file to base64 so monboDB can read
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -87,6 +95,17 @@ const CreateListing = () => {
       reader.onerror = (error) => reject(error);
     });
 
+  // upload image
+  const handleImageUpload = async (e) => {
+    const fileInput = e.target.files[0];
+    setImage(fileInput);
+
+    const imgUrl = URL.createObjectURL(fileInput);
+
+    setImagePreview(imgUrl);
+  };
+
+  // Submit POST request - Create Art Listing
   const handlePostSubmit = async (e) => {
     e.preventDefault();
 
@@ -97,11 +116,8 @@ const CreateListing = () => {
     // set a creation date
     const creationDate = new Date();
 
-    // set the status of the listing to active
+    // set the status of the listing to active - only show active - can pause listings later in dev
     const status = "active";
-
-    setCreatorId(ID);
-    console.log(ID);
     const creatorId = ID;
 
     const post = {
@@ -118,29 +134,47 @@ const CreateListing = () => {
       file,
     };
 
-    const ThePost = () => {
-      fetch("http://localhost:8001/listings/", {
+    // POST data to mongoDB -- Zee's code untouched
+    // basic logic/ error handling for POST request
+
+    const ThePost = async () => {
+      const resposne = await fetch("http://localhost:8001/listings/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(post),
       });
+
+      const json = await resposne.json();
+
+      if (!resposne.ok) {
+        setError("Please fill all information correctly");
+        // set the errors to inform the user
+        setErrorPrice(json.price.kind);
+        setErrorArtTitle(json.artTitle.kind);
+        setErrorArtType(json.artType.kind);
+        setErrorArtSpecs(json.artSpecs.kind);
+        setErrorArtDetails(json.artDetails.kind);
+        setErrorArtistName(json.artistName.kind);
+        setErrorArtistBio(json.artistBio.kind);
+      }
+      if (resposne.ok) {
+        // set all errors to null
+        setErrorPrice(null);
+        setErrorArtTitle(null);
+        setErrorArtType(null);
+        setErrorArtSpecs(null);
+        setErrorArtDetails(null);
+        setErrorArtistName(null);
+        setErrorArtistBio(null);
+        // go to search page if everything is okay
+        navigate("/search");
+      }
     };
 
     ThePost();
-
-    navigate("/search");
   };
 
-  // upload image
-  const handleImageUpload = async (e) => {
-    const fileInput = e.target.files[0];
-    setImage(fileInput);
-
-    const imgUrl = URL.createObjectURL(fileInput);
-
-    setImagePreview(imgUrl);
-  };
-
+  // navigate between sections of form
   const handleSectionNavigate = (index) => {
     setTogglePage(index);
 
@@ -158,14 +192,13 @@ const CreateListing = () => {
     }
   };
 
-  // Add the stuff
   return (
     <div className="wrapper-upload__art">
       <FormHeader header={header} />
 
       <form className="form__upload-art" onSubmit={handlePostSubmit}>
         <ProgressBar progress={progressFilled} />
-        {/* Section ONE */}
+        {/* SECTION ONE */}
         <div
           className={
             togglePage === 1
@@ -175,7 +208,7 @@ const CreateListing = () => {
         >
           {/* Price */}
           <input
-            className="text-input"
+            className={errorPrice ? "text-input--error" : "text-input"}
             placeholder=""
             type="text"
             id="upload-art--price"
@@ -183,10 +216,15 @@ const CreateListing = () => {
           />
           <label
             htmlFor="upload-art--price"
-            className="text-input__label"
+            className={
+              errorPrice ? "text-input__label--error" : "text-input__label"
+            }
             id="log-in--password"
           >
             <span>Price</span>
+            {errorPrice ? (
+              <span className="text-error"> Price is {errorPrice}</span>
+            ) : null}
           </label>
 
           {/* Art Title */}
@@ -290,7 +328,7 @@ const CreateListing = () => {
           </div>
         </div>
 
-        {/* Section TWO */}
+        {/* SECTION TWO */}
         <div
           className={
             togglePage === 2
@@ -349,7 +387,7 @@ const CreateListing = () => {
           </div>
         </div>
 
-        {/* Section THREE */}
+        {/* SECTION THREE */}
 
         {/* Upload Images */}
         <div
@@ -375,6 +413,7 @@ const CreateListing = () => {
             {/* conditional rendering of placeholder */}
             {image ? <img src={imagePreview} alt="" /> : null}
           </div>
+          {error ? <span>{error}</span> : null}
           <div className="upload-art__navigation">
             <div
               className="btn-outline"
