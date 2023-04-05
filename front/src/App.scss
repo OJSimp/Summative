@@ -86,13 +86,15 @@ h3{
     color: #606060; 
     font-size: 1.1rem; 
     font-weight: 400;
+  
 }
 
 h4{
     font-family: 'Roboto', Arial, sans-serif;
     color: #2A2A2A; 
     font-size: 1rem; 
-    font-weight: 500;
+    font-weight: 500;  
+    line-height:2.5;
 }
 
 //---- H5 = LOGO ONLY USE !!-----\\
@@ -116,6 +118,20 @@ p{
     color: #2A2A2A; 
     font-size: 1rem; 
     font-weight: 400;
+}
+
+.text-error{
+    background-color: white;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #cc0000;
+    font-size: 0.75rem;
+    font-weight: 400;
+    top: 40px;
+}
+
+a{
+text-decoration: none;
+
 }
 
 
@@ -162,15 +178,52 @@ p:visited{
     font-weight: 900;
 }
 
+a:active{
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #2A2E45; 
+    font-size: 1rem; 
+    font-weight: 900;
+}
+
+a:hover{
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #606060; 
+    font-size: 1rem; 
+    font-weight: 900;
+}
+
+a:visited{
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #606060; 
+    font-size: 1rem; 
+    font-weight: 900;
+}
+
+
 
 ///----------- BUTTONS -----------\\\
 
+// remove base styling
+button{
+outline: inherit;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
+
+}
 
 .btn-text{
     font-family: 'Roboto', Arial, sans-serif;
     color: #2A2A2A; 
     font-size: 1rem; 
     font-weight: 500;
+    // Spencer's additions
+    padding: 8px;
+    border-radius: 2px;
+    background-color: #FDFDFD;
 }
 
 .btn-primary{
@@ -185,6 +238,7 @@ p:visited{
     text-align: center;
     margin-top: 10px;
     padding: 10px 20px;
+    outline: none;
 }
 
 .btn-primary:hover{
@@ -195,7 +249,7 @@ p:visited{
     background-color:#2A2A2A;
 }
 
-.btn-outline{
+.btn-outline {
     border: 1px solid #2A2E45;
     border-radius: 2px;
     border-width: 0px;
@@ -207,6 +261,16 @@ p:visited{
     text-align: center;
     margin-top: 10px;
     padding: 10px 20px;
+    
+}
+
+.btn-outline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid #2A2E45;
+    background-color: inherit;
 }
 
 .btn-outline:hover{
@@ -293,11 +357,27 @@ border-radius: 2px;
   }
 }
 
+.text-input--error{
+    border-radius: 2px;
+    border: 1px solid #cc0000;
+    padding: 30px 10px 10px 20px;
+    margin-bottom: 10px;
+ 
+}
+.text-input__label--error {
+    position: relative;
+
+    span {
+        position: absolute;
+        transform: translate(20px, -60px);
+        
+    }
+}
+
 
 // Input with Icon
 
 .text-input--icon {
-
  padding: 30px 10px 10px 20px;
  border: 1px solid #606060;
  margin-bottom: 10px;
@@ -310,12 +390,21 @@ border-radius: 2px;
  font-size: .9rem;
  font-weight: 500;
 
- span {
-  position: absolute;
-  transform: translate(20px, -60px);
- }
+    span {
+     position: absolute;
+     transform: translate(20px, -60px);
+    }
+}
+.input-icon {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    bottom: 52px;
+    padding-right: 20px;
+    height: 0px;
 
 }
+
 
 // text area
 

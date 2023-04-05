@@ -1,5 +1,29 @@
+.access-page{
+
+@media (min-width: 599px) {
+  display: grid;
+   grid-template-columns: 1fr 1fr;
+   height: 88vh;
+   background-color: #FDFDFD;
+ }
+
+
+.access-desktop{
+ background-image: url("https://media.istockphoto.com/id/1134512518/photo/abstract-hand-painted-art-background-on-canvas.jpg?b=1&s=612x612&w=0&k=20&c=UfkeC1cZHV-jAB1pUEg5zdr_0wMv32eZWDbPTQn6748=");
+ background-repeat: no-repeat;
+ background-size: cover;
+
+ @media (max-width: 599px) {
+   display: none;
+  }
+}
+}
 .access-container{
- margin-bottom: 80px;
+ margin-bottom: 100px;
+
+  @media (min-width: 599px) {
+   margin-bottom: 0
+   }
 
 .access__header{
  display: flex;
@@ -31,13 +55,13 @@
 }
 
 .btn-access--active{
- background-color: white;
+ background-color: #FDFDFD;
   
 
 }
 
 .btn-access--inactive {
-
+ background-color: #f4f4f4;
 
 }
 
@@ -47,12 +71,12 @@
  flex-direction: column;
  align-items: center;
  padding: 5% 10%;
- background-color: white;
+ background-color: #FDFDFD;
 
- button {
-  width: 100%;
-  padding: 16px 20px;
-  margin: 10px 0;
- }
+ @media (min-width: 599px) {
+   margin: auto;
+   max-width: 85%;
+  }
+
 }
 }

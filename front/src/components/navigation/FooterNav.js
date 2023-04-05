@@ -11,7 +11,7 @@ const FooterNav = () => {
   return (
     <div className="nav__footer">
       <NavLink
-        to={user ? "/" : "/sign-up"}
+        to="/"
         className={({ isActive }) =>
           isActive ? "btn-nav btn-nav--active" : "btn-nav btn-nav--inactive"
         }
@@ -47,7 +47,7 @@ const FooterNav = () => {
       </NavLink>
 
       <NavLink
-        to="/profile"
+        to={user ? "/profile" : "/access/sign-up"}
         className={({ isActive }) =>
           isActive ? "btn-nav btn-nav--active" : "btn-nav btn-nav--inactive"
         }

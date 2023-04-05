@@ -2,10 +2,11 @@
  display: flex;
  flex-direction: column;
  padding: 20px 10%;
- background-color: white;
+ background-color: #FDFDFD;
 
- button {
-  padding: 16px 20px;
-  margin: 10px 0;
- }
+ @media (min-width: 599px) {
+   margin: auto;
+   max-width: 85%;
+  }
+
 }

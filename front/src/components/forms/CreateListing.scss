@@ -1,21 +1,25 @@
+// manully adding btn-outline styling to div
+
 .form__upload-art{
-background-color: white;
+background-color: #FDFDFD;
 padding-top: 10px;
 margin-bottom: 90px;
+
+@media (min-width: 599px) {
+    margin: auto;
+    max-width: 450px;
+  }
 }
 // form sections - navigate between
 .upload-art__section--active{
   display: flex;
   flex-direction: column;
-  padding: 10px 20px;
-  
-  
+  padding: 10px 20px; 
 }
 
 .upload-art__section--inactive {
   display: none
 }
-
 
 // form progress bar 
 
@@ -28,13 +32,8 @@ margin-bottom: 90px;
   
   button{
   width: 100%;
-  
   }
-  
-
 }
-
-
 
 // Dropdown 
 
@@ -62,7 +61,6 @@ margin-bottom: 10px;
   padding: 10px 20px;
   
   }
-
 
   .select-input__details{
   display: flex;

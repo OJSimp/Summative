@@ -2,11 +2,13 @@ import "./ProfileNav.scss";
 
 import { useEffect } from "react";
 
+import Access from "../../pages/Access";
+
 import { useLogout } from "../../hooks/useLogOut";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useGetUser } from "../../hooks/useGetUser";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const ProfileNav = () => {
   // check if user is logged in from token
@@ -17,6 +19,8 @@ const ProfileNav = () => {
 
   // call get user details
   const { userDetails, firstName } = useGetUser();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -32,10 +36,7 @@ const ProfileNav = () => {
         <div>
           <div className="nav-profile">
             <div className="profile__details">
-              <h2>
-                My Profile - {firstName}{" "}
-                {/* Zee Insert your Get Request here for name*/}
-              </h2>
+              <h2>My Profile - {firstName}</h2>
               {user && <p>{user.email}</p>}
             </div>
 
@@ -95,6 +96,7 @@ const ProfileNav = () => {
                 className="nav-btn__profile"
                 onClick={() => {
                   logout();
+                  navigate("/search");
                 }}
               >
                 <h3>Log Out</h3>
@@ -118,8 +120,7 @@ const ProfileNav = () => {
         </div>
       ) : (
         <div>
-          <button className="btn-outline">Log In</button>
-          <button className="btn-outline">Sign Up</button>
+          <Access />
         </div>
       )}
     </>

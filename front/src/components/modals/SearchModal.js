@@ -2,8 +2,9 @@ import "./SearchModal.scss";
 
 import { useState } from "react";
 
-import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
-import { BiChevronRight } from "react-icons/bi";
+import { AiOutlineSearch } from "react-icons/ai";
+import { MdOutlineClose } from "react-icons/md";
+import { BiChevronRight, BiChevronDown } from "react-icons/bi";
 
 import FormHeader from "../headers/FormHeader";
 
@@ -26,6 +27,7 @@ const SearchModal = (props) => {
     // const searchValue = e.target.id;
     const searchValue = e.target.id;
     props.searchModal(searchValue);
+    setSearchModal(false);
   };
 
   const artTypes = artTypeObject.map((types, index) => {
@@ -72,32 +74,33 @@ const SearchModal = (props) => {
                     setShowArtType(false);
                   }}
                 >
-                  <AiOutlineClose />
+                  <MdOutlineClose />
                 </button>
               </div>
               <div className="search-modal__header-input">
                 <input
                   type="text"
                   placeholder="Search"
+                  className="search-input"
                   onChange={(e) => setSearchValue(e.target.value)}
                 />
-                <span>
+                <span className="input-icon">
                   <AiOutlineSearch />
                 </span>
               </div>
             </div>
             <div className="seach-modal__body">
               <div className="search-modal__art-type">
-                <FormHeader header="Art Type" />
+                <div className="search-accordion">
+                  <h4>Art Type</h4>
+                  <span>
+                    <BiChevronDown />
+                  </span>
+                </div>
                 {artTypes}
               </div>
-              <div className="search-modal__ft-artist">
-                <FormHeader header="Featured Artists" />
-              </div>
+              <div className="search-modal__ft-artist"></div>
             </div>
-
-            {/* conditonal rendering the search options */}
-            {/* when show art type is true pick filter by art type*/}
           </div>
         ) : null}
       </>

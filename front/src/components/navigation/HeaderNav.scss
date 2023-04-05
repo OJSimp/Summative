@@ -1,0 +1,32 @@
+// Mobile header
+
+.nav-header--mobile{
+
+ @media (min-width: 599px) {
+   display: none;
+  }
+}
+
+// Desktop header
+
+.nav-header--desktop{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 20px;
+ background-color: #FDFDFD;
+ margin-bottom: 20px;
+
+  @media (max-width: 599px) {
+  display: none;
+  }
+
+ .header__profile{
+ .btn-outline{
+ span{
+ padding-left: 10px;
+ }
+ }
+ }
+
+}

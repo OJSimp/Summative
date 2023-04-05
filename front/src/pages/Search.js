@@ -5,12 +5,22 @@ import { useState, useEffect } from "react";
 import ListingCard from "../components/cards/ListingCard";
 import SearchModal from "../components/modals/SearchModal";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 const Search = () => {
+  const { dispatch } = useAuthContext();
+
   const [listingArray, setListingArray] = useState(null);
 
-  const [searchValue, setSearchValue] = useState(null);
-
   const editListingsPage = "listing-details";
+
+  // log in user if there is a user in local storage
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      dispatch({ type: "LOGIN", payload: user });
+    }
+  }, []);
 
   // on page load get all data
 
@@ -29,8 +39,6 @@ const Search = () => {
 
   // take the search value taken from the modal
   const searchModal = (searchValue) => {
-    console.log(searchValue);
-    setSearchValue(searchValue);
     // re-run the get request once information received
     const getSearchData = async () => {
       const response = await fetch(
@@ -48,7 +56,9 @@ const Search = () => {
 
   return (
     <div className="search__page">
-      <SearchModal searchModal={searchModal} />
+      <div className="search__header">
+        <SearchModal searchModal={searchModal} />
+      </div>
       {listingArray ? (
         <ListingCard listings={listingArray} link={editListingsPage} />
       ) : null}

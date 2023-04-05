@@ -1,5 +1,10 @@
 .form__header{
- padding: 10px 0px;
- padding-left: 20px;
+ padding: 20px 10px 20px 20px;
  width: 50%;
+ background-color: #FDFDFD;
+
+ @media (min-width: 599px) {
+   margin: auto;
+   max-width: 450px;
+  }
 }

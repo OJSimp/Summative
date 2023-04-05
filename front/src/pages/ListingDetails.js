@@ -1,14 +1,17 @@
 import "./ListingDetails.scss";
 
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import { useGetUser } from "../hooks/useGetUser";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 import Accordion from "../components/accordion/Accordion";
+import EditListingPage from "../components/forms/EditListings";
+
 import ListingComments from "../components/cards/ListingComment";
+import FormHeader from "../components/headers/FormHeader";
 
 import { AiOutlineSend } from "react-icons/ai";
 
@@ -85,36 +88,43 @@ const ListingDetials = () => {
   const handleAddComment = (e) => {
     e.preventDefault();
 
-    // If there is comment data
-    if (commentDetails) {
-      const postArray = {
-        creatorId: ID,
-        firstName: firstName,
-        lastName: lastName,
-        details: commentDetails,
-      };
+    if (!user) {
+      setCommentsError("Log in to comment on this post");
+    }
+    if (user) {
+      // If there is comment data
+      if (commentDetails) {
+        const postArray = {
+          creatorId: ID,
+          firstName: firstName,
+          lastName: lastName,
+          details: commentDetails,
+        };
 
-      const putComment = async () => {
-        const resposne = await fetch(
-          `http://localhost:8001/listings/${listingId}/comments`,
-          {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(postArray),
-          }
-        );
-        const data = await resposne.json();
-        console.log(data);
-        // reload data after PUT request is fired
-        listingDetails();
-      };
-      putComment(postArray);
+        const putComment = async () => {
+          const resposne = await fetch(
+            `http://localhost:8001/listings/${listingId}/comments`,
+            {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(postArray),
+            }
+          );
+          const data = await resposne.json();
+          console.log(data);
+          // reload data after PUT request is fired
+          listingDetails();
+        };
+        putComment(postArray);
 
-      // If there is no comment data
-    } else {
-      setCommentsError("Cannot postComment");
+        // If there is no comment data
+      }
+      if (!commentDetails) {
+        setCommentsError("Please add a comment");
+      }
     }
 
+    // clear the input aftter PUT request
     setCommentDetails("");
   };
 
@@ -125,15 +135,20 @@ const ListingDetials = () => {
       <div className="listing-details__info">
         <div className="listing-details__container listing-details__header">
           <h3>{artTitle}</h3>
-          <p>{artistName}</p>
-          <p>{price}</p>
-          <p>{artType}</p>
+          <p>
+            <span>Artist: </span>
+            {artistName}
+          </p>
+          <p>
+            <span>Price: </span>
+            {price}
+          </p>
         </div>
 
         <Accordion
           details={artDetails}
-          subDetails={artSpecs}
           artType={artType}
+          artSpecs={artSpecs}
           heading="Artwork Details"
           index="0"
         />
@@ -142,14 +157,11 @@ const ListingDetials = () => {
 
         <div className="listing-details__container listing-details__buttons">
           <button className="btn-primary">Purcahse Artwork</button>
-          <button className="btn-outlie">Add To Cart</button>
+          <button className="btn-outline">Add To Cart</button>
         </div>
 
         <div className="listing-details__comments">
-          <div className="header header--form">
-            <h4>Comments</h4>
-          </div>
-
+          <FormHeader header={"Comments"} />
           {commentsArray ? (
             <ListingComments
               listingId={listingId}
@@ -158,7 +170,6 @@ const ListingDetials = () => {
               reloadData={listingDetails}
             />
           ) : null}
-
           <form className="form--add-comments" onSubmit={handleAddComment}>
             <textarea
               className="text-input"
@@ -176,6 +187,7 @@ const ListingDetials = () => {
               <AiOutlineSend />
             </button>
           </form>
+          <span className="text-error">{commentsError}</span>
         </div>
       </div>
     </div>

@@ -48,22 +48,28 @@ const upload = multer({
 // LISTINGS //
 
 app.post("/listings", async (req, res) => {
-  await Listing.create({
-    creatorId: req.body.creatorId,
-    price: req.body.price,
-    artTitle: req.body.artTitle,
-    artSpecs: req.body.artSpecs,
-    artType: req.body.artType,
-    artDetails: req.body.artDetails,
-    artistName: req.body.artistName,
-    artistBio: req.body.artistBio,
-    dateCreated: req.body.creationDate,
-    status: req.body.status,
-    image: req.body.file.file,
-  });
+  // add try catch block to POST request
+  try {
+    const artListing = await Listing.create({
+      creatorId: req.body.creatorId,
+      price: req.body.price,
+      artTitle: req.body.artTitle,
+      artSpecs: req.body.artSpecs,
+      artType: req.body.artType,
+      artDetails: req.body.artDetails,
+      artistName: req.body.artistName,
+      artistBio: req.body.artistBio,
+      dateCreated: req.body.creationDate,
+      status: req.body.status,
+      image: req.body.file.file,
+    });
 
-  console.log("posted");
-  res.send("posted");
+    res.status(200).json(artListing);
+    console.log("posted");
+  } catch (error) {
+    res.status(400).json(error.errors);
+    console.log(error.message);
+  }
 });
 
 // view all listings
@@ -111,9 +117,30 @@ app.get("/your-listings/:creatorId", async (req, res) => {
   res.json(viewAListing);
 });
 
-// add listing comments
-
 // add listing
+
+app.put("/listings/:listingId", async (req, res) => {
+
+  const listingId = req.params.listingId
+  const putListing = req.body
+
+  const updatedListing = await Listing.findByIdAndUpdate(listingId)
+
+  // modify the original object in the array)
+  updatedListing.price = putListing.price;
+  updatedListing.artTitle = putListing.artTitle;
+  updatedListing.artSpecs = putListing.artSpecs;
+  updatedListing.artType = putListing.artType;
+  updatedListing.artDetails = putListing.artDetails;
+  updatedListing.artistName = putListing.artistName;
+  updatedListing.artistBio = putListing.artistBio;
+
+  const post = await updatedListing.save();
+  res.json(post);
+
+})
+
+// add listing comments
 
 app.put("/listings/:id/comments", async (req, res) => {
   const postId = req.params.id;
@@ -144,13 +171,6 @@ app.delete("/listings/:listingid/comments/:commentid", async (req, res) => {
   res.json(post);
 
   console.log("Deleted Comment", commentsPulled.post);
-});
-
-app.delete("/listings/:listingId", async (req, res) => {
-  const deleteListing = await Listing.findByIdAndDelete(req.params.listingId);
-  res.json(deleteListing);
-
-  console.log("POST DELETED", deleteListing);
 });
 
 // delete listing comments
