@@ -6,12 +6,14 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { MdOutlineClose } from "react-icons/md";
 import { BiChevronRight, BiChevronDown } from "react-icons/bi";
 
-import FormHeader from "../headers/FormHeader";
+import SearchAccordion from "../accordion/SearchAccordion";
 
 const SearchModal = (props) => {
   const [searchModal, setSearchModal] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [showArtType, setShowArtType] = useState(false);
+  const [priceMin, setPriceMin] = useState(null);
+  const [priceMax, setPriceMax] = useState(null);
 
   const artTypeObject = [
     "Paintings",
@@ -99,7 +101,14 @@ const SearchModal = (props) => {
                 </div>
                 {artTypes}
               </div>
-              <div className="search-modal__ft-artist"></div>
+              <div className="search-modal__ft-artist">
+                <SearchAccordion
+                  setSearchModal={setSearchModal}
+                  setSearchValue={setSearchValue}
+                  setPriceMin={setPriceMin}
+                  setPriceMax={setPriceMax}
+                />
+              </div>
             </div>
           </div>
         ) : null}
