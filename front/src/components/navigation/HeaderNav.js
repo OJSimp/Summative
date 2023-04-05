@@ -27,9 +27,9 @@ const HeaderNav = () => {
       </div>
 
       <div className="nav-header--desktop">
-        <div className="af__logo">
-          <h5>+ Art</h5>
-        </div>
+      <Link to="./home" className="app__logo">
+          <h5>+ Art</h5></Link> 
+          
         <div className="header__nav-links">
           <NavLink to="/" className="btn-text">
             Home
