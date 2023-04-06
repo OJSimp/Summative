@@ -8,9 +8,8 @@ import SearchModal from "../components/modals/SearchModal";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const Search = () => {
-  const { dispatch } = useAuthContext();
-
   const [listingArray, setListingArray] = useState(null);
+  const { dispatch } = useAuthContext();
 
   const editListingsPage = "listing-details";
 
@@ -38,11 +37,11 @@ const Search = () => {
   }, []);
 
   // take the search value taken from the modal
-  const searchModal = (searchValue) => {
+  const searchModal = (artType) => {
     // re-run the get request once information received
     const getSearchData = async () => {
       const response = await fetch(
-        `http://localhost:8001/searchlistings/${searchValue}`,
+        `http://localhost:8001/searchlistings/${artType}`,
         {
           method: "GET",
         }
@@ -54,10 +53,23 @@ const Search = () => {
     getSearchData();
   };
 
+  const priceFilter = async (minValue, maxValue) => {
+    console.log(minValue, maxValue);
+    const response = await fetch(
+      `http://localhost:8001/searchlistings/${minValue}/${maxValue}`,
+      {
+        method: "GET",
+      }
+    );
+    const data = await response.json();
+    const dataArray = data;
+    setListingArray(dataArray);
+  };
+
   return (
     <div className="search__page">
       <div className="search__header">
-        <SearchModal searchModal={searchModal} />
+        <SearchModal searchModal={searchModal} priceFilter={priceFilter} />
       </div>
       {listingArray ? (
         <ListingCard listings={listingArray} link={editListingsPage} />

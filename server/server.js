@@ -82,7 +82,7 @@ app.get("/listings/", async (req, res) => {
   res.json(viewAllListing);
 });
 
-// // search for listing by
+// search for listing by type
 app.get("/searchlistings/:type", async (req, res) => {
   const artType = req.params.type;
 
@@ -91,6 +91,14 @@ app.get("/searchlistings/:type", async (req, res) => {
   console.log(viewListings);
 
   res.json(viewListings);
+});
+
+// search for listing by price range
+app.get("/searchlistings/:minValue/:maxValue", async (req, res) => {
+  const minValue = req.params.minValue;
+  const maxValue = req.params.maxValue;
+
+  console.log(minValue, maxValue);
 });
 
 // get listing by Id
@@ -120,11 +128,10 @@ app.get("/your-listings/:creatorId", async (req, res) => {
 // add listing
 
 app.put("/listings/:listingId", async (req, res) => {
+  const listingId = req.params.listingId;
+  const putListing = req.body;
 
-  const listingId = req.params.listingId
-  const putListing = req.body
-
-  const updatedListing = await Listing.findByIdAndUpdate(listingId)
+  const updatedListing = await Listing.findByIdAndUpdate(listingId);
 
   // modify the original object in the array)
   updatedListing.price = putListing.price;
@@ -137,8 +144,7 @@ app.put("/listings/:listingId", async (req, res) => {
 
   const post = await updatedListing.save();
   res.json(post);
-
-})
+});
 
 // add listing comments
 

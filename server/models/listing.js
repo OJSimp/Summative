@@ -10,7 +10,7 @@ const commentsSchema = new mongoose.Schema({
 });
 
 const listingSchema = new mongoose.Schema({
-  creatorId: { type: String, required: true },
+  creatorId: { type: String },
   price: { type: Number, required: true },
   artTitle: { type: String, required: true },
   artSpecs: { type: String, required: true },

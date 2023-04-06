@@ -1,0 +1,42 @@
+.search-accordion__header{
+ padding: 20px;
+ margin-top: 5px;
+}
+
+.search-accordion__body{
+ display: flex;
+ padding: 0px 20px;
+ flex-direction: column;
+ background-color: #FDFDFD;
+ gap: 5px;
+ 
+ .number-input{
+  position: relative;
+  padding: 30px 10px 10px 20px;
+  }
+
+  .number-input__label{
+  display: flex;
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #2A2A2A;
+  font-size: .9rem;
+  font-weight: 500;
+
+  
+  span{
+  position: absolute;
+  left: 100px;
+  transform: translate(-60px, -50px);
+  }
+ }
+
+ .input-icon{
+  bottom: 52px;
+ 
+ }
+
+ button{
+ margin-top: 0px;
+ margin-bottom: 20px;
+ }
+}

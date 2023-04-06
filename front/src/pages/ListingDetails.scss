@@ -3,18 +3,37 @@
 .listing-details{
   display: grid;
   grid-template-columns: auto;
-
   margin-bottom: 100px;
+
+
+  @media (min-width: 599px) {
+    margin: auto;
+    grid-template-columns: 3fr 2fr;
+    max-width: 1400px;
+    background-color: #FDFDFD;
+    margin-bottom: 0px;
+    }
 
 .listing-details__img{
  display: flex;
  height: 420px;
  width: 100%;
  background-color: #f4f4f4;
+
+@media (min-width: 599px) {
+   height: 88vh;
+   
+  }
 }
 
 .listing-details__info{
  background-color: #f4f4f4;;
+
+  @media (min-width: 599px) {
+  background-color: #FDFDFD;
+  padding: 5%;
+  }
+ 
 
 .listing-details__container{
  display: flex;
@@ -23,6 +42,7 @@
  padding: 20px;
  margin-bottom: 5px;
  gap: 10px;
+
 
 }
 // removes the gaps on the buttons
@@ -33,6 +53,13 @@
 // Comments scss
 
 .listing-details__comments{
+
+  .form__header{
+  @media (min-width: 599px) {
+      margin: 0;
+    }
+  
+  }
  
   .form--add-comments {
    display: flex;
