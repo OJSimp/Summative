@@ -144,6 +144,10 @@ const ListingDetials = () => {
             {price}
           </p>
         </div>
+        <div className="listing-details__container listing-details__buttons">
+          <button className="btn-primary">Purcahse Artwork</button>
+          <button className="btn-outline">Add To Cart</button>
+        </div>
 
         <Accordion
           details={artDetails}
@@ -154,11 +158,6 @@ const ListingDetials = () => {
         />
 
         <Accordion details={artistBio} heading="Artist Details" index="1" />
-
-        <div className="listing-details__container listing-details__buttons">
-          <button className="btn-primary">Purcahse Artwork</button>
-          <button className="btn-outline">Add To Cart</button>
-        </div>
 
         <div className="listing-details__comments">
           <FormHeader header={"Comments"} />

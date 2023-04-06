@@ -18,7 +18,7 @@ const Accordion = (props) => {
   };
 
   return (
-    <div>
+    <>
       <div
         className="accordion"
         onClick={() => {
@@ -57,7 +57,7 @@ const Accordion = (props) => {
           <p>{props.details}</p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

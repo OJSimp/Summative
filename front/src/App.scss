@@ -306,6 +306,21 @@ border-radius: 2px;
     background-color: #FDFDFD
 }
 
+.btn-cta{
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+background: none;
+
+    svg{
+    position: relative;
+    height: 34px;
+    left: 20px;
+    }
+
+}
+
 
 ///----------- TEXT INPUTS -----------\\\
 
@@ -402,6 +417,11 @@ border-radius: 2px;
     bottom: 52px;
     padding-right: 20px;
     height: 0px;
+}
+
+.number-input{
+
+
 
 }
 

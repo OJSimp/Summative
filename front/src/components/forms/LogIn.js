@@ -1,10 +1,6 @@
 import { useState } from "react";
 
 import { useLogIn } from "../../hooks/useLogin";
-import { useAuthContext } from "../../hooks/useAuthContext";
-// import { useGetUser } from "../../hooks/useGetUser";
-
-import { useNavigate } from "react-router-dom";
 
 import "./LogIn.scss";
 
@@ -13,16 +9,6 @@ const LogIn = () => {
   const [password, setPassword] = useState("");
 
   const { login, error, loading } = useLogIn();
-
-  // check if user is logged in from token
-  const { user } = useAuthContext();
-
-  // get user details after logged in
-  // const { userDetails } = useGetUser();
-
-  // navigate to search
-
-  const navigate = useNavigate();
 
   const handleLogIn = async (e) => {
     e.preventDefault();
