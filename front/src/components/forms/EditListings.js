@@ -64,7 +64,11 @@ const EditListings = () => {
   };
 
   // update the listing – List Artwork
-  const updateListing = () => {
+  const updateListing = async () => {
+    // prep image for post request
+    let imgB63 = await toBase64(image);
+    const file = { file: imgB63 };
+
     console.log("save");
 
     const put = {
@@ -75,6 +79,7 @@ const EditListings = () => {
       artDetails,
       artistName,
       artistBio,
+      file,
     };
     fetch(`http://localhost:8001/listings/${listingId}`, {
       method: "PUT",
@@ -283,6 +288,7 @@ const EditListings = () => {
         <div className="image-placeholder">
           {/* conditional rendering of placeholder */}
           {image ? <img src={image} alt="" /> : null}
+          {imagePreview ? <img src={imagePreview} alt="" /> : null}
         </div>
 
         <button className="btn-primary" onClick={updateListing}>
@@ -298,6 +304,5 @@ const EditListings = () => {
     </div>
   );
 };
-
 
 export default EditListings;
