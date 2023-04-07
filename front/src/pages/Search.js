@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 import ListingCard from "../components/cards/ListingCard";
 import SearchModal from "../components/modals/SearchModal";
+import SearchFilter from "../components/forms/SearchFliters";
 
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -69,6 +70,7 @@ const Search = () => {
   return (
     <div className="search__page">
       <div className="search__header">
+        <SearchFilter searchModal={searchModal} />
         <SearchModal searchModal={searchModal} priceFilter={priceFilter} />
       </div>
       <div className="listing-card__gird">

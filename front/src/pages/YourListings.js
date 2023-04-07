@@ -51,7 +51,6 @@ const YourListings = () => {
           <p>My Profile</p>
         </Link>
       </div>
-      <p>Edit Listings</p>
       <div className="card-grid--profile">
         {listingArray ? (
           <ListingCard listings={listingArray} link={editListingsPage} />
