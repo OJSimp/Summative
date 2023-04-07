@@ -3,6 +3,7 @@
 
 .edit-profile{
     height:100vh;
+    width: 100%;
     background-color: #FDFDFD;
 }
 
@@ -11,9 +12,10 @@
     flex-direction: column;
     padding: 20px 10%;
 
-    // h4{
-    //     line-height:2.5;
-    // }
+     @media (min-width: 600px) {
+    margin: auto;
+    max-width: 550px;
+     }
    
     button {
      padding: 16px 20px;

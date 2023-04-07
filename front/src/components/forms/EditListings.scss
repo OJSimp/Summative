@@ -4,6 +4,11 @@
 .edit-listing{
     height:100vh;
     background-color: #FDFDFD;
+    
+@media (min-width: 599px) {
+    margin: auto;
+        max-width: 450px;
+    }
 }
 
 .form-listing__edit {

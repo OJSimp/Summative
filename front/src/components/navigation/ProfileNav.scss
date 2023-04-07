@@ -1,11 +1,16 @@
 .nav-profile{
+  background-color: #FDFDFD;
+  height: 100%;
 
  @media (min-width: 600px) {
    width: 360px;
   }
 
  .profile__details {
-  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 30px;
+  gap: 10px;
  }
 
  .nav-btn__profile {
@@ -13,6 +18,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 30px;
+  gap: 4px;
+  border-bottom: 2px solid #f4f4f4;
+  border-top: 2px solid #f4f4f4;
  }
 
  .nav-btn__profile--active{

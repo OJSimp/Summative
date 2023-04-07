@@ -71,9 +71,11 @@ const Search = () => {
       <div className="search__header">
         <SearchModal searchModal={searchModal} priceFilter={priceFilter} />
       </div>
-      {listingArray ? (
-        <ListingCard listings={listingArray} link={editListingsPage} />
-      ) : null}
+      <div className="listing-card__gird">
+        {listingArray ? (
+          <ListingCard listings={listingArray} link={editListingsPage} />
+        ) : null}
+      </div>
     </div>
   );
 };
