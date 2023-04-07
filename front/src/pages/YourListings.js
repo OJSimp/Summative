@@ -6,6 +6,8 @@ import ListingCard from "../components/cards/ListingCard";
 
 import { useState, useEffect } from "react";
 
+import { FaChevronLeft } from "react-icons/fa";
+
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useGetUser } from "../hooks/useGetUser";
 
@@ -43,9 +45,12 @@ const YourListings = () => {
 
   return (
     <div>
-      <Link to="/profile/" className="">
-        My Profile
-      </Link>
+      <div className="navigation-header">
+        <Link to="/profile">
+          <FaChevronLeft />
+          <p>My Profile</p>
+        </Link>
+      </div>
       <p>Edit Listings</p>
       <div className="card-grid--profile">
         {listingArray ? (

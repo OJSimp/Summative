@@ -4,8 +4,13 @@ import { useParams } from "react-router-dom";
 // import { Link } from "react-router-dom"
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import FormHeader from "../headers/FormHeader";
 
 import { useAuthContext } from "../../hooks/useAuthContext";
+
+import { FaChevronDown, FaChevronUp, FaChevronLeft } from "react-icons/fa";
 
 const EditListings = () => {
   const [price, setPrice] = useState("");
@@ -15,7 +20,11 @@ const EditListings = () => {
   const [artDetails, setArtDetails] = useState("");
   const [artistName, setArtistName] = useState("");
   const [artistBio, setArtistBio] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
+
+  const [imagePreview, setImagePreview] = useState(null);
+
+  const [dropdownActive, setDropdownActive] = useState(false);
 
   // storage of listing info
   const { listing } = useAuthContext();
@@ -74,11 +83,64 @@ const EditListings = () => {
     });
   };
 
+  // CUSTOM SELECTOR
+  // select options for artwork type
+  const artTypeArray = [
+    "Paintings",
+    "Sculpture",
+    "Photography",
+    "Prints",
+    "NFTs",
+  ];
+  // Map options to custom selector
+  const artTypeSelect = artTypeArray.map((option, index) => {
+    const handleSetArtType = (e) => {
+      setArtType(option);
+    };
+    return (
+      <li
+        key={index}
+        onClick={handleSetArtType}
+        className={
+          artType == option
+            ? "select-input__option--active"
+            : "select-input__option--inactive"
+        }
+      >
+        {option}
+      </li>
+    );
+  });
+
+  // MAGIC FUNCTION - turns file to base64 so monboDB can read
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  // upload image
+  const handleImageUpload = async (e) => {
+    const fileInput = e.target.files[0];
+    setImage(fileInput);
+
+    const imgUrl = URL.createObjectURL(fileInput);
+
+    setImagePreview(imgUrl);
+  };
+
   return (
     <div className="edit-listing">
+      <div className="navigation-header">
+        <Link to="/profile/edit-listings">
+          <FaChevronLeft />
+          <p>My Profile</p>
+        </Link>
+      </div>
+      <FormHeader header="Edit Your Listing" />
       <div className="form-listing__edit">
-        <h4>My Listing </h4>
-
         <input
           value={price}
           type="text"
@@ -121,18 +183,49 @@ const EditListings = () => {
           <span>Artwork Specs</span>
         </label>
 
-        <input
-          type="text"
-          placeholder="Select art category"
-          className="text-input--icon"
-          id="edit__art-type"
-          onChange={(e) => {
-            setArtType(e.target.value);
-          }}
-        />
-        <label htmlFor="edit__art-type" className="text-input__label">
-          <span>Art Type</span>
-        </label>
+        {/* Art Type - custom selector */}
+        <div className="select-input" id="upload-art--artwork-type">
+          {/* dropdown button */}
+          <div
+            className={
+              dropdownActive
+                ? "select-input__btn--active"
+                : "select-input__btn--inactive"
+            }
+            onClick={() => {
+              setDropdownActive(!dropdownActive);
+            }}
+          >
+            <div className="select-input__details">
+              <label
+                className="select-input__label"
+                htmlFor="upload-art--artwork-type"
+              >
+                <span>Artwork Type</span>
+              </label>
+              <p
+                className={
+                  !artType
+                    ? "select-input__value--inactive"
+                    : "select-input__value--active"
+                }
+              >
+                {!artType ? "-" : artType}
+              </p>
+            </div>
+            <span>{dropdownActive ? <FaChevronUp /> : <FaChevronDown />}</span>
+          </div>
+          {/* the dropdown */}
+          <div
+            className={
+              dropdownActive
+                ? "select-input__options--active"
+                : "select-input__options--inactive"
+            }
+          >
+            <ul>{artTypeSelect}</ul>
+          </div>
+        </div>
 
         <input
           value={artDetails}
@@ -176,16 +269,21 @@ const EditListings = () => {
           <span>About Artist</span>
         </label>
 
+        <label className="btn-outline" htmlFor="image">
+          Add Image
+        </label>
         <input
-          type="text"
-          placeholder="Image update"
-          className="text-input--icon"
-          id="edit__image"
-          onChange={(e) => {
-            setImage(e.target.value);
-          }}
+          onChange={(e) => handleImageUpload(e)}
+          className="hide"
+          type="file"
+          name="image"
+          id="image"
+          accept=".jpeg, .png, .jpg"
         />
-        <label htmlFor="edit__image" className="text-input__label"></label>
+        <div className="image-placeholder">
+          {/* conditional rendering of placeholder */}
+          {image ? <img src={image} alt="" /> : null}
+        </div>
 
         <button className="btn-primary" onClick={updateListing}>
           {" "}

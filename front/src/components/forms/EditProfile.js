@@ -1,6 +1,9 @@
 import "./EditProfile.scss";
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import { FaChevronLeft } from "react-icons/fa";
 
 // Hooks
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -46,6 +49,12 @@ const EditProfile = () => {
 
   return (
     <div className="edit-profile">
+      <div className="navigation-header">
+        <Link to="/profile">
+          <FaChevronLeft />
+          <p>My Profile</p>
+        </Link>
+      </div>
       {/* <Link to="/profile/" className="btn-text" >My Profile</Link> */}
       <form className="form-profile__edit" id="editUserDetails">
         <h4>My profile </h4>
