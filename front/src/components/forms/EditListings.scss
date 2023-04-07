@@ -2,14 +2,20 @@
 // pre loading current data.
 
 .edit-listing{
-    height:100vh;
-    background-color: #FDFDFD;
+    
+    
+@media (min-width: 599px) {
+    margin: auto;
+        max-width: 450px;
+    }
 }
 
 .form-listing__edit {
     display: flex;
     flex-direction: column;
-    padding: 20px 10%;
+    padding: 20px 20px;
+    margin-bottom: 100px;
+    background-color: #FDFDFD;
 
     // h4{
     //     line-height:2.5;

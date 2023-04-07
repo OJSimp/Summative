@@ -1,18 +1,8 @@
-.listing-card__gird {
- display: grid;
- grid-template-columns: 1fr;
- grid-gap: 10px;
- margin-bottom: 80px;
- padding: 15px 10px;
- background-color: #FDFDFD;
-
-@media (min-width: 599px) {
-  grid-template-columns: 1fr 1fr 1fr;
-  margin: auto;
-  }
-}
-
 .card--listing{
+
+  @media (min-width: 599px) {
+     max-width: 400px;
+    }
 
 .card--listing__image{
   width: 100%;

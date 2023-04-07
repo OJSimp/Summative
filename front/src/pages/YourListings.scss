@@ -1,0 +1,14 @@
+.card-grid--profile {
+ display: grid;
+ grid-template-columns: 1fr;
+ grid-gap: 10px;
+ margin-bottom: 80px;
+ padding: 15px 10px;
+ background-color: #FDFDFD;
+
+ @media (min-width: 599px) {
+  grid-template-columns: 1fr;
+  margin: auto;
+  padding: 20px 20%;
+ }
+}

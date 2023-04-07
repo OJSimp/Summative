@@ -51,9 +51,7 @@ const SearchModal = (props) => {
         }}
       >
         Search
-        <span>
-          <AiOutlineSearch />
-        </span>
+        <span>{/* <AiOutlineSearch /> */}</span>
       </button>
 
       {/* search modal only shown when showSearchModal set to true*/}
@@ -78,9 +76,7 @@ const SearchModal = (props) => {
                 className="search-input"
                 onChange={(e) => setArtType(e.target.value)}
               />
-              <span className="input-icon">
-                <AiOutlineSearch />
-              </span>
+              <span className="input-icon">{/* <AiOutlineSearch /> */}</span>
             </div>
           </div>
           <div className="seach-modal__body">

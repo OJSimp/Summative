@@ -1,5 +1,7 @@
 .desktop{
+margin: auto;
 display: grid;
-grid-template-columns: auto auto;
+grid-template-columns: 360px auto;
+max-width: 1200px;
 
 }

@@ -321,6 +321,27 @@ background: none;
 
 }
 
+//navigation link
+
+.navigation-header {
+
+    a {
+        display: flex;
+        align-items: center;
+        
+        padding: 10px;
+        background-color: #FDFDFD;
+        margin-bottom: 20px;
+
+        p{
+        padding: 10px;
+        
+        }
+    }
+
+
+}
+
 
 ///----------- TEXT INPUTS -----------\\\
 
