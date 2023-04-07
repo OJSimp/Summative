@@ -299,4 +299,5 @@ const EditListings = () => {
   );
 };
 
+
 export default EditListings;
