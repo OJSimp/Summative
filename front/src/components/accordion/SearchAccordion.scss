@@ -27,6 +27,9 @@
   position: absolute;
   left: 100px;
   transform: translate(-60px, -54px);
+  @media (min-width: 599px) {
+    transform: translate(-44px, -54px);
+   }
   }
  }
 

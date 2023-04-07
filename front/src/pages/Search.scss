@@ -1,3 +1,4 @@
+
 .listing-card__gird {
  display: grid;
  grid-template-columns: 1fr;
@@ -7,12 +8,26 @@
  background-color: #FDFDFD;
 
  @media (min-width: 599px) {
-  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1fr 1fr;
   margin: auto;
  }
+
+  @media (min-width: 1150px) {
+   width: 100%;
+   height: 100%;
+   grid-template-columns: 1fr 1fr 1fr;
+   margin: auto;
+  }
 }
 
 .search__page{
+
+ @media (min-width: 599px) {
+  display: grid;
+   grid-template-columns: 1fr 3fr;
+  }
 
  .search__header{
  padding: 10px 15px;
@@ -20,6 +35,7 @@
  border-bottom: #f4f4f4 1px solid;
  border-top: #f4f4f4 1px solid;
  margin-bottom: 20px;
+ min-width: 300px;
  }
 }
 
