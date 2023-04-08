@@ -1,7 +1,7 @@
 import "./EditProfile.scss";
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { FaChevronLeft } from "react-icons/fa";
 
@@ -10,20 +10,39 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useGetUser } from "../../hooks/useGetUser";
 
 const EditProfile = () => {
-  //  const [email, setEmail] = useState("")
-  const [editfirstName, setFirstName] = useState("");
-  const [editlastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [ID, setID] = useState();
 
   // storage of user information
   const { user } = useAuthContext();
 
+  const navigate = useNavigate();
+
   // useGetUser function - get user information
-  const { userDetails, firstName, lastName, email, ID } = useGetUser();
+  // const { userDetails, firstName, lastName, email, ID } = useGetUser();
 
   useEffect(() => {
     if (user) {
       const userEmail = user.email;
-      userDetails(userEmail);
+
+      const getUserDetails = async () => {
+        const response = await fetch(
+          `http://localhost:8001/users/${userEmail}`,
+          { method: "GET" }
+        );
+        const userResponse = await response.json();
+
+        const user = userResponse[0];
+
+        setFirstName(user.firstName);
+        setLastName(user.lastName);
+        setEmail(user.email);
+        setID(user._id);
+      };
+
+      getUserDetails();
     }
   }, [user]);
 
@@ -33,18 +52,17 @@ const EditProfile = () => {
 
     // await fetch
     await fetch(`http://localhost:8001/users/${ID}`, { method: "DELETE" });
+    navigate("/search");
   };
 
-  const updateProfile = (e) => {
-    e.preventdefault();
-    console.log("save");
-
-    const put = { editfirstName, editlastName };
+  const updateProfile = () => {
+    const put = { firstName, lastName, email };
     fetch(`http://localhost:8001/users/${email}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(put),
     });
+    navigate("/search");
   };
 
   return (
@@ -56,7 +74,7 @@ const EditProfile = () => {
         </Link>
       </div>
       {/* <Link to="/profile/" className="btn-text" >My Profile</Link> */}
-      <form className="form-profile__edit" id="editUserDetails">
+      <div className="form-profile__edit" id="editUserDetails">
         <h4>My profile </h4>
 
         <input
@@ -101,6 +119,7 @@ const EditProfile = () => {
           placeholder="email@gmail.com"
           className="text-input--icon"
           id="log-in__email"
+          onChange={(e) => setEmail(e.target.value)}
         />
         <label
           htmlFor="log-in__email"
@@ -117,7 +136,7 @@ const EditProfile = () => {
         <button className="btn-outline" onClick={handleDeleteProfile}>
           Delete Profile
         </button>
-      </form>{" "}
+      </div>{" "}
       {/* form ends */}
     </div>
   );

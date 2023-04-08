@@ -125,7 +125,7 @@ app.get("/your-listings/:creatorId", async (req, res) => {
   res.json(viewAListing);
 });
 
-// add listing
+// Update listing listing
 
 app.put("/listings/:listingId", async (req, res) => {
   const listingId = req.params.listingId;
@@ -141,6 +141,7 @@ app.put("/listings/:listingId", async (req, res) => {
   updatedListing.artDetails = putListing.artDetails;
   updatedListing.artistName = putListing.artistName;
   updatedListing.artistBio = putListing.artistBio;
+  updatedListing.image = putListing.file.file;
 
   const post = await updatedListing.save();
   res.json(post);
