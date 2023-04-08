@@ -78,7 +78,7 @@ const SearchModal = (props) => {
                 className="search-input"
                 onChange={(e) => setArtType(e.target.value)}
               />
-              <span className="input-icon">
+              <span className="search-icon">
                 <AiOutlineSearch />
               </span>
             </div>
