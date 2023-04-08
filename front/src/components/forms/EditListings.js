@@ -1,6 +1,6 @@
 import "./EditListings.scss";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom"
 
 import { useEffect, useState } from "react";
@@ -26,11 +26,10 @@ const EditListings = () => {
 
   const [dropdownActive, setDropdownActive] = useState(false);
 
-  // storage of listing info
-  const { listing } = useAuthContext();
-
   // pull the id from the URL
   const listingId = useParams().listingsId;
+
+  const navigate = useNavigate();
 
   // fetch listing details
   useEffect(() => {
@@ -86,6 +85,7 @@ const EditListings = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(put),
     });
+    navigate("/search");
   };
 
   // CUSTOM SELECTOR

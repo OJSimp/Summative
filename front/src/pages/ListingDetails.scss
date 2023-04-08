@@ -63,6 +63,7 @@
  
   .form--add-comments {
    display: flex;
+   position: relative;
    justify-content: space-between;
    background-color: #FDFDFD;
    padding: 20px;
@@ -88,9 +89,10 @@
 }
 
   .text-error{
-  display: flex;
-  padding-left: 20px;
-  padding-bottom: 20px;
+  position: absolute;
+  padding: 5px;
+  top: 94px;
+  left: 30px;
   background-color: #FDFDFD;
   }
 }

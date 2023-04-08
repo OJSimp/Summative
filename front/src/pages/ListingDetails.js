@@ -171,7 +171,7 @@ const ListingDetials = () => {
           ) : null}
           <form className="form--add-comments" onSubmit={handleAddComment}>
             <textarea
-              className="text-input"
+              className={commentsError ? "text-input--error" : "text-input"}
               name=""
               id="comment-input"
               cols="30"
@@ -179,6 +179,7 @@ const ListingDetials = () => {
               value={commentDetails}
               onChange={(e) => setCommentDetails(e.target.value)}
             />
+            <span className="text-error">{commentsError}</span>
             <label className="text-input__label" htmlFor="comment-input">
               Add Comment
             </label>
@@ -186,7 +187,6 @@ const ListingDetials = () => {
               <AiOutlineSend />
             </button>
           </form>
-          <span className="text-error">{commentsError}</span>
         </div>
       </div>
     </div>
