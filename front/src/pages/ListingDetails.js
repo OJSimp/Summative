@@ -145,7 +145,9 @@ const ListingDetials = () => {
           </p>
         </div>
         <div className="listing-details__container listing-details__buttons">
-          <button className="btn-primary">Purcahse Artwork</button>
+          <Link className="btn-primary" to="/checkout">
+            Purcahse Artwork
+          </Link>
           <button className="btn-outline">Add To Cart</button>
         </div>
 
