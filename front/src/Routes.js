@@ -15,6 +15,7 @@ import YourListings from "./pages/YourListings";
 import EditListingPage from "./pages/EditListingPage";
 import Search from "./pages/Search";
 import ListingDetails from "./pages/ListingDetails";
+import Checkout from "./pages/Checkout";
 
 import NoMatch from "./components/error/NoMatch";
 
@@ -62,6 +63,8 @@ const AppRoutes = () => {
                 path="/listing-details/:listingsId"
                 element={<ListingDetails />}
               ></Route>
+
+              <Route path="/checkout" element={<Checkout />}></Route>
             </Routes>
           ) : (
             <Routes>
@@ -94,6 +97,7 @@ const AppRoutes = () => {
                 path="/listing-details/:listingsId"
                 element={<ListingDetails />}
               ></Route>
+              <Route path="/checkout" element={<Checkout />}></Route>
             </Routes>
           )
         }

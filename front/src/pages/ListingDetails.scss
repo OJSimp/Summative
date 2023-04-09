@@ -48,6 +48,10 @@
 // removes the gaps on the buttons
 .listing-details__buttons{
   gap: 0px;
+
+  .btn-primary{
+  color: #FDFDFD;
+  }
 }
 
 // Comments scss
