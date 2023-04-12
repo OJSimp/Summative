@@ -1,10 +1,11 @@
-const mongoose = require('mongoose')
+// -- Spencer's coded section
+
+const mongoose = require("mongoose");
 
 // a simple schema taken from Simons
 
 const imageSchema = new mongoose.Schema({
- data: String,
-})
+  data: String,
+});
 
-
-module.exports = mongoose.model("Image", imageSchema)
+module.exports = mongoose.model("Image", imageSchema);

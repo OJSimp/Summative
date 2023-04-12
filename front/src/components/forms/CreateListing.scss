@@ -144,3 +144,12 @@ margin-bottom: 10px;
 .text-error--dropdown {
   top: 50px;
 }
+
+.select-input__btn--error{
+      display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+  border: 1px solid #cc0000;
+      padding: 10px 20px;
+}
