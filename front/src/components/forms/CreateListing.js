@@ -276,6 +276,8 @@ const CreateListing = () => {
               className={
                 dropdownActive
                   ? "select-input__btn--active"
+                  : errorArtType
+                  ? "select-input__btn--error"
                   : "select-input__btn--inactive"
               }
               onClick={() => {

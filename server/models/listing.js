@@ -1,3 +1,5 @@
+// -- Spencer's coded section
+
 const mongoose = require("mongoose");
 
 // Art Listing schema

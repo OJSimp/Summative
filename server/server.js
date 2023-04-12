@@ -45,7 +45,7 @@ const upload = multer({
 
 //-----------Routes START-----------//
 
-// LISTINGS //
+// LISTINGS // -- Zee's code
 
 app.post("/listings", async (req, res) => {
   // add try catch block to POST request
@@ -61,7 +61,7 @@ app.post("/listings", async (req, res) => {
       artistBio: req.body.artistBio,
       dateCreated: req.body.creationDate,
       status: req.body.status,
-      image: req.body.file.file,
+      image: req.body.file.file, // -- Spencer's coded section
     });
 
     res.status(200).json(artListing);
@@ -72,7 +72,7 @@ app.post("/listings", async (req, res) => {
   }
 });
 
-// view all listings
+// view all listings -- Spencer's coded section
 
 app.get("/listings/", async (req, res) => {
   const viewAllListing = await Listing.find({});
@@ -82,7 +82,7 @@ app.get("/listings/", async (req, res) => {
   res.json(viewAllListing);
 });
 
-// search for listing by type
+// search for listing by type -- Spencer's coded section
 app.get("/searchlistings/:type", async (req, res) => {
   const artType = req.params.type;
 
@@ -93,7 +93,7 @@ app.get("/searchlistings/:type", async (req, res) => {
   res.json(viewListings);
 });
 
-// search for listing by price range
+// search for listing by price range -- Spencer's coded section
 app.get("/searchlistings/:minValue/:maxValue", async (req, res) => {
   const minValue = req.params.minValue;
   const maxValue = req.params.maxValue;
@@ -101,7 +101,7 @@ app.get("/searchlistings/:minValue/:maxValue", async (req, res) => {
   console.log(minValue, maxValue);
 });
 
-// get listing by Id
+// get listing by Id -- Spencer's coded section
 
 app.get("/listings/:listingsId", async (req, res) => {
   // const listingID = req.params.listingId
@@ -113,7 +113,7 @@ app.get("/listings/:listingsId", async (req, res) => {
   res.json(usersListing);
 });
 
-// get listings by creator
+// get listings by creator -- Amiee's code
 
 app.get("/your-listings/:creatorId", async (req, res) => {
   // const listingID = req.params.listingId
@@ -125,7 +125,7 @@ app.get("/your-listings/:creatorId", async (req, res) => {
   res.json(viewAListing);
 });
 
-// Update listing listing
+// Update listing listing -- Amiees's Code
 
 app.put("/listings/:listingId", async (req, res) => {
   const listingId = req.params.listingId;
@@ -147,7 +147,7 @@ app.put("/listings/:listingId", async (req, res) => {
   res.json(post);
 });
 
-// add listing comments
+// add listing comments -- Spencer's coded section
 
 app.put("/listings/:id/comments", async (req, res) => {
   const postId = req.params.id;
@@ -166,6 +166,8 @@ app.put("/listings/:id/comments", async (req, res) => {
   console.log("COMMENT ADDED", updatedPost);
 });
 
+// -- Spencer's coded section
+
 app.delete("/listings/:listingid/comments/:commentid", async (req, res) => {
   const postId = req.params.listingid;
   const commentId = req.params.commentid;
@@ -180,7 +182,7 @@ app.delete("/listings/:listingid/comments/:commentid", async (req, res) => {
   console.log("Deleted Comment", commentsPulled.post);
 });
 
-// delete listing comments
+// delete listing -- Zee's code
 
 app.delete("/listings/:listingId", async (req, res) => {
   const deleteListing = await Listing.findByIdAndDelete(req.params.listingId);
@@ -217,7 +219,7 @@ app.get("/users/:userEmail", async (req, res) => {
 
 // EDIT PROFILE
 
-// updating an existing userprofile
+// updating an existing userprofile -- Amiees
 app.put("/users/:userEmail", async (req, res) => {
   // calling the profile
   const userEmail = req.params.userEmail;
@@ -236,7 +238,7 @@ app.put("/users/:userEmail", async (req, res) => {
   console.log("Updated user", updatedUser);
 });
 
-// DELETE PROFILE
+// DELETE PROFILE -- Amiee's code
 app.delete("/users/:userId", async (req, res) => {
   const deleteUserId = await User.findByIdAndDelete(req.params.userId);
   res.json(deleteUserId);
