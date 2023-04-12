@@ -230,22 +230,27 @@ const CreateListing = () => {
           {/* Art Title */}
           <input
             placeholder=""
-            className="text-input"
+            className={errorArtTitle ? "text-input--error" : "text-input"}
             type="text"
             id="upload-art--art-title"
             onChange={(e) => setArtTitle(e.target.value)}
           />
           <label
             htmlFor="upload-art--art-title"
-            className="text-input__label"
+            className={
+              errorArtTitle ? "text-input__label--error" : "text-input__label"
+            }
             id="log-in--password"
           >
             <span>Artwork Title</span>
+            {errorArtTitle ? (
+              <span className="text-error"> Artwork title {errorArtTitle}</span>
+            ) : null}
           </label>
 
           {/* Art Specs */}
           <input
-            className="text-input"
+            className={errorArtSpecs ? "text-input--error" : "text-input"}
             placeholder=""
             type="text"
             id="upload-art--art-specs"
@@ -253,10 +258,15 @@ const CreateListing = () => {
           />
           <label
             htmlFor="upload-art--art-specs"
-            className="text-input__label"
+            className={
+              errorArtSpecs ? "text-input__label--error" : "text-input__label"
+            }
             id="log-in--password"
           >
             <span>Artwork Specs</span>
+            {errorArtSpecs ? (
+              <span className="text-error"> Artwork specs {errorArtSpecs}</span>
+            ) : null}
           </label>
 
           {/* Art Type - custom selector */}
@@ -293,6 +303,17 @@ const CreateListing = () => {
                 {dropdownActive ? <FaChevronUp /> : <FaChevronDown />}
               </span>
             </div>
+            <label
+              className="text-input__label"
+              htmlFor="upload-art--artwork-type"
+            >
+              {errorArtType ? (
+                <span className="text-error text-error--dropdown">
+                  {" "}
+                  Artwork Type {errorArtType}
+                </span>
+              ) : null}
+            </label>
             {/* the dropdown */}
             <div
               className={
@@ -307,7 +328,7 @@ const CreateListing = () => {
 
           {/* Artwork Details */}
           <textarea
-            className="text-input"
+            className={errorArtDetails ? "text-input--error" : "text-input"}
             name="ArtworkDetails"
             placeholder=""
             id="upload-art--art-details"
@@ -317,12 +338,19 @@ const CreateListing = () => {
           ></textarea>
           <label
             htmlFor="upload-art--art-details"
-            className="text-area__label"
+            className={
+              errorArtDetails ? "text-area__label--error" : "text-area__label"
+            }
             id="log-in--password"
           >
             <span>Artwork Details</span>
+            {errorArtDetails ? (
+              <span className="text-error--textarea">
+                {" "}
+                Artwork Details {errorArtDetails}
+              </span>
+            ) : null}
           </label>
-
           <div className="btn-outline" onClick={() => handleSectionNavigate(2)}>
             Next
           </div>
@@ -338,7 +366,7 @@ const CreateListing = () => {
         >
           {/* Artist Name */}
           <input
-            className="text-input"
+            className={errorArtistName ? "text-input--error" : "text-input"}
             placeholder=""
             type="text"
             id="upload-art--artist-name"
@@ -346,16 +374,21 @@ const CreateListing = () => {
           />
           <label
             htmlFor="upload-art--art-name"
-            className="text-input__label"
+            className={
+              errorArtistName ? "text-input__label--error" : "text-input__label"
+            }
             id="log-in--password"
           >
             <span>Artist Name</span>
+            {errorArtistName ? (
+              <span className="text-error"> Artist Name {errorArtistName}</span>
+            ) : null}
           </label>
 
           {/* Artist Details */}
           <textarea
             name="Artist bio"
-            className="text-input"
+            className={errorArtistBio ? "text-input--error" : "text-input"}
             placeholder=""
             id="upload-art--artist-details"
             cols="30"
@@ -364,10 +397,18 @@ const CreateListing = () => {
           ></textarea>
           <label
             htmlFor="upload-art--artist-details"
-            className="text-area__label"
+            className={
+              errorArtDetails ? "text-area__label--error" : "text-area__label"
+            }
             id="log-in--password"
           >
             <span>Artist Bio</span>
+            {errorArtDetails ? (
+              <span className="text-error--textarea">
+                {" "}
+                Artist Details {errorArtDetails}
+              </span>
+            ) : null}
           </label>
 
           <div className="upload-art__navigation">

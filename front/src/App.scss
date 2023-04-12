@@ -422,9 +422,10 @@ background: none;
     position: relative;
 
     span {
+        
         position: absolute;
         transform: translate(20px, -60px);
-        
+
     }
 }
 
@@ -484,6 +485,35 @@ background: none;
   font-weight: 500;
  }
 }
+
+.text-area__label--error {
+    position: relative;
+
+    span {
+        position: absolute;
+        transform: translate(20px,
+                -90px);
+        font-family: 'Roboto', Arial, sans-serif;
+
+    }
+
+    .text-error--textarea{
+    position: absolute;
+    transform: translate(20px,
+                -20px);
+    color: #cc0000;
+    font-size: 0.75rem;
+    font-weight: 400;
+    background-color: #FDFDFD;
+    padding: 2px;
+    }
+}
+
+.text-error--dropdown{
+    transform: translate();
+}
+
+
 
 
 
