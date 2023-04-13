@@ -46,9 +46,9 @@ const ListingComments = (props) => {
         {/* if the signed in user created the comment show the edit and delete button */}
         {commentCreator == props.id ? (
           <div className="card-comment__utility">
-            <button className="btn-text" onClick={toggleModal}>
+            {/* <button className="btn-text" onClick={toggleModal}>
               Edit <AiOutlineEdit />
-            </button>
+            </button> */}
             <button
               className="btn-text"
               id={comment._id}
