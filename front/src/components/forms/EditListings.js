@@ -60,6 +60,7 @@ const EditListings = () => {
     await fetch(`http://localhost:8001/listings/${listingId}`, {
       method: "DELETE",
     });
+    navigate("/search");
   };
 
   // update the listing – List Artwork
