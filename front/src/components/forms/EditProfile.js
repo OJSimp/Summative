@@ -1,3 +1,5 @@
+// Amiee's code
+
 import "./EditProfile.scss";
 
 import { useState, useEffect } from "react";

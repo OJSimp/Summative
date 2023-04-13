@@ -4,13 +4,14 @@
 .edit-profile{
     height:100vh;
     width: 100%;
-    background-color: #FDFDFD;
+    background-color: #f4f4f4;
 }
 
 .form-profile__edit {
     display: flex;
     flex-direction: column;
     padding: 20px 10%;
+    background-color: #FDFDFD;
 
      @media (min-width: 600px) {
     margin: auto;

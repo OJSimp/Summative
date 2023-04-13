@@ -1,3 +1,5 @@
+// Spencer and Zee's code
+
 import "./ListingComment.scss";
 import { useState } from "react";
 import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
@@ -10,6 +12,7 @@ const ListingComments = (props) => {
     console.log(EditThisComment);
   };
 
+  // Spencer and Zee's code // Spencer - Delete / Zee - modal design for edit
   const handleDelete = async (e) => {
     const commentID = e.target.id;
     const listingId = props.listingId;
