@@ -294,7 +294,7 @@ const EditListings = () => {
 
         <button className="btn-primary" onClick={updateListing}>
           {" "}
-          List Artwork{" "}
+          Edit Artwork{" "}
         </button>
 
         <button className="btn-outline" onClick={handleDeleteListing}>

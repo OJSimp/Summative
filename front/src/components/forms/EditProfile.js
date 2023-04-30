@@ -9,7 +9,7 @@ import { FaChevronLeft } from "react-icons/fa";
 
 // Hooks
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { useGetUser } from "../../hooks/useGetUser";
+import { useLogout } from "../../hooks/useLogOut";
 
 const EditProfile = () => {
   const [email, setEmail] = useState("");
@@ -19,6 +19,8 @@ const EditProfile = () => {
 
   // storage of user information
   const { user } = useAuthContext();
+
+  const { logout } = useLogout();
 
   const navigate = useNavigate();
 
@@ -54,6 +56,7 @@ const EditProfile = () => {
 
     // await fetch
     await fetch(`http://localhost:8001/users/${ID}`, { method: "DELETE" });
+    logout();
     navigate("/search");
   };
 

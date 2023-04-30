@@ -75,7 +75,8 @@ app.post("/listings", async (req, res) => {
 // view all listings -- Spencer's coded section
 
 app.get("/listings/", async (req, res) => {
-  const viewAllListing = await Listing.find({});
+  // find all listings and sort from newest to oldest
+  const viewAllListing = await Listing.find({}).sort({ dateCreated: -1 });
 
   console.log(viewAllListing);
 
@@ -86,7 +87,9 @@ app.get("/listings/", async (req, res) => {
 app.get("/searchlistings/:type", async (req, res) => {
   const artType = req.params.type;
 
-  const viewListings = await Listing.find({ artType: artType });
+  const viewListings = await Listing.find({ artType: artType }).sort({
+    dateCreated: -1,
+  });
 
   console.log(viewListings);
 
@@ -118,7 +121,11 @@ app.get("/listings/:listingsId", async (req, res) => {
 app.get("/your-listings/:creatorId", async (req, res) => {
   // const listingID = req.params.listingId
 
-  const viewAListing = await Listing.find({ creatorId: req.params.creatorId });
+  const viewAListing = await Listing.find({
+    creatorId: req.params.creatorId,
+  }).sort({
+    dateCreated: -1,
+  });
 
   console.log(viewAListing);
 
